@@ -4,7 +4,7 @@ iReporter enables any/every citizen to bring any form of corruption to the notic
 ## Getting Started
 
 1. Clone the repo:
-    git clone https://github.com/cassidoo/todometer.git
+    git clone https://github.com/katherine95/iReporter.git
 2. Run on any web browser    
 
 
