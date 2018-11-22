@@ -76,6 +76,7 @@ body {
     height: 40px;
     color: #FFF;
     background:green;
+    border-radius: 12px;
 }
 .logo{
     position:relative;
@@ -116,7 +117,98 @@ li a {
 li a:hover {
     background-color: #111;
 }
+.container-special{
+    width:1200px;
+    float:left;
+    position:relative;
+    left:50%;
+    margin-left:-600px;
+    background:#fff;
+    padding:10px;
+}
+/* section */
+article section{
+    padding:0;
+}
+/* basic page column layout */
+.halves,.thirds{
+    width:49%;
+    float:left;
+    margin-right:2%;
+}
+.thirds{
+width:32.66666%;
+margin-right:1%;
+}
+.last{
+margin-right:0;
+}
+#redflags {
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-collapse: collapse;
+    width: 100%;
+}
 
+#redflags td, #redflags th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#redflags tr:nth-child(even){background-color: #f2f2f2;}
+
+#redflags tr:hover {background-color: #ddd;}
+th {
+    color: white;
+    font-weight: bold;
+    font-size:30px;
+    text-align: center;
+    letter-spacing: 0.001em;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#redflags th {
+    background-color: rgb(187, 14, 14);
+    
+}
+#interventions {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#interventions td, #interventions th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#interventions tr:nth-child(even){background-color: #f2f2f2;}
+
+#interventions tr:hover {background-color: #ddd;}
+
+#interventions th {
+    background-color: #4CAF50;
+}
+button {
+    font-size:20px;
+    border: none;
+    outline: none;
+    height: 40px;
+    color: #FFF;
+    width:180px;  
+    position:relative;
+    top:20%; 
+    left:10%;
+    border-radius: 12px;
+}
+.redflag{
+    background: rgb(187, 14, 14);
+    margin-bottom: 40px;
+    margin-top: 30px;
+    
+}
+.intervention {
+    background:green;
+}
 @media only screen and (max-width: 600px) {
     .container{
         min-width: 80%;
