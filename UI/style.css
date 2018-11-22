@@ -9,6 +9,9 @@ body {
     font-family: sans-serif;
     opacity: 0.75;
 }
+a{
+    text-decoration: none;
+}
 .title {
     text-align: center;
     padding: 40px 0 20px;
@@ -70,13 +73,19 @@ body {
     outline: none;
     height: 40px;
 }
-.form input[type="submit"] {
+button[type="submit"] {
     border: none;
     outline: none;
+    margin-bottom: 15px;
     height: 40px;
     color: #FFF;
     background:green;
     border-radius: 12px;
+    cursor: pointer;
+}
+.signup {
+    text-decoration-color:black !important;
+    margin-top: 10px;
 }
 .logo{
     position:relative;
