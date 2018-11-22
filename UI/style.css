@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+}
+.background {
     background: url(images/bgg.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -83,9 +85,11 @@ button[type="submit"] {
     border-radius: 12px;
     cursor: pointer;
 }
-.signup {
+.signup a{
     text-decoration-color:black !important;
     margin-top: 10px;
+    color:black;
+    margin-top:10px;
 }
 .logo{
     position:relative;
