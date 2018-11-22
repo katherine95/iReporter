@@ -9,7 +9,6 @@ body {
     font-family: sans-serif;
     opacity: 0.75;
 }
-
 .title {
     text-align: center;
     padding: 40px 0 20px;
@@ -126,27 +125,27 @@ li a:hover {
     margin-left:-600px;
     background:#fff;
     padding:10px;
-   }
+}
 /* section */
 article section{
     padding:0;
-   }
-   /* basic page column layout */
-   .halves,.thirds{
+}
+/* basic page column layout */
+.halves,.thirds{
     width:49%;
     float:left;
     margin-right:2%;
-   }
-   .thirds{
-    width:32.66666%;
-    margin-right:1%;
-   }
-   .last{
-    margin-right:0;
-   }
-   #redflags {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
+}
+.thirds{
+width:32.66666%;
+margin-right:1%;
+}
+.last{
+margin-right:0;
+}
+#redflags {
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-collapse: collapse;
     width: 100%;
 }
 
