@@ -336,6 +336,7 @@ div .content{
       background-color: red;
       color: white;
     }
+
 @media only screen and (max-width: 600px) {
     .container{
         min-width: 80%;
