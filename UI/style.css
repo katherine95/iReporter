@@ -1,3 +1,12 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline:none;
+}
 body {
     margin: 0;
     padding: 0;
@@ -13,10 +22,27 @@ body {
 }
 a{
     text-decoration: none;
+    color: white;
 }
 .title {
     text-align: center;
     padding: 40px 0 20px;
+}
+#top-nav {
+    width: 100%;
+    margin: 10px;
+
+}
+#top-nav a {
+    float: right;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 18px; /* Increased text to enable scrolling */
+    
 }
 .title h1{
     margin: 0;
@@ -133,11 +159,9 @@ li a:hover {
 .container-special{
     width:1200px;
     float:left;
+    margin-left:10px;
     position:relative;
-    left:50%;
-    margin-left:-600px;
     background:#fff;
-    padding:10px;
 }
 /* section */
 article section{
@@ -215,13 +239,72 @@ button {
 }
 .redflag{
     background: rgb(187, 14, 14);
-    margin-bottom: 40px;
-    margin-top: 30px;
+    
     
 }
 .intervention {
     background:green;
 }
+#sidebar {
+    position: fixed;
+    height: 100%;
+    width:200px;
+    background:#111;
+    transition:left 500ms linear;
+}
+#sidebar .active {
+    left:0px;
+}
+#sidebar > .list > .item {
+    color:white;
+    padding:10px;
+    border-bottom: 1px solid #444;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    left: -200px;
+}
+#toggle-btn {
+    position: absolute;
+    left:230px;
+    top:30px;
+}
+#toggle-btn span {
+    width: 30px;
+    height: 5px;
+    background: #111;
+    display: block;
+    margin: 4px 0px;
+    cursor:pointer;
+}
+div .content{
+    display: none;
+    
+}
+.notification {
+      float:right;
+      background-color: #555;
+      color: white;
+      text-decoration: none;
+      padding: 15px 26px;
+      margin-right:15px;
+      position: relative;
+      display: inline-block;
+      border-radius: 2px;
+    }
+    
+    .notification:hover {
+      background: red;
+    }
+    
+    .notification .badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      padding: 5px 10px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+    }
 @media only screen and (max-width: 600px) {
     .container{
         min-width: 80%;
