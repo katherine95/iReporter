@@ -11,6 +11,58 @@ body {
     margin: 0;
     padding: 0;
 }
+nav {
+    background-color: #333;
+    height: 10vh;
+    overflow: hidden;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding-right: 100px;  
+    
+}
+
+nav ul li a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 25px 15px 15px;
+    text-decoration: none;
+    color: white;
+    width: 0.5%;
+    height: 0.5%;
+    margin-right: 2em;
+}
+.logo{
+    float:left;
+    left:50px;
+    background-color:none;
+    font-size:30px;
+    font-weight: 800;
+    padding:10px 0;
+}
+.profile{
+    background:blue;
+    height: 9vh;
+}
+.profile ul{
+    float: right;
+    margin-right: 3em;
+}
+.profile ul li{
+    list-style: none;
+    display: inline;
+    padding-right: 20px;
+    font-size: 25px;
+}
+.profile-content{
+    margin:2em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:20px;
+}
 .background {
     background: url(images/bgg.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -20,13 +72,19 @@ body {
     font-family: sans-serif;
     opacity: 0.75;
 }
-a{
-    text-decoration: none;
-    color: white;
+.card{
+   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+   padding: 20px 0;
+}
+.card h1, p {
+    text-align: center;
+}
+.records-list{
+    margin:2em;
 }
 .title {
     text-align: center;
-    padding: 20px 0 20px;
+    padding: 10px 0 10px;
 }
 #top-nav {
     width: 100%;
@@ -88,10 +146,11 @@ a{
     padding: 0;
     font-weight: bold;
     color: #333;
+    text-align: left;
 }
 .form input {
     margin-bottom: 20px;
-    width: 100%;
+    width: auto;
 }
 .form input[type="email"],
 .form input[type="text"],
@@ -119,14 +178,7 @@ button[type="submit"] {
     color:black;
     margin-top:10px;
 }
-.logo{
-    position:relative;
-    float:left;
-    left:50px;
-    background-color:none;
-    font-size:38px;
-    font-weight: bold;
-}
+
 .banner {
     position: relative;
     top: 20px;
@@ -135,28 +187,9 @@ img {
     width: 100%;
     height: auto;
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding-right: 100px;
-    overflow: hidden;
-    background-color: #333;
-    
-}
-
-li a {
-    float: right;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 25px 25px;
-    text-decoration: none;
-    width: 0.5%;
-    height: 0.5%;
-}
 /* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #111;
+.logo:hover {
+    /* background-color: #111; */
 }
 .container-special{
     width:1200px;
@@ -185,7 +218,7 @@ margin-right:0;
 #redflags {
 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 border-collapse: collapse;
-    width: 100%;
+    width: 60%;
 }
 
 #redflags td, #redflags th {
@@ -239,11 +272,7 @@ button {
     left:10%;
     border-radius: 12px;
 }
-.redflag{
-    background: rgb(187, 14, 14);
-    
-    
-}
+
 .intervention {
     background:green;
 }
