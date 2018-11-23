@@ -1,0 +1,343 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline:none;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+nav {
+    background-color: #333;
+    height: 10vh;
+    overflow: hidden;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding-right: 100px;  
+    
+}
+
+nav ul li a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 25px 15px 15px;
+    text-decoration: none;
+    color: white;
+    width: 0.5%;
+    height: 0.5%;
+    margin-right: 2em;
+}
+.logo{
+    float:left;
+    left:50px;
+    background-color:none;
+    font-size:30px;
+    font-weight: 800;
+    padding:10px 0;
+}
+.profile{
+    background:blue;
+    height: 9vh;
+}
+.profile ul{
+    float: right;
+    margin-right: 3em;
+}
+.profile ul li{
+    list-style: none;
+    display: inline;
+    padding-right: 20px;
+    font-size: 25px;
+}
+.profile-content{
+    margin:2em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:20px;
+}
+.background {
+    background: url(images/bgg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: sans-serif;
+    opacity: 0.75;
+}
+.card{
+   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+   padding: 20px 0;
+}
+.card h1, p {
+    text-align: center;
+}
+.records-list{
+    margin:2em;
+}
+.title {
+    text-align: center;
+    padding: 10px 0 10px;
+}
+#top-nav {
+    width: 100%;
+    margin: 10px;
+
+}
+#top-nav a {
+    float: right;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 18px; /* Increased text to enable scrolling */
+    
+}
+.title h1{
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-size:36px;
+}
+.container {
+    width: 50%;
+    height: 500px;
+    background:#FFF;
+    margin: 0 auto;
+    border: 2px solid #FFF;
+    box-shadow:0 15px 40px rgba(0,0,0,.5)
+}
+.container .left {
+    margin: 0;
+    padding: 0;
+    float:left;
+    width:50%;
+    height:400px;
+    background: url(images/anticorrupt.png) no-repeat center;
+    background-size: contain;
+    box-sizing: border-box;
+    resize: both;
+
+}
+.container .right {
+    float:right;
+    width:50%;
+    height:400px;
+    box-sizing: border-box;
+}
+.form {
+    width: 100%;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    height: 400px;
+    background: #FFF;
+}
+.form p {
+    margin:0;
+    padding: 0;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+}
+.form input {
+    margin-bottom: 20px;
+    width: auto;
+}
+.form input[type="email"],
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="radio"],
+.form input[type="textarea"], {
+    border: none;
+    border-bottom: 2px solid #111;
+    outline: none;
+    height: 40px;
+}
+button[type="submit"] {
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+    height: 40px;
+    color: #FFF;
+    background:green;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.signup a{
+    text-decoration-color:black !important;
+    margin-top: 10px;
+    color:black;
+    margin-top:10px;
+}
+
+.banner {
+    position: relative;
+    top: 20px;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+/* Change the link color to #111 (black) on hover */
+.logo:hover {
+    /* background-color: #111; */
+}
+.container-special{
+    width:1200px;
+    float:left;
+    margin-left:10px;
+    position:relative;
+    background:#fff;
+}
+/* section */
+article section{
+    padding:0;
+}
+/* basic page column layout */
+.halves,.thirds{
+    width:49%;
+    float:left;
+    margin-right:2%;
+}
+.thirds{
+width:32.66666%;
+margin-right:1%;
+}
+.last{
+margin-right:0;
+}
+#redflags {
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-collapse: collapse;
+    width: 60%;
+}
+
+#redflags td, #redflags th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#redflags tr:nth-child(even){background-color: #f2f2f2;}
+
+#redflags tr:hover {background-color: #ddd;}
+th {
+    color: white;
+    font-weight: bold;
+    font-size:30px;
+    text-align: center;
+    letter-spacing: 0.001em;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#redflags th {
+    background-color: rgb(187, 14, 14);
+    
+}
+#interventions {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#interventions td, #interventions th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#interventions tr:nth-child(even){background-color: #f2f2f2;}
+
+#interventions tr:hover {background-color: #ddd;}
+
+#interventions th {
+    background-color: #4CAF50;
+}
+button {
+    font-size:20px;
+    border: none;
+    outline: none;
+    height: 40px;
+    color: #FFF;
+    width:180px;  
+    position:relative;
+    top:20%; 
+    left:10%;
+    border-radius: 12px;
+}
+
+.intervention {
+    background:green;
+}
+#sidebar {
+    position: fixed;
+    height: 100%;
+    width:200px;
+    background:#111;
+    transition:left 500ms linear;
+}
+#sidebar .active {
+    left:0px;
+}
+#sidebar > .list > .item {
+    color:white;
+    padding:10px;
+    border-bottom: 1px solid #444;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    left: -200px;
+}
+#toggle-btn {
+    position: absolute;
+    left:230px;
+    top:30px;
+}
+#toggle-btn span {
+    width: 30px;
+    height: 5px;
+    background: #111;
+    display: block;
+    margin: 4px 0px;
+    cursor:pointer;
+}
+div .content{
+    display: none;
+    
+}
+.notification {
+      float:right;
+      background-color: #555;
+      color: white;
+      text-decoration: none;
+      padding: 15px 26px;
+      margin-right:15px;
+      position: relative;
+      display: inline-block;
+      border-radius: 2px;
+    }
+    
+    .notification:hover {
+      background: red;
+    }
+    
+    .notification .badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      padding: 5px 10px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+    }
+@media only screen and (max-width: 600px) {
+    .container{
+        min-width: 80%;
+    }    
+}
