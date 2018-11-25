@@ -14,5 +14,5 @@ This site is published at https://katherine95.github.io/iReporter/
 ### Prerequisites
 
 ```
-Html5 and CSS3
+Html5, CSS3, python, flask
 ```
