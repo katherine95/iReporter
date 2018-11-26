@@ -1,5 +1,5 @@
 aniso8601==4.0.1
-astroid==2.0.4
+astroid==1.6.5
 atomicwrites==1.2.1
 attrs==18.2.0
 Click==7.0
