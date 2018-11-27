@@ -1,9 +1,9 @@
-#from flask_restful import Api, Resource
-#from flask import Blueprints
-#from api.v1 import version_one as v1
+from flask import Flask
 
-#def create_app():
-    #app = Flask()
-    #app.register_blueprint(v1)
-    #return app
+def create_app(config_name):
+    app = Flask(__name__)
+    
+    from app.api.v1 import v1 as version_one
+    app.register_blueprint(version_one, url_prefix='/api/v1')
+    return app
 
