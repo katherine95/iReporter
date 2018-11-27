@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/katherine95/iReporter.svg?branch=develop)](https://travis-ci.org/katherine95/iReporter)[![Coverage Status](https://coveralls.io/repos/github/katherine95/iReporter/badge.svg?branch=develop)](https://coveralls.io/github/katherine95/iReporter?branch=develop)
+[![Build Status](https://travis-ci.org/katherine95/iReporter.svg?branch=develop)](https://travis-ci.org/katherine95/iReporter) [![Coverage Status](https://coveralls.io/repos/github/katherine95/iReporter/badge.svg?branch=develop)](https://coveralls.io/github/katherine95/iReporter?branch=develop)
 # iReporter
 iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention.
 
