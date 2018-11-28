@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, Blueprint
 
-def create_app(config_name):
+from app.api.v1 import v1 as version_one
+
+def create_app(config_name='development'):
     app = Flask(__name__)
     
-    from app.api.v1 import v1 as version_one
-    app.register_blueprint(version_one, url_prefix='/api/v1')
+    app.register_blueprint(version_one)
     return app
 
