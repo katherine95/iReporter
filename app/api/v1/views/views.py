@@ -21,19 +21,19 @@ class Incidents(Resource):
         response = self.incidentObject.get_all()
         return response 
     
-# class RedFlags(Resource):
-#     def __init__(self):
-#         self.incidentObject = IncidentModel 
 
-#     def get(self, id):
-#         response = self.incidentObject.getById(self, id)
-#         return make_response(jsonify(response)) 
+class RedFlags(Resource):
+    def __init__(self):
+        self.incidentObject = IncidentModel 
 
-#     def patchLocation(self):
-#         pass
+    def get(self, id):
+        response = self.incidentObject.getById(self, id)
+        return make_response(jsonify(response))
 
-#     def patchComment(self):
-#         pass    
+class IncidentDetail(Resource):
+    def __init__(self):
+        self.incidentObject =IncidentModel       
 
-#     def delete(self):
-#         pass       
+    def patch(self, id, attribute):
+        response = self.incidentObject.editAttribute,(self, id, attribute)
+        return make_response(jsonify(response))

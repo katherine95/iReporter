@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, request, make_response
 from datetime import date
 import uuid
 
@@ -36,9 +36,42 @@ class Incident(object):
             "incidents" : self.incidents_list
     })
   
-   def getById(self,    id):
+   def getById(self, id):
         for item in incidents_list:
             if item['incidentType'] == 'redflag' and item['id'] == int(id):
-                print('ghgh')
                 return item
-        return "no item found"
+        return "Record not found"
+
+   def checkRecordIfExist(self, id):
+        for item in incidents_list:
+            if item['incidentType'] == 'redflag' and item['id'] == int(id):
+                return True 
+        return False
+
+   def editAttribute(self, id, attribute, change):
+       change = request.get_json()['change']
+       allowed = ['comment', 'location']
+
+       if self.getById(id):
+           if attribute in allowed:
+               self.editAttribute(id,attribute,change)
+               return make_response(jsonify({
+                   "status":200,
+                   "data" :[{
+                       "id":id,
+                       "message": "Record is updated "
+                   }]
+               }), 200)
+           else:
+               return make_response(jsonify({
+                   "status": 404,
+                   "error":"Attribute cannot be edited"
+                   }), 404)
+       else:
+           return make_response(jsonify({
+               "status":404,
+               "error":"record not found"
+               }), 404)           
+           
+       
+                    
