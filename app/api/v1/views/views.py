@@ -37,3 +37,11 @@ class IncidentDetail(Resource):
     def patch(self, id, attribute):
         response = self.incidentObject.editAttribute,(self, id, attribute)
         return make_response(jsonify(response))
+
+class IncidentDelete(Resource):
+    def __init__(self):
+        self.incidentObject =IncidentModel       
+
+    def delete(self, id):
+        response = self.incidentObject.deleteIncident(self, id)
+        return make_response(jsonify(response))  

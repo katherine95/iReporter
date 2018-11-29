@@ -71,7 +71,21 @@ class Incident(object):
            return make_response(jsonify({
                "status":404,
                "error":"record not found"
-               }), 404)           
+               }), 404)     
+
+   def deleteIncident(self,id):
+       for item in incidents_list:
+           if item.get('id') == int(id):
+               del item
+           return {"status": 204, "incidents" : incidents_list ,"message":"Incident successfully deleted"}
+
+    #    [item for item in incidents_list if item.get('id') == int(id)]
+    #    return {"status": 204, "incidents" : incidents_list ,"message":"Incident successfully deleted"}
+
+    #    for item in incidents_list:
+    #        if item['id'] == int(id):
+    #            item.remove(incidents_list[0])
+
            
        
                     
