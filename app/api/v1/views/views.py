@@ -29,3 +29,11 @@ class RedFlags(Resource):
     def get(self, id):
         response = self.incidentObject.getById(self, id)
         return make_response(jsonify(response))
+
+class IncidentDetail(Resource):
+    def __init__(self):
+        self.incidentObject =IncidentModel       
+
+    def patch(self, id, attribute):
+        response = self.incidentObject.editAttribute,(self, id, attribute)
+        return make_response(jsonify(response))
