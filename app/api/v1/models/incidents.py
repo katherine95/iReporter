@@ -75,7 +75,20 @@ class Incident(object):
             "status": 404,
             "message": "Record with that ID does not exist."
             })
-   
 
-       
-                    
+   def deleteIncident(self,id):
+       if self.checkRecordIfExist(id):
+           for item in incidents_list:
+               if item['id'] == int(id):
+                   incidents_list.pop(incidents_list.index(item))
+                   return jsonify({
+                       "status": 204,
+                       "data": [{
+                           "Id": id,
+                           "message": "red-flag record has been deleted"
+                       }]
+                   })
+       return jsonify({
+            "status": 404,
+            "message": "Record with that ID does not exist."
+            })     

@@ -30,7 +30,11 @@ class RedFlag(Resource):
 
     def get(self, id):
         response = self.incidentObject.getById(self, id)
-        return make_response(jsonify(response))       
+        return make_response(jsonify(response))    
+
+    def delete(self, id):
+        response = incidentObject.deleteIncident(id)
+        return make_response(response)    
 
 
 class IncidentDetail(Resource):
