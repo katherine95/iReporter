@@ -1,7 +1,6 @@
 from flask import jsonify, request, make_response
 from datetime import date
 import uuid
-
 incidents_list = []
 class Incident(object):
    """class that deals with incidents data"""
@@ -32,15 +31,26 @@ class Incident(object):
 
     # method to GET all incidents
    def get_all(self):
-        return jsonify({
+       if len(incidents_list) == 0:
+           return jsonify({
+                   "status": 200,
+                   "message": "You have no incidents created" 
+               })
+
+       return jsonify({
             "incidents" : self.incidents_list
-    })
+       })
   
    def getById(self, id):
-        for item in incidents_list:
-            if item['incidentType'] == 'redflag' and item['id'] == int(id):
-                return item
-        return "Record not found"
+       for item in incidents_list:
+           if item['id'] == int(id):
+               if item['incidentType'] == 'redflag':
+                   return item
+           else:
+               return {
+                   "status": 404,
+                   "message": "Record with that ID does not exist." 
+               }
 
    def checkRecordIfExist(self, id):
         for item in incidents_list:

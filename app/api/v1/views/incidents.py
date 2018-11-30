@@ -24,20 +24,20 @@ class Incidents(Resource):
         return response 
     
 
-class RedFlag(Resource):
+class Incident(Resource):
     def __init__(self):
         self.incidentObject = IncidentModel 
 
     def get(self, id):
         response = self.incidentObject.getById(self, id)
-        return make_response(jsonify(response))    
+        return make_response(jsonify(response))
 
     def delete(self, id):
         response = incidentObject.deleteIncident(id)
-        return make_response(response)    
+        return make_response(response)
 
 
-class IncidentDetail(Resource):
+class UpdateIncident(Resource):
     def __init__(self):
         self.incidentObject =IncidentModel       
 
@@ -55,7 +55,7 @@ class IncidentDetail(Resource):
             return make_response(jsonify({
             "Status": 400, 
             "message": "Please provide " + attribute  
-            }))
+            }), 400)
         return make_response(jsonify({
             "Status": 400,
             "message": "You can only patch location or comment."
