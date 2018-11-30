@@ -2,5 +2,5 @@ language: python
 python:
   - "3.6"
 install: pip install -r requirements.txt
-script: pytest app/tests/v1/test_views.py
+script: py.test --cov=app app/tests/v1
 after_success: coveralls
