@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 import unittest
 from flask import json
 from app import create_app
