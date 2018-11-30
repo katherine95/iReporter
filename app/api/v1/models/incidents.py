@@ -48,44 +48,34 @@ class Incident(object):
                 return True 
         return False
 
-   def editAttribute(self, id, attribute, change):
-       change = request.get_json()['change']
-       allowed = ['comment', 'location']
+   def editLocation(self, id, attribute):
+       if self.checkRecordIfExist(id):
+           item = self.getById(id)
+           item['location'] = attribute
+           return jsonify({
+               "status": 201,
+               "message": "Patched successfully",
+               "data": self.getById(id)
+           })
+       return jsonify({
+            "status": 404,
+            "message": "Record with that ID does not exist."
+            })
+   
+   def editComment(self, id, attribute):
+       if self.checkRecordIfExist(id):
+           item = self.getById(id)
+           item['comment'] = attribute
+           return jsonify({
+               "status": 201,
+               "message": "Patched successfully",
+               "data": self.getById(id)
+           })
+       return jsonify({
+            "status": 404,
+            "message": "Record with that ID does not exist."
+            })
+   
 
-       if self.getById(id):
-           if attribute in allowed:
-               self.editAttribute(id,attribute,change)
-               return make_response(jsonify({
-                   "status":200,
-                   "data" :[{
-                       "id":id,
-                       "message": "Record is updated "
-                   }]
-               }), 200)
-           else:
-               return make_response(jsonify({
-                   "status": 404,
-                   "error":"Attribute cannot be edited"
-                   }), 404)
-       else:
-           return make_response(jsonify({
-               "status":404,
-               "error":"record not found"
-               }), 404)     
-
-   def deleteIncident(self,id):
-       for item in incidents_list:
-           if item.get('id') == int(id):
-               del item
-           return {"status": 204, "incidents" : incidents_list ,"message":"Incident successfully deleted"}
-
-    #    [item for item in incidents_list if item.get('id') == int(id)]
-    #    return {"status": 204, "incidents" : incidents_list ,"message":"Incident successfully deleted"}
-
-    #    for item in incidents_list:
-    #        if item['id'] == int(id):
-    #            item.remove(incidents_list[0])
-
-           
        
                     

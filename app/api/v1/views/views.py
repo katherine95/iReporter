@@ -2,19 +2,21 @@ from flask import jsonify, request, make_response
 from flask_restful import Resource
 from app.api.v1.models.incidents import Incident as IncidentModel
 
+incidentObject = IncidentModel()
+
 class Incidents(Resource):
     def __init__(self):
         self.incidentObject = IncidentModel()
      
     def post(self):
         incidents_data = request.get_json()
-        incidentType = incidents_data['incidentType']
         comment = incidents_data['comment']
+        incidentType = incidents_data['incidentType']
         createdBy = incidents_data['createdBy']
         location = incidents_data['location']
        
         response = self.incidentObject.create(incidentType, comment, createdBy, location)
-        return response
+        return make_response(response)
         
     def get(self):
         # GET method begins here 
@@ -22,26 +24,35 @@ class Incidents(Resource):
         return response 
     
 
-class RedFlags(Resource):
+class RedFlag(Resource):
     def __init__(self):
         self.incidentObject = IncidentModel 
 
     def get(self, id):
         response = self.incidentObject.getById(self, id)
-        return make_response(jsonify(response))
+        return make_response(jsonify(response))       
+
 
 class IncidentDetail(Resource):
     def __init__(self):
         self.incidentObject =IncidentModel       
 
     def patch(self, id, attribute):
-        response = self.incidentObject.editAttribute,(self, id, attribute)
-        return make_response(jsonify(response))
-
-class IncidentDelete(Resource):
-    def __init__(self):
-        self.incidentObject =IncidentModel       
-
-    def delete(self, id):
-        response = self.incidentObject.deleteIncident(self, id)
-        return make_response(jsonify(response))  
+        patch_attributes = ['comment', 'location']
+        print(attribute)
+        if attribute in patch_attributes:
+            patch_data = request.get_json()
+            if attribute in patch_data:
+                if attribute == "location":
+                    res = incidentObject.editLocation(id, patch_data['location'])
+                    return make_response(res)
+                res = incidentObject.editComment(id, patch_data['comment'])
+                return make_response(res)
+            return make_response(jsonify({
+            "Status": 400, 
+            "message": "Please provide " + attribute  
+            }))
+        return make_response(jsonify({
+            "Status": 400,
+            "message": "You can only patch location or comment."
+        }), 400)
