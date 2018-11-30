@@ -1,6 +1,3 @@
-require 'coveralls'
-Coveralls.wear!
-
 import unittest
 from flask import json
 from app import create_app
@@ -52,3 +49,10 @@ class IncidentTest(unittest.TestCase):
         data = json.loads(resp.data)
         self.assertEqual(data['message'], 'Record with that ID does not exist.')
         self.assertEqual(data['status'], 404)
+
+    def test_can_get_one_incident(self):
+        self.create_test_record()
+        resp = self.client.get('/api/v1/redflags/1')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        # self.assertEqual(len(data['incidents']), 1)

@@ -2,5 +2,5 @@ language: python
 python:
   - "3.6"
 install: pip install -r requirements.txt
-script: pytest tests --with-coverage && coverage report
+script: pytest tests && coverage report
 after_success: coveralls
