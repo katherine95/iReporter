@@ -1,9 +1,7 @@
 import os
 from app import create_app
-from instance.config import app_config
 
-config_name = os.getenv('FLASK_ENV') # config_name = "development"
-app = create_app(app_config[config_name])
+app = create_app('FLASK_ENV')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
