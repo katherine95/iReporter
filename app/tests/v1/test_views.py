@@ -2,6 +2,8 @@ import unittest
 from flask import json
 from app import create_app
 from app.api.v1.models.incidents import incidents_list
+from instance.config import app_config
+
 
 
 class IncidentTest(unittest.TestCase):
