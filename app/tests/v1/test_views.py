@@ -65,6 +65,18 @@ class IncidentTest(unittest.TestCase):
         self.assertEqual(data['message'], 'Record with that ID does not exist.')
         self.assertEqual(data['status'], 404)
 
+    def test_can_patch_a_comment(self):
+        self.create_test_record()
+        patch_data = {
+            "comment": "I have just updated this comment"
+        }
+        resp = self.client.patch('/api/v1/incident/1/comment', data=json.dumps(patch_data), content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(data['message'], 'Patched successfully')
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['data']['comment'], 'I have just updated this comment')
+
+
     def test_can_get_incident_by_id(self):
         self.create_test_record()
         resp = self.client.get('/api/v1/incident/1')
@@ -79,6 +91,14 @@ class IncidentTest(unittest.TestCase):
         data = json.loads(resp.data)
         # self.assertEqual(resp.status_code, 404)
         self.assertEqual(data['message'], 'Record with that ID does not exist.')
+
+    # def test_can_delete_incident(self):
+    #     self.create_test_record()
+    #     resp = self.client.get('/api/v1/incident/1')
+    #     data = json.loads(resp.data)
+    #     self.assertEqual(resp.status_code, 200)
+    #     # self.assertEqual(len(incidents_list), 0)
+    #     self.assertEqual(data['message'], 'red-flag record has been deleted')
 
 
     def tearDown(self):
