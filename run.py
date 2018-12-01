@@ -6,4 +6,5 @@ config_name = os.getenv('FLASK_ENV') # config_name = "development"
 app = create_app(app_config[config_name])
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
