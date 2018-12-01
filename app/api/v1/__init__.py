@@ -1,12 +1,11 @@
 from flask import Blueprint
 from flask_restful import Resource, Api
 
-from app.api.v1.views.views import Incidents, RedFlag, IncidentDetail
+from app.api.v1.views.incidents import Incidents, Incident, UpdateIncident
 
 v1 = Blueprint('v1', __name__, url_prefix='/api/v1')
 api = Api(v1)
 
 api.add_resource(Incidents, '/incidents')
-api.add_resource(RedFlag, '/redflags/<id>')
-api.add_resource(IncidentDetail, '/redflags/<id>/<attribute>')
-
+api.add_resource(Incident, '/incident/<id>')
+api.add_resource(UpdateIncident, '/incident/<id>/<attribute>')
