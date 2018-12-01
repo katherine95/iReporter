@@ -14,7 +14,7 @@ from app.api.v1 import v1 as version_one
 def create_app(config):
     app = Flask(__name__,instance_relative_config=True)
     app.config.from_object(app_config[config])
-    # app_config[config].init_app(app)
+    app_config[config].init_app(app)
     
     app.register_blueprint(version_one)
     return app
