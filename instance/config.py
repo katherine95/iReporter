@@ -5,6 +5,10 @@ class Config(object):
     DEBUG = False
     CSRF_ENABLED = True
 
+    @staticmethod
+    def init_app(app):
+        pass
+
 
 class DevelopmentConfig(Config):
     """Configurations for Development."""

@@ -57,7 +57,6 @@ local_settings.py
 db.sqlite3
 
 # Flask stuff:
-instance/
 .webassets-cache
 
 # Scrapy stuff:
@@ -104,3 +103,10 @@ venv.bak/
 .mypy_cache/
 __pycache__
 /app/__pycache__
+app/__pycache__/__init__.cpython-36.pyc
+app/api/v1/__pycache__/__init__.cpython-36.pyc
+app/api/v1/models/__pycache__/incidents.cpython-36.pyc
+app/api/v1/views/__pycache__/views.cpython-36.pyc
+app/tests/__pycache__/__init__.cpython-36.pyc
+app/tests/v1/__pycache__/__init__.cpython-36.pyc
+.vscode/launch.json
