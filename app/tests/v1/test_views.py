@@ -12,7 +12,7 @@ class IncidentTest(unittest.TestCase):
             "createdBy" : 8,
             "location" : "nairobi"
         }
-        self.app = create_app('testing')
+        self.app = create_app()
         self.client = self.app.test_client()
 
     def create_test_record(self):
