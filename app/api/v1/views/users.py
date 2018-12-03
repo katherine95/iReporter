@@ -20,4 +20,8 @@ class Users(Resource):
        
         response = self.userObject.create(firstname, lastname, othernames, email, phoneNumber, username, password)
         return make_response(response)
-        
+
+    def get(self):
+        # GET method begins here 
+        response = self.userObject.get_all()
+        return response     

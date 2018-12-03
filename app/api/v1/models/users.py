@@ -41,4 +41,15 @@ class Users(object):
    def hash_password(self, password):
        """Hash Password """
        h_pass = sha256_crypt.encrypt(password)
-       return h_pass       
+       return h_pass
+
+   # method to GET all users
+   def get_all(self):
+       if len(users_list) == 0:
+           return jsonify({
+               "status": 200,
+               "message": "There are no registered users" 
+               })
+       return jsonify({
+            "users" : self.users_list
+       })    

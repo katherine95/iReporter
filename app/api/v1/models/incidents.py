@@ -44,8 +44,7 @@ class Incident(object):
    def getById(self, id):
        for item in incidents_list:
            if item['id'] == int(id):
-               if item['incidentType'] == 'redflag':
-                   return item
+               return item
            else:
                return {
                    "status": 404,
@@ -95,7 +94,7 @@ class Incident(object):
                        "status": 204,
                        "data": [{
                            "Id": id,
-                           "message": "red-flag record has been deleted"
+                           "message": "The record has been deleted"
                        }]
                    })
        return jsonify({
