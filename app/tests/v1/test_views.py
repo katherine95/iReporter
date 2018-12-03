@@ -1,6 +1,8 @@
 import unittest
 from flask import json
 from app import create_app
+from instance.config import TestingConfig
+
 from app.api.v1.models.incidents import incidents_list
 
 
@@ -12,7 +14,7 @@ class IncidentTest(unittest.TestCase):
             "createdBy" : 8,
             "location" : "nairobi"
         }
-        self.app = create_app('testing')
+        self.app = create_app(config_name=TestingConfig)
         self.client = self.app.test_client()
 
     def create_test_record(self):
