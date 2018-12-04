@@ -40,11 +40,14 @@ Html5, CSS3, python, flask, flask_restful
     `flask run`
 7. Test the endpoints on postman.
 
+       [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/a81bf187fe57c3bb1ac0)
+
         POST      http://127.0.0.1:5000/api/v1/incidents
         GET       http://127.0.0.1:5000/api/v1/incidents
-        GET       http://127.0.0.1:5000/api/v1/incident/1
-        PATCH     http://127.0.0.1:5000/api/v1/incident/2/comment
-        PATCH     http://127.0.0.1:5000/api/v1/incident/1/location
-        DEL       http://127.0.0.1:5000/api/v1/incident/1
+        GET       http://127.0.0.1:5000/api/v1/incidents/1
+        PATCH     http://127.0.0.1:5000/api/v1/incidents/2/comment
+        PATCH     http://127.0.0.1:5000/api/v1/incidents/1/location
+        DEL       http://127.0.0.1:5000/api/v1/incidents/1
         POST      http://127.0.0.1:5000/api/v1/users
         GET       http://127.0.0.1:5000/api/v1/users
+
