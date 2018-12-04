@@ -53,3 +53,17 @@ class Users(object):
        return jsonify({
             "users" : self.users_list
        })    
+
+   def login(self, username, password):
+       for user in users_list:
+           if username == user['username']:
+               if password == user['password']:
+                   return "user successfully logged in"
+               else:
+                   return "wrong password or username"
+       return "user does not exist" 
+
+   def get_user_by_id(self, id):
+       for user in users_list:
+           if user['id'] == id:
+               return user
