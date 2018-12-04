@@ -24,4 +24,4 @@ class Users(Resource):
     def get(self):
         # GET method begins here 
         response = self.userObject.get_all()
-        return response     
+        return response 
