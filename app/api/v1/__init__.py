@@ -9,6 +9,6 @@ v1 = Blueprint('v1', __name__, url_prefix='/api/v1')
 api = Api(v1)
 
 api.add_resource(Incidents, '/incidents')
-api.add_resource(SingleIncident, '/incident/<int:id>')
-api.add_resource(UpdateIncident, '/incident/<int:id>/<attribute>')
+api.add_resource(SingleIncident, '/incidents/<int:id>')
+api.add_resource(UpdateIncident, '/incidents/<int:id>/<attribute>')
 api.add_resource(Users, '/users')

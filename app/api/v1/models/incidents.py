@@ -1,6 +1,7 @@
 from flask import jsonify, request, make_response
 from datetime import date
-import uuid
+import re
+
 incidents_list = []
 class Incident(object):
     """class that deals with incidents data"""
@@ -20,23 +21,43 @@ class Incident(object):
         incident_details['id'] = len(incidents_list) + 1
 
         incidents_list.append(incident_details)
-        incidents = len(self.incidents_list)
-        newIncident = self.incidents_list[incidents - 1]
-        return newIncident
+        return incident_details
+
+    def validate_data(self, data):
+        """validate user details"""
+        try:
+            # check if incidentType has special characters
+            if not re.match("^[a-zA-Z0-9_]*$", data['incidentType'].strip()):
+                return "incidentType can only contain alphanumeric characters"
+            # check if the incidentType is more than 7 characters
+            elif len(data['incidentType'].strip()) < 7:
+                return "incidentType must be more than 7 characters"
+            # check if the comment is more than 15 characters
+            elif len(data['comment'].strip()) < 15:
+                return "comment must be more than 15 characters"
+            # check if the location is more than 3 characters
+            elif len(data['location'].strip()) < 3:
+                return "location must be more than 3 characters"
+            # check if id is an integer
+            elif not isinstance(data['createdBy'], int):
+                return "createdby must be an integer"
+            else:
+                return "valid"
+        except Exception as error:
+            return "please provide all the fields, missing " + str(error)    
 
     def get_all_incidents(self):
         """Function to GET all incidents"""
-        if len(incidents_list) == 0:
+        if len(incidents_list) < 1:
             return "You have no incidents created"
         return self.incidents_list
     
     def get_incident_by_id(self, id):
         """function to GET a single incident by id"""
-        for item in incidents_list:
-            item = [item for item in incidents_list if item['id'] == id]
-            if len(item) > 0:
-                return item
-            return  "Record with that ID does not exist."
+        item = [item for item in incidents_list if item['id'] == id]
+        if len(item) > 0:
+            return item
+        return  False
                 
     def check_if_record_exist(self, id):
         """function to check if a record exist by id"""
