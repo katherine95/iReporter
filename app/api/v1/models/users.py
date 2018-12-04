@@ -30,7 +30,6 @@ class Users(object):
 
        users_list.append(user_details)
        users = len(self.users_list)
-       print(users)
        newUser = self.users_list[users - 1]
        return jsonify({
            "status": 201,

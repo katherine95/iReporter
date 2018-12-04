@@ -19,8 +19,10 @@ class Incident(object):
         incident_details['CreatedOn'] = date.today()
         incident_details['id'] = len(incidents_list) + 1
 
-        self.incidents_list.append(incident_details)
-        return incidents_list
+        incidents_list.append(incident_details)
+        incidents = len(self.incidents_list)
+        newIncident = self.incidents_list[incidents - 1]
+        return newIncident
 
     def get_all_incidents(self):
         """Function to GET all incidents"""
@@ -31,31 +33,26 @@ class Incident(object):
     def get_incident_by_id(self, id):
         """function to GET a single incident by id"""
         for item in incidents_list:
-            if item['id'] == int(id):
+            item = [item for item in incidents_list if item['id'] == id]
+            if len(item) > 0:
                 return item
-            else:
-                return  "Record with that ID does not exist."
+            return  "Record with that ID does not exist."
                 
     def check_if_record_exist(self, id):
         """function to check if a record exist by id"""
         for item in incidents_list:
-            if item['id'] == int(id):
+            if item['id'] == id:
                 return True 
         return False
 
-    def edit_incident_location(self, id, attribute):
+    def patch_incident(self, id, patch_data, attribute):
         """function to edit an incident's location"""
         if self.check_if_record_exist(id):
             item = self.get_incident_by_id(id)
-            item['location'] = attribute
-            return self.get_incident_by_id(id)
-        return "Record with that ID does not exist."
-    
-    def edit_incident_comment(self, id, attribute):
-        """function to edit an incident's comment"""
-        if self.check_if_record_exist(id):
-            item = self.get_incident_by_id(id)
-            item['comment'] = attribute
+            if attribute == 'location':
+                item[0]['location'] = patch_data['location']
+                return self.get_incident_by_id(id)
+            item[0]['comment'] = patch_data['comment']
             return self.get_incident_by_id(id)
         return "Record with that ID does not exist."
 

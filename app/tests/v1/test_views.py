@@ -23,60 +23,54 @@ class IncidentTest(unittest.TestCase):
     def test_create_incident_success(self):
         resp = self.client.post('/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
         data = json.loads(resp.data)
-        # self.assertEqual(resp.status_code, 200)
-        self.assertEqual("status", 201)
-        self.assertEqual(data['Incident'], resp)
+        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(data['data'][0]['Incident']['incidentType'], 'redflag')
 
-
-    # def test_incident_id_increments_correctly(self):
-    #     self.client.post('/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
-    #     resp = self.client.post('/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
-    #     data = json.loads(resp.data)
-    #     self.assertEqual(resp.status_code, 200)
-    #     self.assertEqual(data['Incident'], resp)
-    #     self.assertEqual(len(incidents_list), 2)
-
-
+    def test_incident_id_increments_correctly(self):
+        self.client.post('/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
+        resp = self.client.post('/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(data['data'][0]['Incident']['id'], 2)
+        self.assertEqual(len(incidents_list), 2)
 
     def test_can_get_all_incidents(self):
         self.create_test_record()
         resp = self.client.get('/api/v1/incidents')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(data['Incident'], resp)
-        self.assertEqual(len(data['Incidents']), 1)
+        self.assertEqual(data['data'][0]['Incidents'][0]['id'],1 )
 
-    def test_can_patch_a_location(self):
+    def test_can_patch_an_incident_location(self):
         self.create_test_record()
         patch_data = {
             "location": "mombasa"
         }
         resp = self.client.patch('/api/v1/incident/1/location', data=json.dumps(patch_data), content_type='application/json')
         data = json.loads(resp.data)
-        self.assertEqual(data['Incident'], resp)
         self.assertEqual(resp.status_code, 202)
-        self.assertEqual(data['data']['location'], 'mombasa')
+        self.assertEqual(data['data'][0]['Incident'][0]['location'], 'mombasa')
 
-
-    def test_can_not_if_attribute_not_specified(self):
+    def test_can_not_patch_if_attribute_not_specified(self):
         self.create_test_record()
         patch_data = {
-            "": ""
+            "incidentType": "redflag"
         }
         resp = self.client.patch('/api/v1/incident/1/incidentType', data=json.dumps(patch_data), content_type='application/json')
         data = json.loads(resp.data)
-        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.status_code, 404)
+        self.assertEqual(data['error'], 'You can only patch location or comment.')
 
-    def test_can_patch_a_comment(self):
+
+    def test_can_patch_an_incident_comment(self):
         self.create_test_record()
         patch_data = {
             "comment": "I have just updated this comment"
         }
         resp = self.client.patch('/api/v1/incident/1/comment', data=json.dumps(patch_data), content_type='application/json')
         data = json.loads(resp.data)
-        self.assertEqual(data['Incident'], resp)
         self.assertEqual(resp.status_code, 202)
-        self.assertEqual(data['data']['comment'], 'I have just updated this comment')
+        self.assertEqual(data['data'][0]['Incident'][0]['comment'], 'I have just updated this comment')
 
 
     def test_can_get_incident_by_id(self):
@@ -85,23 +79,22 @@ class IncidentTest(unittest.TestCase):
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(len(incidents_list), 1)
-        self.assertEqual(data['incidentType'], 'redflag')
+        self.assertEqual(data['data'][0]['Incident'][0]['id'],1 )
 
-    # def test_get_non_existent_incident(self):
-    #     self.create_test_record()
-    #     resp = self.client.get('/api/v1/incident/10')
-    #     data = json.loads(resp.data)
-    #     # self.assertEqual(resp.status_code, 404)
-    #     self.assertEqual(data['message'], 'Record with that ID does not exist.')
+    def test_get_non_existent_incident(self):
+        self.create_test_record()
+        resp = self.client.get('/api/v1/incident/10')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['data'][0]['Incident'], 'Record with that ID does not exist.')
 
     def test_can_delete_incident(self):
         self.create_test_record()
-        resp = self.client.get('/api/v1/incident/1')
+        resp = self.client.delete('/api/v1/incident/1')
         data = json.loads(resp.data)
-        self.assertEqual(resp.status_code, 204)
-        self.assertEqual(len(incidents_list), 0)
-        self.assertEqual(data['message'], resp)
-
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['data'][0]['message'], 'The record has been deleted')
+        resp = json.loads(resp.data)
 
     def tearDown(self):
         incidents_list.clear()

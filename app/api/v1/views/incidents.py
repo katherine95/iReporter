@@ -24,7 +24,7 @@ class Incidents(Resource):
             "data": [{
                 "Incident": response
             }]
-        }))
+        }), 201)
         
     def get(self):
         """GET all incidents request function"""
@@ -34,7 +34,7 @@ class Incidents(Resource):
             "data":[{
                 "Incidents": response
             }]
-        })) 
+        }), 200) 
     
 
 class SingleIncident(Resource):
@@ -51,18 +51,17 @@ class SingleIncident(Resource):
             "data": [{
                 "Incident": response
             }]
-        }))
+        }), 200)
 
     def delete(self, id):
         """function to edit an incident's location"""
         response = incidentObject.delete_single_incident(id)
         return make_response(jsonify({
-            "status": 204,
+            "status": 200,
             "data": [{
                 "message": response
             }]
-        }))
-
+        }), 200)
 
 class UpdateIncident(Resource):
     def __init__(self):
@@ -73,27 +72,19 @@ class UpdateIncident(Resource):
         patch_attributes = ['comment', 'location']
         if attribute in patch_attributes:
             patch_data = request.get_json()
-            if attribute in patch_data:
-                if attribute == "location":
-                    response = incidentObject.edit_incident_location(id, patch_data['location'])
-                    return make_response(jsonify({
+            if attribute in patch_data and attribute == "location" or attribute == "comment":
+                response = incidentObject.patch_incident(id, patch_data, attribute)
+                return make_response(jsonify({
                         "status":202,
                         "data": [{
                             "Incident": response
                         }]
-                    }))
-                response = incidentObject.edit_incident_comment(id, patch_data['comment'])
-                return make_response(jsonify({
-                    "status": 202,
-                    "data":[{
-                        "Incident": response
-                    }]
-                }))
+                    }), 202)
             return make_response(jsonify({
             "Status": 400, 
             "error": "Please provide " + attribute  
-            }))
+            }), 400)
         return make_response(jsonify({
             "Status": 404,
             "error": "You can only patch location or comment."
-        }))
+        }), 404)
