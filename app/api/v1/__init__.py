@@ -10,5 +10,5 @@ api = Api(v1)
 
 api.add_resource(Incidents, '/incidents')
 api.add_resource(SingleIncident, '/incident/<int:id>')
-api.add_resource(UpdateIncident, '/incident/<id>/<attribute>')
+api.add_resource(UpdateIncident, '/incident/<int:id>/<attribute>')
 api.add_resource(Users, '/users')

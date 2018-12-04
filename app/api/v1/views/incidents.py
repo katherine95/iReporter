@@ -22,8 +22,7 @@ class Incidents(Resource):
         return make_response(jsonify({
             "status": 201,
             "data": [{
-                "Incident": response,
-                "message": "Incident created successfully"
+                "Incident": response
             }]
         }))
         
@@ -72,7 +71,6 @@ class UpdateIncident(Resource):
     def patch(self, id, attribute):
         """function to edit an incident's comment and location details"""
         patch_attributes = ['comment', 'location']
-        print(attribute)
         if attribute in patch_attributes:
             patch_data = request.get_json()
             if attribute in patch_data:
