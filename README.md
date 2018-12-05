@@ -49,3 +49,7 @@ Html5, CSS3, python, flask, flask_restful
         POST      http://127.0.0.1:5000/api/v1/users
         GET       http://127.0.0.1:5000/api/v1/users
 
+8. To run tests:
+    run ```pytest```
+9. To check test coverage:
+    run ```py.test --cov=app app/tests/v1```
