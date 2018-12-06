@@ -1,11 +1,18 @@
 import psycopg2
 import os
 
-url = os.getenv('DB_URL')
-test_url = os.getenv('TEST_DB_URL')
+url='dbname="ireporter", user="postgres", host="localhost", password="root"'
+test_url='dbname="ireporter", user="postgres", host="localhost", password="root"'
+
+conn = psycopg2.connect(
+dbname="ireporter",
+user="postgres",
+host='localhost',
+password='root'    
+)
 
 try:
-    conn = psycopg2.connect(url)
+    conn
 except:
     print("I'm unable to connect to database!")
 

@@ -1,7 +1,7 @@
 import psycopg2
 import os
 
-from db_config import conn
+from app.db_config import conn
 
 def create_tables():
     curr = conn.cursor()
