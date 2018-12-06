@@ -30,7 +30,6 @@ class Users(object):
 
        users_list.append(user_details)
        users = len(self.users_list)
-       print(users)
        newUser = self.users_list[users - 1]
        return jsonify({
            "status": 201,
@@ -43,8 +42,8 @@ class Users(object):
        h_pass = sha256_crypt.encrypt(password)
        return h_pass
 
-   # method to GET all users
    def get_all(self):
+       """function to get all users"""
        if len(users_list) == 0:
            return jsonify({
                "status": 200,

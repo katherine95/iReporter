@@ -22,6 +22,6 @@ class Users(Resource):
         return make_response(response)
 
     def get(self):
-        # GET method begins here 
+        """function to get all users"""
         response = self.userObject.get_all()
-        return response     
+        return response 
