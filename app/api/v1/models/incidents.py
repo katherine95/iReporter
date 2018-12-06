@@ -26,9 +26,9 @@ class Incident(object):
     def validate_data(self, data):
         """validate user details"""
         try:
-            # check if incidentType has special characters
-            if not re.match("^[a-zA-Z0-9_]*$", data['incidentType'].strip()):
-                return "incidentType can only contain alphanumeric characters"
+            # check if incidentType has letters only
+            if not data['incidentType'].strip().isalpha():
+                return "incidentType can only contain letters only"
             # check if the incidentType is more than 7 characters
             elif len(data['incidentType'].strip()) < 7:
                 return "incidentType must be more than 7 characters"
