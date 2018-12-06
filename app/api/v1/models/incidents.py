@@ -44,7 +44,17 @@ class Incident(object):
             else:
                 return "valid"
         except Exception as error:
-            return "please provide all the fields, missing " + str(error)    
+            return "please provide all the fields, missing " + str(error)   
+
+    def validate_patch_data(self, data, attribute):
+        """validate patch data"""
+        if attribute == 'location':
+            if len(data['location']) < 3:
+                return "Location should be more than 3 characters"
+        elif attribute == 'comment':
+            if len(data['comment']) < 15:
+                return "Comment should be more than 15 characters"
+        return "valid"
 
     def get_all_incidents(self):
         """Function to GET all incidents"""

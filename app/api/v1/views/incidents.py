@@ -81,13 +81,21 @@ class UpdateIncident(Resource):
         patch_data = request.get_json()
         if attribute in patch_attributes:
             if attribute in patch_data and attribute == "location" or attribute == "comment":
-                response = incidentObject.patch_incident(id, patch_data, attribute)
-                return make_response(jsonify({
+                res = incidentObject.validate_patch_data(patch_data, attribute)
+                if res == 'valid':
+                    response = incidentObject.patch_incident(id, patch_data, attribute)
+                    return make_response(jsonify({
                         "status":202,
                         "data": [{
                             "Incident": response
                         }]
-                    }), 202)
+                        }), 202)
+                return make_response(jsonify({
+                    "status":400,
+                    "data": [{
+                        "error": res
+                    }]
+                }), 400)
             return make_response(jsonify({
             "Status": 400, 
             "error": "Please provide " + attribute  

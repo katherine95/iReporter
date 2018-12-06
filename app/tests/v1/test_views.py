@@ -144,7 +144,28 @@ class IncidentTest(unittest.TestCase):
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 202)
         self.assertEqual(data['data'][0]['Incident'][0]['comment'], 'I have just updated this comment')
+
+    def test_cannot_patch_an_empty_incident_comment(self):
+        self.create_test_record()
+        patch_data = {
+            "comment": ""
+        }
+        resp = self.client.patch('/api/v1/incidents/1/comment', data=json.dumps(patch_data), content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(data['data'][0]['error'], 'Comment should be more than 15 characters')
     
+
+    def test_cannot_patch_an_empty_incident_location(self):
+        self.create_test_record()
+        patch_data = {
+            "location": ""
+        }
+        resp = self.client.patch('/api/v1/incidents/1/location', data=json.dumps(patch_data), content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(data['data'][0]['error'], 'Location should be more than 3 characters')
+
     def test_can_get_incident_by_id(self):
         self.create_test_record()
         resp = self.client.get('/api/v1/incidents/1')
