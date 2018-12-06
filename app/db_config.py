@@ -16,14 +16,7 @@ elif os.getenv('APP_SETTINGS') == "testing":
     user="postgres",
     host='localhost',
     password='root'    
-    )
-else:
-    conn = psycopg2.connect(
-    dbname="ireporter",
-    user="postgres",
-    host='localhost',
-    password='root'    
-    )    
+    )   
 try:
     conn
 except:
