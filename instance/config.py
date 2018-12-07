@@ -3,12 +3,7 @@ import os
 class Config(object):
     """Parent configuration class."""
     DEBUG = False
-    CSRF_ENABLED = True
-
-    @staticmethod
-    def init_app(app):
-        pass
-
+    
 
 class DevelopmentConfig(Config):
     """Configurations for Development."""

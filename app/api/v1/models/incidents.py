@@ -26,9 +26,9 @@ class Incident(object):
     def validate_data(self, data):
         """validate user details"""
         try:
-            # check if incidentType has special characters
-            if not re.match("^[a-zA-Z0-9_]*$", data['incidentType'].strip()):
-                return "incidentType can only contain alphanumeric characters"
+            # check if incidentType has letters only
+            if not data['incidentType'].strip().isalpha():
+                return "incidentType can only contain letters only"
             # check if the incidentType is more than 7 characters
             elif len(data['incidentType'].strip()) < 7:
                 return "incidentType must be more than 7 characters"
@@ -44,7 +44,17 @@ class Incident(object):
             else:
                 return "valid"
         except Exception as error:
-            return "please provide all the fields, missing " + str(error)    
+            return "please provide all the fields, missing " + str(error)   
+
+    def validate_patch_data(self, data, attribute):
+        """validate patch data"""
+        if attribute == 'location':
+            if len(data['location']) < 3:
+                return "Location should be more than 3 characters"
+        elif attribute == 'comment':
+            if len(data['comment']) < 15:
+                return "Comment should be more than 15 characters"
+        return "valid"
 
     def get_all_incidents(self):
         """Function to GET all incidents"""
