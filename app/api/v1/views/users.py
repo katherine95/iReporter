@@ -7,7 +7,7 @@ userObject = UserModel()
 class Users(Resource):
     def __init__(self):
         self.userObject = UserModel()
-     
+
     def post(self):
         users_data = request.get_json()
         firstname = users_data['firstname']
@@ -17,7 +17,7 @@ class Users(Resource):
         phoneNumber = users_data['phoneNumber']
         username = users_data['username']
         password = users_data['password']
-       
+               
         response = self.userObject.create(firstname, lastname, othernames, email, phoneNumber, username, password)
         return make_response(response)
 
