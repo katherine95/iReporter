@@ -1,8 +1,8 @@
-from flask import jsonify, request, make_response
 from flask_restful import Resource
 from app.api.v1.models.users import Users as UserModel
 
 userObject = UserModel()
+
 
 class Users(Resource):
     def __init__(self):
@@ -17,11 +17,10 @@ class Users(Resource):
         phoneNumber = users_data['phoneNumber']
         username = users_data['username']
         password = users_data['password']
-               
         response = self.userObject.create(firstname, lastname, othernames, email, phoneNumber, username, password)
         return make_response(response)
 
     def get(self):
         """function to get all users"""
         response = self.userObject.get_all()
-        return response 
+        return response
