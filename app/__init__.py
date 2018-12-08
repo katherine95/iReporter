@@ -15,7 +15,7 @@ def create_app(config_name=DevelopmentConfig):
     def forbidden(error):
         return make_response(jsonify({
             "status": 403,
-            "error": "You do not have sufficient permissions"
+            "message": "You do not have sufficient permissions"
             "to access this resource."
         }), 403)
 
@@ -23,13 +23,13 @@ def create_app(config_name=DevelopmentConfig):
     def page_not_found(error):
         return make_response(jsonify({
             "status": 404,
-            "error": "The record you are looking for does not exist" 
-        }), 404)
+            "message": "The record you are looking for does not exist"
+            }), 404)
 
     @app.errorhandler(500)
     def internal_server_error(error):
         return make_response(jsonify({
             "status": 500,
-            "error": "The server encountered an internal error."
+            "message": "The server encountered an internal error."
         }), 500)
     return app

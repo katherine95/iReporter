@@ -44,7 +44,8 @@ class Incident(object):
             else:
                 return "valid"
         except Exception as error:
-            return "please provide all the fields, missing " + str(error)   
+            return "please provide all the fields,\
+             missing " + str(error)
 
     def validate_patch_data(self, data, attribute):
         """validate patch data"""
@@ -73,7 +74,7 @@ class Incident(object):
         """function to check if a record exist by id"""
         for item in incidents_list:
             if item['id'] == id:
-                return True 
+                return True
         return False
 
     def patch_incident(self, id, patch_data, attribute):
@@ -95,3 +96,10 @@ class Incident(object):
                     incidents_list.pop(incidents_list.index(item))
                     return "The record has been deleted"
         return "Record with that ID does not exist."
+
+    def check_if_comment_exist(self, comment):
+        """function to check for the uniqueness of a comment"""
+        for item in incidents_list:
+            if item['comment'] == comment:
+                return True
+            return False

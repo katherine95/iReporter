@@ -19,11 +19,13 @@ class IncidentTest(unittest.TestCase):
 
     def create_test_record(self):
         self.client.post(
-            '/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(self.incident),
+            content_type='application/json')
 
     def test_create_incident_success(self):
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(self.incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(data['data'][0]['incidentType'], 'redflag')
@@ -36,7 +38,8 @@ class IncidentTest(unittest.TestCase):
             "location": "nairobi"
         }
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(
@@ -49,11 +52,13 @@ class IncidentTest(unittest.TestCase):
             "location": "nairobi"
         }
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(
-            data['message'], "please provide all the fields, missing 'comment'")
+            data['message'], "please provide all the fields,\
+             missing 'comment'")
 
     def test_incidentType_should_be_more_than_7_letters(self):
         incident = {
@@ -63,7 +68,8 @@ class IncidentTest(unittest.TestCase):
             "location": "nairobi"
         }
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(
@@ -77,7 +83,8 @@ class IncidentTest(unittest.TestCase):
             "location": "nairobi"
         }
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(
@@ -91,7 +98,8 @@ class IncidentTest(unittest.TestCase):
             "location": "n"
         }
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(
@@ -105,16 +113,23 @@ class IncidentTest(unittest.TestCase):
             "location": "nairobi"
         }
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(data['message'], 'createdby must be an integer')
 
     def test_incident_id_increments_correctly(self):
-        self.client.post(
-            '/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
+        self.create_test_record()
+        incident = {
+            "incidentType": "redflag",
+            "comment": "kwqlmswqls wsmqwls wmsqwlswl; wkmmlwqwsmkq qkwm",
+            "createdBy": 8,
+            "location": "nairobi"
+        }
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(self.incident), content_type='application/json')
+            '/api/v1/incidents', data=json.dumps(incident),
+            content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(data['data'][0]['id'], 2)
@@ -127,13 +142,26 @@ class IncidentTest(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(data['data'][0]['id'], 1)
 
+    def test_patch_success(self):
+        self.create_test_record()
+        patch_data = {
+            "location": "mombasa"
+        }
+        resp = self.client.patch('/api/v1/incidents/1/location',
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 202)
+        self.assertEqual(data['message'], 'Attribute patched successfully')
+
     def test_can_patch_an_incident_location(self):
         self.create_test_record()
         patch_data = {
             "location": "mombasa"
         }
         resp = self.client.patch('/api/v1/incidents/1/location',
-                                 data=json.dumps(patch_data), content_type='application/json')
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 202)
         self.assertEqual(data['data'][0]['location'], 'mombasa')
@@ -144,7 +172,8 @@ class IncidentTest(unittest.TestCase):
             "incidentType": "redflag"
         }
         resp = self.client.patch('/api/v1/incidents/1/incidentType',
-                                 data=json.dumps(patch_data), content_type='application/json')
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 404)
         self.assertEqual(
@@ -156,7 +185,8 @@ class IncidentTest(unittest.TestCase):
             "comment": "I have just updated this comment"
         }
         resp = self.client.patch('/api/v1/incidents/1/comment',
-                                 data=json.dumps(patch_data), content_type='application/json')
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 202)
         self.assertEqual(data['data'][0]['comment'],
@@ -168,7 +198,8 @@ class IncidentTest(unittest.TestCase):
             "comment": ""
         }
         resp = self.client.patch('/api/v1/incidents/1/comment',
-                                 data=json.dumps(patch_data), content_type='application/json')
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(data['data'][0]['error'],
@@ -180,7 +211,8 @@ class IncidentTest(unittest.TestCase):
             "location": ""
         }
         resp = self.client.patch('/api/v1/incidents/1/location',
-                                 data=json.dumps(patch_data), content_type='application/json')
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(data['data'][0]['error'],
@@ -208,7 +240,7 @@ class IncidentTest(unittest.TestCase):
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 404)
         self.assertEqual(
-            data['error'], 'The record you are looking for does not exist')
+            data['message'], 'The record you are looking for does not exist')
 
     def test_can_delete_incident(self):
         self.create_test_record()
@@ -221,6 +253,15 @@ class IncidentTest(unittest.TestCase):
         self.assertEqual(resp.status_code, 404)
         self.assertEqual(
             data['message'], 'Record with that ID does not exist.')
+
+    def test_if_comment_exists(self):
+        self.create_test_record()
+        resp = self.client.post(
+            '/api/v1/incidents', data=json.dumps(self.incident),
+            content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 409)
+        self.assertEqual(data['message'], 'Incident with this comment exist.')
 
     def tearDown(self):
         incidents_list.clear()

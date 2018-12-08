@@ -13,7 +13,7 @@ elif os.getenv('APP_SETTINGS') == "testing":
         dbname="test_ireporter",
         user="postgres",
         host='localhost',
-        password='root')   
+        password='root')
 try:
     conn
 except:
