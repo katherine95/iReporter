@@ -3,6 +3,7 @@ import os
 
 from app.db_config import conn
 
+
 def create_tables():
     curr = conn.cursor()
     queries = tables()
@@ -11,11 +12,13 @@ def create_tables():
     conn.commit()
     print("Users and Incidents tables created!")
 
+
 def destroy_tables():
     pass
 
+
 def tables():
-    users= """CREATE TABLE IF NOT EXISTS users(
+    users = """CREATE TABLE IF NOT EXISTS users(
         user_id serial PRIMARY KEY NOT NULL,
         first_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,

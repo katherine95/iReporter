@@ -1,8 +1,8 @@
-from flask import jsonify, request, make_response
 from datetime import date
-import re
 
 incidents_list = []
+
+
 class Incident(object):
     """class that deals with incidents data"""
 
@@ -44,15 +44,16 @@ class Incident(object):
             else:
                 return "valid"
         except Exception as error:
-            return "please provide all the fields, missing " + str(error)   
+            return "please provide all the fields,\
+             missing " + str(error)
 
     def validate_patch_data(self, data, attribute):
         """validate patch data"""
         if attribute == 'location':
-            if len(data['location']) < 3:
+            if len(data['location'].strip()) < 3:
                 return "Location should be more than 3 characters"
         elif attribute == 'comment':
-            if len(data['comment']) < 15:
+            if len(data['comment'].strip()) < 15:
                 return "Comment should be more than 15 characters"
         return "valid"
 
@@ -61,19 +62,19 @@ class Incident(object):
         if len(incidents_list) < 1:
             return "You have no incidents created"
         return self.incidents_list
-    
+
     def get_incident_by_id(self, id):
         """function to GET a single incident by id"""
         item = [item for item in incidents_list if item['id'] == id]
         if len(item) > 0:
             return item
-        return  False
-                
+        return False
+
     def check_if_record_exist(self, id):
         """function to check if a record exist by id"""
         for item in incidents_list:
             if item['id'] == id:
-                return True 
+                return True
         return False
 
     def patch_incident(self, id, patch_data, attribute):
@@ -87,7 +88,7 @@ class Incident(object):
             return self.get_incident_by_id(id)
         return "Record with that ID does not exist."
 
-    def delete_single_incident(self,id):
+    def delete_single_incident(self, id):
         """function to delete a specific incident"""
         if self.check_if_record_exist(id):
             for item in incidents_list:
@@ -95,3 +96,10 @@ class Incident(object):
                     incidents_list.pop(incidents_list.index(item))
                     return "The record has been deleted"
         return "Record with that ID does not exist."
+
+    def check_if_comment_exist(self, comment):
+        """function to check for the uniqueness of a comment"""
+        for item in incidents_list:
+            if item['comment'] == comment:
+                return True
+            return False
