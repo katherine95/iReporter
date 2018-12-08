@@ -2,12 +2,14 @@ aniso8601==4.0.1
 astroid==2.0.4
 atomicwrites==1.2.1
 attrs==18.2.0
+autopep8==1.4.3
 certifi==2018.11.29
 chardet==3.0.4
 Click==7.0
 coverage==4.5.2
 coveralls==1.5.1
 docopt==0.6.2
+flake8==3.6.0
 Flask==1.0.2
 Flask-RESTful==0.3.6
 gunicorn==19.9.0
@@ -26,6 +28,8 @@ pluggy==0.8.0
 psycopg2==2.7.6.1
 psycopg2-binary==2.7.6.1
 py==1.7.0
+pycodestyle==2.4.0
+pyflakes==2.0.0
 pylint==2.1.1
 pytest==4.0.1
 pytest-cov==2.6.0
