@@ -20,5 +20,5 @@ elif os.getenv('APP_SETTINGS') == "testing":
         )
 try:
     conn
-except:
-    print("I'm unable to connect to database!")
+except Exception as error:
+    print("I'm unable to connect to database!" + str(error))
