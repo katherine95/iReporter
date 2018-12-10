@@ -2,6 +2,7 @@ from flask import jsonify
 from datetime import date
 from app.db_config import conn
 from passlib.hash import sha256_crypt
+import re
 cur = conn.cursor()
 
 
@@ -74,3 +75,40 @@ class SignUp(object):
         """Hash Password """
         h_pass = sha256_crypt.hash(password)
         return h_pass
+
+    def validate_data(self, data):
+        """validate user details"""
+        try:
+            # check if email is valid
+            if not re.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$",
+                            data['email'].strip()):
+                return "provide a valid email"
+            # check if firstname has atleast 3 characters
+            elif len(data['firstname'].strip()) < 3:
+                return "firstname must have more than 3 characters"
+            # check if lastname has atleast 3 characters
+            elif len(data['lastname'].strip()) < 3:
+                return "lastname must have more than 3 characters"
+            # check if username has atleast 5 characters
+            elif len(data['username'].strip()) < 5:
+                return "username must have more than 3 characters"
+            # check if username starts with letters and contains only
+            # underscore as special character
+            elif not re.match("[a-zA-Z]{3,}_*[0-9_]*[a-zA-Z]*_*",
+                              data['username'].strip()):
+                return "username must start with letters before number or\
+                        underscore"
+            # check if password has more than 6 characters
+            elif len(data['password'].strip()) < 6:
+                return "password must have atleast 6 characters"
+            # check if phone number has 10 characters
+            elif not len(data['phonenumber'].strip()) == 10:
+                return "phone number must have 10 characters"
+            # check if id is an integer
+            elif not re.match("[0-9]",
+                              data['phonenumber'].strip()):
+                return "phonenumber must contain only numbers"
+            else:
+                return "valid"
+        except Exception as error:
+            return "please provide all the fields, missing " + str(error)

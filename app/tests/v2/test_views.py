@@ -35,7 +35,16 @@ class UserTest(unittest.TestCase):
             content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 201)
-        self.assertEqual(data['message'], 'User registered succesfully')
+        self.assertEqual(data['data']['username'], 'testusername')
+
+    def test_username_taken(self):
+        self.create_test_record()
+        resp = self.client.post(
+            '/api/v2/users', data=json.dumps(self.user),
+            content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 409)
+        self.assertEqual(data['message'], 'Username Is already taken')
 
     def tearDown(self):
         create_tables()

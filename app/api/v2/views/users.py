@@ -10,24 +10,30 @@ class Users(Resource):
     def post(self):
         """function to create a new user"""
         users_data = request.get_json()
-        firstname = users_data['firstname']
-        lastname = users_data['lastname']
-        othernames = users_data['othernames']
-        email = users_data['email']
-        phonenumber = users_data['phonenumber']
-        username = users_data['username']
-        password = users_data['password']
-        user = UserModel(
-            firstname, lastname, othernames, email, phonenumber, username,
-            password)
-        response = user.register_user()
-        if response == "success":
+        res = self.userObject.validate_data(users_data)
+        if res == "valid":
+            firstname = users_data['firstname']
+            lastname = users_data['lastname']
+            othernames = users_data['othernames']
+            email = users_data['email']
+            phonenumber = users_data['phonenumber']
+            username = users_data['username']
+            password = users_data['password']
+            user = UserModel(
+                firstname, lastname, othernames, email, phonenumber, username,
+                password)
+            response = user.register_user()
+            if response == "success":
+                return make_response(jsonify({
+                    "status": 201,
+                    "message": "User registered succesfully",
+                    "data": self.userObject.get_by_username(username)
+                }), 201)
             return make_response(jsonify({
-                "status": 201,
-                "message": "User registered succesfully",
-                "data": self.userObject.get_by_username(username)
-            }), 201)
+                    "status": 409,
+                    "message": response
+                }), 409)
         return make_response(jsonify({
-                "status": 409,
-                "message": [response]
-            }), 409)
+                "status": 405,
+                "message": res
+            }), 405)
