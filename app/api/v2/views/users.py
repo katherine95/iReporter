@@ -4,6 +4,7 @@ from flask import jsonify, request, make_response
 
 
 class Users(Resource):
+    """class that deals with users request functions"""
     def __init__(self,):
         self.userObject = UserModel()
 
@@ -37,3 +38,34 @@ class Users(Resource):
                 "status": 405,
                 "message": res
             }), 405)
+
+
+class Login(Resource):
+    """class that deals with a single user request functions"""
+    def __init__(self):
+        self.userObject = UserModel()
+
+    def post(self):
+        """function to get a single user by username"""
+        # username = request.get_json('username')
+        # password = request.get_json('password')
+        # print(self.userObject.hash_password(password))
+        # if not username:
+        #     return make_response(jsonify({
+        #         "status": 400,
+        #         "message": "please enter username"}), 400)
+        # if not password:
+        #     return make_response(jsonify({
+        #         "status": 400,
+        #         "message": "please enter password"}), 400)
+        res = self.userObject.login_user()
+        if res is False:
+            return make_response(jsonify({
+                "status": 404,
+                "message": "Username and password dont match"
+            }), 404)
+        return make_response(jsonify({
+            "status": 200,
+            "data": res,
+            "message": "User fetched successfully"
+        }), 200)
