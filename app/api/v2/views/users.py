@@ -1,6 +1,9 @@
 from flask_restful import Resource
 from app.api.v2.models.users import SignUp as UserModel
 from flask import jsonify, request, make_response
+from flask_jwt_extended import (create_access_token, create_refresh_token,
+                                jwt_required, jwt_refresh_token_required,
+                                get_jwt_identity, get_raw_jwt)
 
 
 class Users(Resource):
@@ -39,6 +42,7 @@ class Users(Resource):
                 "message": res
             }), 405)
 
+    @jwt_required
     def get(self):
         resp = self.userObject.get_all_users()
         return make_response(jsonify({
@@ -61,8 +65,17 @@ class Login(Resource):
                 "status": 404,
                 "message": "Username and password dont match"
             }), 404)
+        username = request.get_json()['username']
+        access_token = create_access_token(identity=username)
         return make_response(jsonify({
             "status": 200,
-            "data": res,
+            "data": [{
+                "token": access_token,
+                "user": self.userObject.get_by_username(username)
+            }],
             "message": "User successfully logged in"
         }), 200)
+
+    @jwt_required
+    def get(self):
+        return "jwt works"

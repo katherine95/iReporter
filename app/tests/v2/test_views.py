@@ -53,7 +53,16 @@ class UserTest(unittest.TestCase):
             content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(data['data'], True)
+        self.assertEqual(data['data'][0]['user']['username'], 'testusername')
+
+    def test_user_login_token_generation_success(self):
+        self.create_test_record()
+        resp = self.client.post(
+            '/api/v2/auth/login', data=json.dumps(self.user),
+            content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(data['data'][0]['token'])
 
     def test_login_with_wrong_credentials(self):
         self.create_test_record()
