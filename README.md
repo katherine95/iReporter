@@ -42,7 +42,9 @@ Html5, CSS3, python, flask, flask_restful
 
       POST    |    /api/v2/users
 
-8. To run tests:
+8. To run migrations:
+    run ```python3 migrate.py```
+9. To run tests:
     run ```pytest```
-9. To check test coverage:
+10. To check test coverage:
     run ```py.test --cov=app app/tests/v2```
