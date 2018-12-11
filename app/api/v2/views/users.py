@@ -39,6 +39,14 @@ class Users(Resource):
                 "message": res
             }), 405)
 
+    def get(self):
+        resp = self.userObject.get_all_users()
+        return make_response(jsonify({
+            "status": 200,
+            "data": resp,
+            "message": "all users fetched successfully"
+        }))
+
 
 class Login(Resource):
     """class that deals with a single user request functions"""

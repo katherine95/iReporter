@@ -54,6 +54,12 @@ class SignUp(object):
             createdOn=user[7]
         )
 
+    def get_all_users(self):
+        """ check if user with the same username already exist """
+        cur.execute("SELECT * FROM users")
+        users = cur.fetchall()
+        return users
+
     def check_if_username_exist(self, username):
         """ check if user with the same username already exist """
         cur.execute("SELECT * FROM users WHERE username = %s;", (username,))
@@ -78,12 +84,6 @@ class SignUp(object):
 
     def login_user(self):
         """validate user log's in with valid username and password"""
-        # cur.execute("SELECT * FROM users WHERE username = %s;", (username,))
-        # username = cur.fetchone()
-        # cur.execute("SELECT * FROM users WHERE password = %s;", (password,))
-        # password = cur.fetchone()
-        # users_data = request.get_json()
-        # users_data = request.get_json()
         user_details = request.get_json()
         if self.get_by_username(user_details['username']):
             cur.execute("SELECT password FROM users WHERE username = %s;",
