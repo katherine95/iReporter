@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/katherine95/iReporter.svg?branch=develop)](https://travis-ci.org/katherine95/iReporter) [![Coverage Status](https://coveralls.io/repos/github/katherine95/iReporter/badge.svg?branch=develop)](https://coveralls.io/github/katherine95/iReporter?branch=develop)
+[![Build Status](https://travis-ci.org/katherine95/iReporter.svg?branch=develop-api-v2)](https://travis-ci.org/katherine95/iReporter) [![Coverage Status](https://coveralls.io/repos/github/katherine95/iReporter/badge.svg?branch=develop-api-v2)](https://coveralls.io/github/katherine95/iReporter?branch=develop-api-v2)
 [![Maintainability](https://api.codeclimate.com/v1/badges/68e36e977cb3d0d710b2/maintainability)](https://codeclimate.com/github/katherine95/iReporter/maintainability)
 # iReporter
 iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention.
@@ -19,8 +19,8 @@ Html5, CSS3, python, flask, flask_restful
     ```cd iReporter```
 2. Fetch all origin to get all branches
     ```git fetch origin```
-3. Checkout to `develop` branch.
-    ```git checkout develop```
+3. Checkout to `develop-api-v2` branch.
+    ```git checkout develop-api-v2```
 4. Create a virtual environment to allow you to manage separate package installations for different     projects.
     ``` virtualenv -p python3 venv```
 5. Activate virtual environment
@@ -43,9 +43,13 @@ Html5, CSS3, python, flask, flask_restful
         |               |                              |
        
 
-8. To run tests:
+8. To run migrations:
+    run ```python3 migrate.py```
+9. To run tests:
     run ```pytest```
-9. To check test coverage:
-    run ```py.test --cov=app app/tests/v1```
-
+    
 ## Link to Hosted [demo]()
+
+10. To check test coverage:
+    run ```py.test --cov=app app/tests/v2```
+
