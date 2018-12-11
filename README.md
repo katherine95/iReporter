@@ -45,4 +45,4 @@ Html5, CSS3, python, flask, flask_restful
 8. To run tests:
     run ```pytest```
 9. To check test coverage:
-    run ```py.test --cov=app app/tests/v1```
+    run ```py.test --cov=app app/tests/v2```
