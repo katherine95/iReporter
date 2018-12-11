@@ -5,21 +5,13 @@ iReporter enables any/every citizen to bring any form of corruption to the notic
 
 This site is published at https://katherine95.github.io/iReporter/UI/index.html
 
-## Getting Started
-
-1. Clone the repo:
-    git clone https://github.com/katherine95/iReporter.git  
-
-
 ### Prerequisites
 
 ```
 Html5, CSS3, python, flask, flask_restful 
 ```
 
-# Link to Hosted [demo](https://quiet-tundra-27329.herokuapp.com/api/v1/incidents)
-
-## To run the API  ##
+##  Getting Started  ##
 
 1. Clone this repository
    ```git clone https://github.com/katherine95/iReporter.git```
@@ -40,9 +32,12 @@ Html5, CSS3, python, flask, flask_restful
     `flask run`
 7. Test the endpoints on postman.
 
-      POST    |    /api/v2/users
+      POST    |    /api/v2/auth/signup
+      POST    |    /api/v2/auth/login
 
 8. To run tests:
     run ```pytest```
 9. To check test coverage:
     run ```py.test --cov=app app/tests/v1```
+
+## Link to Hosted [demo]()

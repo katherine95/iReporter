@@ -86,7 +86,8 @@ class SignUp(object):
         # users_data = request.get_json()
         user_details = request.get_json()
         if self.get_by_username(user_details['username']):
-            cur.execute("SELECT password FROM users WHERE username = %s;", (user_details['username'],))
+            cur.execute("SELECT password FROM users WHERE username = %s;",
+                        (user_details['username'],))
             reg_password = cur.fetchone()
             if sha256_crypt.verify(user_details['password'], reg_password[0]):
                 return True

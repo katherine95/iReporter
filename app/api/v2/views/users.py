@@ -47,17 +47,6 @@ class Login(Resource):
 
     def post(self):
         """function to get a single user by username"""
-        # username = request.get_json('username')
-        # password = request.get_json('password')
-        # print(self.userObject.hash_password(password))
-        # if not username:
-        #     return make_response(jsonify({
-        #         "status": 400,
-        #         "message": "please enter username"}), 400)
-        # if not password:
-        #     return make_response(jsonify({
-        #         "status": 400,
-        #         "message": "please enter password"}), 400)
         res = self.userObject.login_user()
         if res is False:
             return make_response(jsonify({
