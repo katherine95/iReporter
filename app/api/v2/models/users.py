@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, request
 from datetime import date
 from app.db_config import conn
 from passlib.hash import sha256_crypt
@@ -54,6 +54,12 @@ class SignUp(object):
             createdOn=user[7]
         )
 
+    def get_all_users(self):
+        """ check if user with the same username already exist """
+        cur.execute("SELECT * FROM users")
+        users = cur.fetchall()
+        return users
+
     def check_if_username_exist(self, username):
         """ check if user with the same username already exist """
         cur.execute("SELECT * FROM users WHERE username = %s;", (username,))
@@ -69,12 +75,23 @@ class SignUp(object):
         user = cur.fetchone()
         if user:
             return self.serialiser_user(user)
-        return "Username doesnt exist"
+        return "Username doesn't exist"
 
     def hash_password(self, password):
         """Hash Password """
         h_pass = sha256_crypt.hash(password)
         return h_pass
+
+    def login_user(self):
+        """validate user log's in with valid username and password"""
+        user_details = request.get_json()
+        if self.get_by_username(user_details['username']):
+            cur.execute("SELECT password FROM users WHERE username = %s;",
+                        (user_details['username'],))
+            reg_password = cur.fetchone()
+            if sha256_crypt.verify(user_details['password'], reg_password[0]):
+                return True
+            return False
 
     def validate_data(self, data):
         """validate user details"""
