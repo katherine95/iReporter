@@ -64,5 +64,5 @@ class Login(Resource):
         return make_response(jsonify({
             "status": 200,
             "data": res,
-            "message": "User fetched successfully"
+            "message": "User successfully logged in"
         }), 200)
