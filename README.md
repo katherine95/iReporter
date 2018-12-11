@@ -40,14 +40,7 @@ Html5, CSS3, python, flask, flask_restful
     `flask run`
 7. Test the endpoints on postman.
 
-        POST      http://127.0.0.1:5000/api/v1/incidents
-        GET       http://127.0.0.1:5000/api/v1/incidents
-        GET       http://127.0.0.1:5000/api/v1/incidents/1
-        PATCH     http://127.0.0.1:5000/api/v1/incidents/2/comment
-        PATCH     http://127.0.0.1:5000/api/v1/incidents/1/location
-        DEL       http://127.0.0.1:5000/api/v1/incidents/1
-        POST      http://127.0.0.1:5000/api/v1/users
-        GET       http://127.0.0.1:5000/api/v1/users
+      POST    |    /api/v2/users
 
 8. To run tests:
     run ```pytest```

@@ -1,6 +1,11 @@
 language: python
 python:
   - "3.6"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database test_ireporter;' -U postgres
+  - python migrate.py
 install: pip install -r requirements.txt
 script: py.test --cov=app app/tests/v1
 after_success: coveralls
