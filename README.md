@@ -27,8 +27,8 @@ Html5, CSS3, python, flask, flask_restful
     ```cd iReporter```
 2. Fetch all origin to get all branches
     ```git fetch origin```
-3. Checkout to `develop` branch.
-    ```git checkout develop```
+3. Checkout to `develop-api-v2` branch.
+    ```git checkout develop-api-v2```
 4. Create a virtual environment to allow you to manage separate package installations for different     projects.
     ``` virtualenv -p python3 venv```
 5. Activate virtual environment
