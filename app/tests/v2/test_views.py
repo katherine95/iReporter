@@ -143,14 +143,34 @@ class UserTest(unittest.TestCase):
         headers = {'content-type': 'application/json',
                    'Authorization': Authorization}
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(self.incident),
+            '/api/v2/incidents', data=json.dumps(self.incident),
             content_type='application/json', headers=headers)
         resp = self.client.post(
-            '/api/v1/incidents', data=json.dumps(self.incident),
+            '/api/v2/incidents', data=json.dumps(self.incident),
             content_type='application/json', headers=headers)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 409)
         self.assertEqual(data['message'], 'Incident with this comment exist.')
+
+    def test_can_get_all_incidents(self):
+        self.create_test_user()
+        resp = self.client.post(
+            '/api/v2/auth/login', data=json.dumps(self.user),
+            content_type='application/json')
+        data = json.loads(resp.data)
+        access_token = data['data'][0]['token']
+        Authorization = 'Bearer ' + access_token
+        headers = {'content-type': 'application/json',
+                   'Authorization': Authorization}
+        resp = self.client.post(
+            '/api/v2/incidents', data=json.dumps(self.incident),
+            content_type='application/json', headers=headers)
+        resp = self.client.get(
+            '/api/v2/incidents', data=json.dumps(self.incident),
+            content_type='application/json', headers=headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['data'][0][0], 1)
 
     def tearDown(self):
         create_tables()

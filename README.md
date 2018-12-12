@@ -37,8 +37,8 @@ Html5, CSS3, python, flask, flask_restful
         POST       | /api/v2/auth/signup  | Register a user
         POST       | /api/v2/auth/login   | User log-in with valid username and password
         GET        | /api/v2/auth/signup  | Get all registered users
-                   |                      | 
-       
+        POST       | /api/v2/incidents    | Allow authenticated user to create an incident
+        GET        | /api/v2/incidents    | Allow authenticated user to fetch all incidents created
 8. To run migrations:
     run ```python3 migrate.py```
 9. To run tests:

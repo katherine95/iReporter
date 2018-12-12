@@ -50,7 +50,7 @@ def tables():
     incidents = """CREATE TABLE incidents(
         id serial PRIMARY KEY NOT NULL,
         createdOn timestamp with time zone DEFAULT('now'::text)::date NOT NULL,
-        createdBy numeric(50) NOT NULL,
+        createdBy int NOT NULL,
         incidentType VARCHAR(50) NOT NULL,
         location VARCHAR(10) NOT NULL,
         status VARCHAR(10) NOT NULL,

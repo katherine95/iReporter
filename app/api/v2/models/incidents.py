@@ -42,6 +42,12 @@ class Incident(object):
         else:
             return False
 
+    def get_all_incidents(self):
+        """Function to GET all incidents"""
+        cur.execute("SELECT * FROM incidents")
+        incidents = cur.fetchall()
+        return incidents
+
     def validate_data(self, data):
         """validate user details"""
         try:

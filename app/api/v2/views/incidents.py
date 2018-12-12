@@ -43,3 +43,13 @@ class Incidents(Resource):
             "status": 400,
             "message": res
         }), 400)
+
+    @jwt_required
+    def get(self):
+        """GET all incidents request function"""
+        response = IncidentModel.get_all_incidents(self)
+        return make_response(jsonify({
+            "status": 200,
+            "data": response,
+            "message": "All incidents fetched successfully."
+        }), 200)
