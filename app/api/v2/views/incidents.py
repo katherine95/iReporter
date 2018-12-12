@@ -53,3 +53,25 @@ class Incidents(Resource):
             "data": response,
             "message": "All incidents fetched successfully."
         }), 200)
+
+
+class SingleIncident(Resource):
+    """class that deals with a single incident request functions"""
+
+    def __init__(self):
+        self.incidentObject = IncidentModel
+
+    @jwt_required
+    def get(self, id):
+        """function to get a single incident"""
+        response = self.incidentObject.get_incident_by_id(self, id)
+        if not response:
+            return make_response(jsonify({
+                "status": 404,
+                "message": "Record with that ID does not exist."
+            }), 404)
+        return make_response(jsonify({
+            "status": 200,
+            "data": response,
+            "message": "Incident fetched successfully"
+        }), 200)

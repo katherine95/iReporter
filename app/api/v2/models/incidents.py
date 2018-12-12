@@ -4,6 +4,18 @@ from app.db_config import conn
 cur = conn.cursor()
 
 
+def serialiser_incident(incident):
+    return dict(
+        id=incident[0],
+        createdOn=incident[1],
+        createdBy=incident[2],
+        incidentType=incident[3],
+        location=incident[4],
+        status=incident[5],
+        comment=incident[6]
+    )
+
+
 class Incident(object):
     """class that deals with incidents data"""
 
@@ -46,7 +58,19 @@ class Incident(object):
         """Function to GET all incidents"""
         cur.execute("SELECT * FROM incidents")
         incidents = cur.fetchall()
-        return incidents
+        incidents_list = []
+        for item in incidents:
+            incidents_list.append(serialiser_incident(item))
+
+        return incidents_list
+
+    def get_incident_by_id(self, id):
+        """function to GET a single incident by id"""
+        cur.execute("SELECT * FROM incidents WHERE id = %s;", (id,))
+        incident = cur.fetchone()
+        if incident:
+            return serialiser_incident(incident)
+        return False
 
     def validate_data(self, data):
         """validate user details"""

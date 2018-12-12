@@ -43,9 +43,8 @@ Html5, CSS3, python, flask, flask_restful
     run ```python3 migrate.py```
 9. To run tests:
     run ```pytest```
-    
-## Link to Hosted [demo]()
-
 10. To check test coverage:
     run ```py.test --cov=app app/tests/v2```
+
+    # Link to Hosted [demo]()
 
