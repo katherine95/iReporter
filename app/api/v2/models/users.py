@@ -55,7 +55,7 @@ class SignUp(object):
         )
 
     def get_all_users(self):
-        """ check if user with the same username already exist """
+        """ fetch all registered users """
         cur.execute("SELECT * FROM users")
         users = cur.fetchall()
         return users
