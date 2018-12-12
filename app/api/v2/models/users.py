@@ -42,7 +42,7 @@ class SignUp(object):
 
     def serialiser_user(self, user):
         return dict(
-            id=user[0],
+            user_id=user[0],
             username=user[4],
             email=user[5],
             isAdmin=user[10],
@@ -71,7 +71,7 @@ class SignUp(object):
 
     def get_by_username(self, username):
         """ Get user by username """
-        cur.execute("SELECT * FROM users WHERE username = %s;", (username,))
+        cur.execute("SELECT * FROM users WHERE username = %s", (username,))
         user = cur.fetchone()
         if user:
             return self.serialiser_user(user)
@@ -85,13 +85,14 @@ class SignUp(object):
     def login_user(self):
         """validate user log's in with valid username and password"""
         user_details = request.get_json()
-        if self.get_by_username(user_details['username']):
-            cur.execute("SELECT password FROM users WHERE username = %s;",
+        if self.check_if_username_exist(user_details['username']):
+            cur.execute("SELECT password FROM users WHERE username = %s",
                         (user_details['username'],))
             reg_password = cur.fetchone()
             if sha256_crypt.verify(user_details['password'], reg_password[0]):
                 return True
             return False
+        return False
 
     def validate_data(self, data):
         """validate user details"""
