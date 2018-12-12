@@ -1,12 +1,12 @@
 from flask_restful import Resource
 from app.api.v2.models.users import SignUp as UserModel
-from flask import jsonify, request, make_response
+from flask import jsonify, request, make_response, g
 from flask_jwt_extended import (create_access_token, create_refresh_token,
                                 jwt_required, jwt_refresh_token_required,
                                 get_jwt_identity, get_raw_jwt)
 
 
-class Users(Resource):
+class SignUp(Resource):
     """class that deals with users request functions"""
     def __init__(self,):
         self.userObject = UserModel()
@@ -27,11 +27,19 @@ class Users(Resource):
                 firstname, lastname, othernames, email, phonenumber, username,
                 password)
             response = user.register_user()
+
             if response == "success":
+                username = request.get_json()['username']
+                user = self.userObject.get_by_username(username)
+                user_id = user['user_id']
+                access_token = create_access_token(identity=user_id)
                 return make_response(jsonify({
                     "status": 201,
                     "message": "User registered succesfully",
-                    "data": self.userObject.get_by_username(username)
+                    "data": [{
+                        "user": self.userObject.get_by_username(username),
+                        "token": access_token
+                    }]
                 }), 201)
             return make_response(jsonify({
                     "status": 409,
@@ -66,7 +74,10 @@ class Login(Resource):
                 "message": "Username and password dont match"
             }), 404)
         username = request.get_json()['username']
-        access_token = create_access_token(identity=username)
+        user = self.userObject.get_by_username(username)
+        user_id = user['user_id']
+        access_token = create_access_token(identity=user_id)
+
         return make_response(jsonify({
             "status": 200,
             "data": [{
@@ -78,4 +89,4 @@ class Login(Resource):
 
     @jwt_required
     def get(self):
-        return "jwt works"
+        pass

@@ -12,6 +12,7 @@ def create_app(config_name):
     app.config.from_object(app_config[os.getenv('APP_SETTINGS')])
 
     app.config['JWT_SECRET_KEY'] = 'secret-key'
+    app.config['PROPAGATE_EXCEPTIONS'] = True
     jwt = JWTManager(app)
 
     app.register_blueprint(version_one)
