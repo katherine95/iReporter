@@ -32,17 +32,13 @@ Html5, CSS3, python, flask, flask_restful
     `flask run`
 7. Test the endpoints on postman.
 
-        
-        | Request       | Endpoint                     |Description
-        | ------------- |:----------------------------:|:--------------------------------------------|
-        | POST          | /api/v2/auth/signup          | Register a user                             |
-        | POST          | /api/v2/auth/login           | User log-in with valid username and password|
-        | GET           | /api/v2/auth/signup          | Get all registered users                    |
-        |               |                              |
-        |               |                              |
-        |               |                              |
+        EndPoint   |                      | Functionality
+        -----------|----------------------|----------------------
+        POST       | /api/v2/auth/signup  | Register a user
+        POST       | /api/v2/auth/login   | User log-in with valid username and password
+        GET        | /api/v2/auth/signup  | Get all registered users
+                   |                      | 
        
-
 8. To run migrations:
     run ```python3 migrate.py```
 9. To run tests:
