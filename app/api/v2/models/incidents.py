@@ -46,7 +46,6 @@ class Incident(object):
         """Function to GET all incidents"""
         cur.execute("SELECT * FROM incidents")
         incidents = cur.fetchall()
-        print(incidents)
         return incidents
 
     def validate_data(self, data):
