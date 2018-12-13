@@ -1,5 +1,4 @@
 from datetime import date
-from flask import g
 from app.db_config import conn
 cur = conn.cursor()
 

@@ -1,5 +1,5 @@
 from flask_restful import Resource
-from app.api.v2.models.users import SignUp as UserModel
+from app.api.v2.models.users import Users as UserModel
 from flask import jsonify, request, make_response, g
 from flask_jwt_extended import (create_access_token, create_refresh_token,
                                 jwt_required, jwt_refresh_token_required,

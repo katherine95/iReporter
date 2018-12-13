@@ -1,7 +1,6 @@
 import psycopg2
 import os
 
-print(os.getenv('APP_SETTINGS'))
 if os.getenv('APP_SETTINGS') == "development":
     conn = psycopg2.connect(
         dbname="test",

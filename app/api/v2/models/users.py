@@ -6,7 +6,7 @@ import re
 cur = conn.cursor()
 
 
-class SignUp(object):
+class Users(object):
     """class that deals with users information"""
 
     def __init__(self, firstname=None, lastname=None, othernames=None,
