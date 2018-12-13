@@ -26,13 +26,13 @@ Html5, CSS3, python, flask, flask_restful
 5. Activate virtual environment
     ``` source venv/bin/activate```
 5. Install requirements(all packages that the project needs)
-    ```pip install requirements.py```
+    ```pip install -r requirements.txt```
 6. Start server
     ``` export FLASK_APP=run.py```
     `flask run`
 7. Test the endpoints on postman.
 
-    EndPoint   |   Url                      | Functionality
+    EndPoint   |   Url                          | Functionality
     -----------|--------------------------------|----------------------
     POST       | /api/v2/auth/signup            | Register a user
     POST       | /api/v2/auth/login             | User log-in with valid username and password

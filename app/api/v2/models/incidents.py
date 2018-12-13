@@ -78,15 +78,19 @@ class Incident(object):
             # check if incidentType has letters only
             if not data['incidentType'].strip().isalpha():
                 return "incidentType can only contain letters only"
+
             # check if the incidentType is more than 7 characters
             elif len(data['incidentType'].strip()) < 7:
                 return "incidentType must be more than 7 characters"
+
             # check if the comment is more than 15 characters
             elif len(data['comment'].strip()) < 15:
                 return "comment must be more than 15 characters"
+
             # check if the location is more than 3 characters
             elif len(data['location'].strip()) < 3:
                 return "location must be more than 3 characters"
+
             else:
                 return "valid"
         except Exception as error:
