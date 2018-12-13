@@ -105,3 +105,42 @@ class SingleIncident(Resource):
             "status": 405,
             "message": "you dont have access rights"
         }), 405)
+
+
+class UpdateIncident(Resource):
+    """class that deals with updating a single request functions"""
+
+    def __init__(self):
+        self.incidentObject = IncidentModel
+
+    @jwt_required
+    def patch(self, id):
+        current_user = get_jwt_identity()
+        user = userObject.get_user_by_id(current_user)
+        if incidentObject.get_incident_by_id(id):
+            data = request.get_json()
+            if 'comment' in data:
+                comment = data['comment']
+                resp = incidentObject.update_incident_comment(id, comment)
+                return make_response(jsonify({
+                    "status": 200,
+                    "data": resp,
+                    "message": "Comment patched successfully"
+                }), 200)
+            elif 'location' in data:
+                location = data['location']
+                resp = incidentObject.update_incident_location(id, location)
+                return make_response(jsonify({
+                    "status": 200,
+                    "data": resp,
+                    "message": "Comment patched successfully"
+                }), 200)
+            return make_response(jsonify({
+                "status": 400,
+                "message": "Please provide 'comment' or 'location'"
+            }), 400)
+        return make_response(jsonify({
+            "status": 404,
+            "message": "Incident with that ID doesnt exist"
+        }), 404)
+
