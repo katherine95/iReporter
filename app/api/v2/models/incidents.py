@@ -92,3 +92,16 @@ class Incident(object):
         except Exception as error:
             return "please provide all the fields,\
              missing " + str(error)
+
+    # def check_if_record_exist(self, id):
+    #     """function to check if a record exist by id"""
+    #     for item in incidents_list:
+    #         if item['id'] == id:
+    #             return True
+    #     return False
+
+    def update_incident_status(self, id, status):
+        """function to allow an admin user to update status record"""
+        cur.execute("UPDATE incidents SET status=%s WHERE id = %s;", (status, id,))
+        self.save()    
+        return self.get_incident_by_id(id)

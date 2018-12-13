@@ -145,7 +145,6 @@ class TestView(unittest.TestCase):
             '/api/v2/incidents/1', data=json.dumps(self.incident),
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
-        print(data)
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(data['data']['id'], 1)
 
@@ -156,7 +155,44 @@ class TestView(unittest.TestCase):
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 404)
-        self.assertEqual(data['message'], 'Record with that ID does not exist.')
+        self.assertEqual(data['message'],
+                         'Record with that ID does not exist.')
+    
+    def test_admin_can_update_record_status(self):
+        self.create_test_record()
+        admin = {
+            'username': 'catechep',
+            'password': 'Cate@95#'
+        }
+        admin_login = self.client.post(
+            '/api/v2/auth/login', data=json.dumps(admin),
+            content_type='application/json')
+        data = json.loads(admin_login.data)
+        access_token = data['data'][0]['token']
+        Authorization = 'Bearer ' + access_token
+        headers = {'content-type': 'application/json',
+                     'Authorization': Authorization}
+        patch_data = {
+            'status': 'inDraft'
+        }
+        resp = self.client.patch(
+            '/api/v2/incidents/1', data=json.dumps(patch_data),
+            content_type='application/json', headers=headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['message'], 'Incident patched successfully')
+    
+    def test_only_admin_update_record_status(self):
+        self.create_test_record()
+        patch_data = {
+            'status': 'inDraft'
+        }
+        resp = self.client.patch(
+            '/api/v2/incidents/1', data=json.dumps(patch_data),
+            content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 405)
+        self.assertEqual(data['message'], 'you dont have access rights')
 
     def tearDown(self):
         create_tables()

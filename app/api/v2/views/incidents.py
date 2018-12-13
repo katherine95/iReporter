@@ -1,11 +1,13 @@
 from flask_restful import Resource
 from flask import jsonify, request, make_response
 from app.api.v2.models.incidents import Incident as IncidentModel
+from app.api.v2.models.users import SignUp
 from flask_jwt_extended import (create_access_token, create_refresh_token,
                                 jwt_required, jwt_refresh_token_required,
                                 get_jwt_identity, get_raw_jwt)
 
 incidentObject = IncidentModel()
+userObject = SignUp()
 
 
 class Incidents(Resource):
@@ -75,3 +77,31 @@ class SingleIncident(Resource):
             "data": response,
             "message": "Incident fetched successfully"
         }), 200)
+
+    @jwt_required
+    def patch(self, id):
+        current_user = get_jwt_identity()
+        user = userObject.get_user_by_id(current_user)
+        if user['isAdmin']:
+            if incidentObject.get_incident_by_id(id):
+                data = request.get_json()
+                if 'status' in data:
+                    status = data['status']
+                    resp = incidentObject.update_incident_status(id, status)
+                    return make_response(jsonify({
+                        "status": 200,
+                        "data": resp,
+                        "message": "Incident patched successfully"
+                    }), 200)
+                return make_response(jsonify({
+                    "status": 400,
+                    "message": "Please provide 'status'"
+                }), 400)
+            return make_response(jsonify({
+                "status": 404,
+                "message": "Incident with that ID doesnt exist"
+            }), 404)
+        return make_response(jsonify({
+            "status": 405,
+            "message": "you dont have access rights"
+        }), 405)
