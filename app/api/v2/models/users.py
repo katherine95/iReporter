@@ -46,7 +46,6 @@ class Users(object):
             username=user[4],
             email=user[5],
             isAdmin=user[10],
-            password=user[8],
             firstname=user[1],
             lastname=user[2],
             othernames=user[3],
