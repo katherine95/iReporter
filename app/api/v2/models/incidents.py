@@ -113,3 +113,10 @@ class Incident(object):
                     (location, id,))
         self.save()
         return self.get_incident_by_id(id)
+
+    def delete_incident_record(self, id):
+        """function to allow an admin user to update status record"""
+        cur.execute("DELETE FROM incidents WHERE id = %s;",
+                    (id,))
+        self.save()
+        return True

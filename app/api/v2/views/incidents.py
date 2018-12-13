@@ -106,6 +106,25 @@ class SingleIncident(Resource):
             "message": "you dont have access rights"
         }), 405)
 
+    @jwt_required
+    def delete(self, id):
+        """function to delete a posted incident"""
+        current_user = get_jwt_identity()
+        user = userObject.get_user_by_id(current_user)
+        if incidentObject.get_incident_by_id(id):
+            response = incidentObject.delete_incident_record(id)
+            return make_response(jsonify({
+                "status": 200,
+                "data": [{
+                    "id": id,
+                    "message": "Incident deleted successfully"
+                }]
+            }), 200)
+        return make_response(jsonify({
+            "status": 404,
+            "message": "Incident with that ID doesnt exist"
+        }), 404)
+
 
 class UpdateIncident(Resource):
     """class that deals with updating a single request functions"""
@@ -143,4 +162,3 @@ class UpdateIncident(Resource):
             "status": 404,
             "message": "Incident with that ID doesnt exist"
         }), 404)
-
