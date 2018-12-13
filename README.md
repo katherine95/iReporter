@@ -42,6 +42,7 @@ Html5, CSS3, python, flask, flask_restful
     GET        | /api/v2/incidents/<int:id>     | Allow authenticated user to fetch a single incident
     PATCH      | /api/v2/incidents/<int:id>     | Allow only an admin to change the status of an incident
     PATCH      | /api/v2/user/incidents/<int:id>| Allow user to edit comment/location of his/her records
+    DELETE     | /api/v2/incidents/<int:id>     | Allow authenticated user to delete his/her records 
 
 8. To run migrations:
     run ```python3 migrate.py```
