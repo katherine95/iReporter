@@ -32,13 +32,16 @@ Html5, CSS3, python, flask, flask_restful
     `flask run`
 7. Test the endpoints on postman.
 
-        EndPoint   |                      | Functionality
-        -----------|----------------------|----------------------
-        POST       | /api/v2/auth/signup  | Register a user
-        POST       | /api/v2/auth/login   | User log-in with valid username and password
-        GET        | /api/v2/auth/signup  | Get all registered users
-        POST       | /api/v2/incidents    | Allow authenticated user to create an incident
-        GET        | /api/v2/incidents    | Allow authenticated user to fetch all incidents created
+        EndPoint   |   Url                      | Functionality
+        -----------|----------------------------|----------------------
+        POST       | /api/v2/auth/signup        | Register a user
+        POST       | /api/v2/auth/login         | User log-in with valid username and password
+        GET        | /api/v2/auth/signup        | Get all registered users
+        POST       | /api/v2/incidents          | Allow authenticated user to create an incident
+        GET        | /api/v2/incidents          | Allow authenticated user to fetch all incidents created
+        GET        | /api/v2/incidents/<int:id> | Allow authenticated user to fetch a single incident
+        PATCH      | /api/v2/incidents/<int:id> | Allow only an admin to change the status of an incident
+
 8. To run migrations:
     run ```python3 migrate.py```
 9. To run tests:

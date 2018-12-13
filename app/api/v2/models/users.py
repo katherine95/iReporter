@@ -77,6 +77,14 @@ class SignUp(object):
             return self.serialiser_user(user)
         return "Username doesn't exist"
 
+    def get_user_by_id(self, id):
+        """ Get user by username """
+        cur.execute("SELECT * FROM users WHERE user_id = %s", (id,))
+        user = cur.fetchone()
+        if user:
+            return self.serialiser_user(user)
+        return False
+
     def hash_password(self, password):
         """Hash Password """
         h_pass = sha256_crypt.hash(password)
