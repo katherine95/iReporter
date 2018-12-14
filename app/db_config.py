@@ -19,7 +19,7 @@ elif os.getenv('APP_SETTINGS') == "testing":
         )
 else:
     conn = psycopg2.connect(
-        dbname="ireporter"
+        dbname="test_ireporter"
         )
 try:
     conn
