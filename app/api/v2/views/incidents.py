@@ -115,19 +115,29 @@ class SingleIncident(Resource):
     def delete(self, id):
         """function to delete a posted incident"""
         current_user = get_jwt_identity()
-        user = userObject.get_user_by_id(current_user)
-        if incidentObject.get_incident_by_id(id):
-            response = incidentObject.delete_incident_record(id)
+        user_record = incidentObject.get_incident_by_id(id)
+        if user_record:
+            if user_record['createdBy'] == current_user:
+                if incidentObject.get_incident_by_id(id):
+                    response = incidentObject.delete_incident_record(id)
+                    return make_response(jsonify({
+                        "status": 200,
+                        "data": [{
+                            "id": id,
+                            "message": "Incident deleted successfully"
+                        }]
+                    }), 200)
+                return make_response(jsonify({
+                    "status": 404,
+                    "message": "Incident with that ID doesnt exist"
+                }), 404)
             return make_response(jsonify({
-                "status": 200,
-                "data": [{
-                    "id": id,
-                    "message": "Incident deleted successfully"
-                }]
-            }), 200)
+                "status": 401,
+                "message": "You are only allowed to delete your own records"
+            }), 401)
         return make_response(jsonify({
             "status": 404,
-            "message": "Incident with that ID doesnt exist"
+            "message": "The record does not exist"
         }), 404)
 
 
@@ -141,41 +151,46 @@ class UpdateIncident(Resource):
     def patch(self, id):
         current_user = get_jwt_identity()
         user_record = incidentObject.get_incident_by_id(id)
-        if user_record['createdBy'] == current_user:
-            res = incidentObject.get_incident_by_id(id)
-            if res:
-                if res['status'] == 'pending':
-                    data = request.get_json()
-                    if 'comment' in data:
-                        comment = data['comment']
-                        resp = incidentObject.update_incident_comment(id, comment)
+        if user_record:
+            if user_record['createdBy'] == current_user:
+                res = incidentObject.get_incident_by_id(id)
+                # res1 = incidentObject.check_if_comment_exist(id)
+                if res:
+                    if res['status'] == 'pending':
+                        data = request.get_json()
+                        if 'comment' in data:
+                            comment = data['comment']
+                            resp = incidentObject.update_incident_comment(id, comment)
+                            return make_response(jsonify({
+                                "status": 200,
+                                "data": resp,
+                                "message": "Comment patched successfully"
+                            }), 200)
+                        elif 'location' in data:
+                            location = data['location']
+                            resp = incidentObject.update_incident_location(id, location)
+                            return make_response(jsonify({
+                                "status": 200,
+                                "data": resp,
+                                "message": "Location patched successfully"
+                            }), 200)
                         return make_response(jsonify({
-                            "status": 200,
-                            "data": resp,
-                            "message": "Comment patched successfully"
-                        }), 200)
-                    elif 'location' in data:
-                        location = data['location']
-                        resp = incidentObject.update_incident_location
-                        (id, location)
-                        return make_response(jsonify({
-                            "status": 200,
-                            "data": resp,
-                            "message": "Comment patched successfully"
-                        }), 200)
+                            "status": 400,
+                            "message": "Please provide 'comment' or 'location'"
+                        }), 400)
                     return make_response(jsonify({
-                        "status": 400,
-                        "message": "Please provide 'comment' or 'location'"
-                    }), 400)
+                        "status": 401,
+                        "message": "You can only edit a record while its pending"
+                    }), 401)
                 return make_response(jsonify({
-                    "status": 401,
-                    "message": "You can only edit a record while its pending"
-                }), 401)
+                    "status": 404,
+                    "message": "Incident with that ID doesnt exist"
+                }), 404)
             return make_response(jsonify({
-                "status": 404,
-                "message": "Incident with that ID doesnt exist"
-            }), 404)
+                "status": 401,
+                "message": "You are only allowed to edit your own records"
+            }), 401)
         return make_response(jsonify({
-            "status": 401,
-            "message": "You are only allowed to edit your own records"
-        }), 401)
+            "status": 404,
+            "message": "The record does not exist"
+        }), 404)
