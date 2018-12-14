@@ -118,19 +118,25 @@ class SingleIncident(Resource):
         user_record = incidentObject.get_incident_by_id(id)
         if user_record:
             if user_record['createdBy'] == current_user:
-                if incidentObject.get_incident_by_id(id):
-                    response = incidentObject.delete_incident_record(id)
+                res = incidentObject.get_incident_by_id(id)
+                if res['status'] == 'pending':
+                    if incidentObject.get_incident_by_id(id):
+                        response = incidentObject.delete_incident_record(id)
+                        return make_response(jsonify({
+                            "status": 200,
+                            "data": [{
+                                "id": id,
+                                "message": "Incident deleted successfully"
+                            }]
+                        }), 200)
                     return make_response(jsonify({
-                        "status": 200,
-                        "data": [{
-                            "id": id,
-                            "message": "Incident deleted successfully"
-                        }]
-                    }), 200)
+                        "status": 404,
+                        "message": "Incident with that ID doesnt exist"
+                    }), 404)
                 return make_response(jsonify({
-                    "status": 404,
-                    "message": "Incident with that ID doesnt exist"
-                }), 404)
+                    "status": 401,
+                    "message": "You can only delete a record while its pending"
+                }), 401)
             return make_response(jsonify({
                 "status": 401,
                 "message": "You are only allowed to delete your own records"
