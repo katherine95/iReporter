@@ -17,8 +17,14 @@ elif os.getenv('APP_SETTINGS') == "testing":
         password='root',
         port='5433'
         )
+elif os.getenv('APP_SETTINGS') == "production":
+    conn = psycopg2.connect(
+        os.getenv('DATABASE_URL')
+    )
 else:
-    conn = psycopg2.connect(os.getenv('DATABASE_URL'))
+    conn = psycopg2.connect(
+        dbname="test_ireporter"
+    )
 try:
     conn
 except Exception as error:
