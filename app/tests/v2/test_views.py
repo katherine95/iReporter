@@ -125,7 +125,6 @@ class TestView(unittest.TestCase):
         resp = self.client.post(
             '/api/v2/incidents', data=json.dumps(self.incident),
             content_type='application/json', headers=self.headers)
-        print(resp)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 409)
         self.assertEqual(data['message'], 'Incident with this comment exist.')
