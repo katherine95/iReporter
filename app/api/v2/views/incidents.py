@@ -44,8 +44,7 @@ class Incidents(Resource):
                     }), 409)
             return make_response(jsonify({
                     "status": 400,
-                    "message": "incidentType should be 'Redflag'\
-                     or 'Intervention'"
+                    "message": "incidentType should be 'Redflag' or 'Intervention'"
                 }), 400)
         return make_response(jsonify({
             "status": 400,
@@ -149,8 +148,7 @@ class UpdateIncident(Resource):
                     data = request.get_json()
                     if 'comment' in data:
                         comment = data['comment']
-                        resp = incidentObject.update_incident_comment
-                        (id, comment)
+                        resp = incidentObject.update_incident_comment(id, comment)
                         return make_response(jsonify({
                             "status": 200,
                             "data": resp,
