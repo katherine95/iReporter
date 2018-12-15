@@ -123,8 +123,7 @@ class TestView(unittest.TestCase):
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(
-            data['message'], "please provide all the fields,\
-             missing 'comment'")
+            data['message'], "please provide all the fields, missing 'comment'")
 
     def test_comment_should_be_more_than_15_characters(self):
         incident = {

@@ -157,3 +157,31 @@ class Users(object):
                 return "valid"
         except Exception as error:
             return "please provide all the fields, missing " + str(error)
+
+
+# class RevokedTokenModel(object):
+#     def __init__(self, jti=None):
+#         self.jti = jti
+
+#     def save(self):
+#         conn.commit()
+
+#     def add(self):
+#         cur.execute(
+#                 """
+#                 INSERT INTO blacklist (jti)
+#                 VALUES (%s) RETURNING id;
+#                 """,
+#                 (self.jti))
+#         self.save()
+#         return 'success'
+
+#     def is_jti_blacklisted(self, jti):
+#         """ check if token is blacklisted """
+#         cur.execute("SELECT * FROM blacklist WHERE jti = %s;", (jti,))
+#         is_blacklisted = cur.fetchone()
+#         print("jy" + str(is_blacklisted))
+#         if is_blacklisted:
+#             return is_blacklisted[2]
+#         else:
+#             return False
