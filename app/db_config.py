@@ -23,8 +23,8 @@ elif os.getenv('APP_SETTINGS') == "production":
     )
 else:
     conn = psycopg2.connect(
-        dbname="test_ireporter"
-    )
+        dbname="ireporter"
+        )
 try:
     conn
 except Exception as error:

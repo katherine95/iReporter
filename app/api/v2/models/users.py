@@ -46,7 +46,6 @@ class Users(object):
             username=user[4],
             email=user[5],
             isAdmin=user[10],
-            password=user[8],
             firstname=user[1],
             lastname=user[2],
             othernames=user[3],
@@ -102,6 +101,18 @@ class Users(object):
             return False
         return False
 
+    def logout_user(self):
+        """Function to log out a user"""
+        user_details = request.get_json()
+        if self.check_if_username_exist(user_details['username']):
+            cur.execute("SELECT password FROM users WHERE username = %s",
+                        (user_details['username'],))
+            reg_password = cur.fetchone()
+            if sha256_crypt.verify(user_details['password'], reg_password[0]):
+                return True
+            return False
+        return False
+
     def validate_data(self, data):
         """validate user details"""
         try:
@@ -146,3 +157,31 @@ class Users(object):
                 return "valid"
         except Exception as error:
             return "please provide all the fields, missing " + str(error)
+
+
+# class RevokedTokenModel(object):
+#     def __init__(self, jti=None):
+#         self.jti = jti
+
+#     def save(self):
+#         conn.commit()
+
+#     def add(self):
+#         cur.execute(
+#                 """
+#                 INSERT INTO blacklist (jti)
+#                 VALUES (%s) RETURNING id;
+#                 """,
+#                 (self.jti))
+#         self.save()
+#         return 'success'
+
+#     def is_jti_blacklisted(self, jti):
+#         """ check if token is blacklisted """
+#         cur.execute("SELECT * FROM blacklist WHERE jti = %s;", (jti,))
+#         is_blacklisted = cur.fetchone()
+#         print("jy" + str(is_blacklisted))
+#         if is_blacklisted:
+#             return is_blacklisted[2]
+#         else:
+#             return False

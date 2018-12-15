@@ -74,16 +74,8 @@ class Incident(object):
     def validate_data(self, data):
         """validate user details"""
         try:
-            # check if incidentType has letters only
-            if not data['incidentType'].strip().isalpha():
-                return "incidentType can only contain letters only"
-
-            # check if the incidentType is more than 7 characters
-            elif len(data['incidentType'].strip()) < 7:
-                return "incidentType must be more than 7 characters"
-
             # check if the comment is more than 15 characters
-            elif len(data['comment'].strip()) < 15:
+            if len(data['comment'].strip()) < 15:
                 return "comment must be more than 15 characters"
 
             # check if the location is more than 3 characters
@@ -93,8 +85,8 @@ class Incident(object):
             else:
                 return "valid"
         except Exception as error:
-            return "please provide all the fields,\
-             missing " + str(error)
+            return ("please provide all the fields, missing "
+                    + str(error))
 
     def update_incident_status(self, id, status):
         """function to allow an admin user to update status record"""

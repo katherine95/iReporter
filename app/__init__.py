@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 
 from app.api.v1 import v1 as version_one
 from app.api.v2 import v2 as version_two
+# from app.api.v2.models.users import RevokedTokenModel
 
 
 def create_app(config_name):
@@ -13,7 +14,16 @@ def create_app(config_name):
 
     app.config['JWT_SECRET_KEY'] = 'secret-key'
     app.config['PROPAGATE_EXCEPTIONS'] = True
+    # app.config['JWT_BLACKLIST_ENABLED'] = True
+    # app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access']
     jwt = JWTManager(app)
+
+    # @jwt.token_in_blacklist_loader
+    # def check_if_token_in_blacklist(decrypted_token):
+    #     jwtObj = RevokedTokenModel()
+    #     jti = decrypted_token['jti']
+    #     print(jti)
+    #     return jwtObj.is_jti_blacklisted(jti)
 
     app.register_blueprint(version_one)
     app.register_blueprint(version_two)
