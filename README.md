@@ -49,7 +49,7 @@ Html5, CSS3, python, flask, flask_restful
 9. To run tests:
     run ```pytest```
 10. To check test coverage:
-    run ```py.test --cov=app app/tests/v2```
+    run ```py.test --cov=app/api/v2```
 
     # Link to Hosted [demo]()
 

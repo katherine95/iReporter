@@ -237,7 +237,7 @@ class TestView(unittest.TestCase):
     def test_can_patch_an_incident_comment(self):
         self.create_test_record()
         patch_data = {
-            "comment": "I have just updated this comment sjhakjsh"
+            'comment': 'I have just updated this comment sjhakjsh'
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(patch_data),
@@ -251,7 +251,7 @@ class TestView(unittest.TestCase):
     def test_can_patch_an_incident_location(self):
         self.create_test_record()
         patch_data = {
-            "location": "74n"
+            'location': '74n'
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(patch_data),
@@ -296,7 +296,6 @@ class TestView(unittest.TestCase):
                                  content_type='application/json',
                                  headers=self.headers)
         data = json.loads(resp.data)
-        print(data)
         self.assertEqual(resp.status_code, 401)
         self.assertEqual(data['message'],
                          'You can only edit a record while its pending')
