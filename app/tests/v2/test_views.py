@@ -123,7 +123,8 @@ class TestView(unittest.TestCase):
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(
-            data['message'], "please provide all the fields, missing 'comment'")
+            data['message'],
+            "please provide all the fields, missing 'comment'")
 
     def test_comment_should_be_more_than_15_characters(self):
         incident = {
@@ -240,7 +241,8 @@ class TestView(unittest.TestCase):
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(patch_data),
-                                 content_type='application/json', headers=self.headers)
+                                 content_type='application/json',
+                                 headers=self.headers)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(data['message'],
@@ -253,7 +255,8 @@ class TestView(unittest.TestCase):
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(patch_data),
-                                 content_type='application/json', headers=self.headers)
+                                 content_type='application/json',
+                                 headers=self.headers)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(data['message'],
@@ -280,7 +283,7 @@ class TestView(unittest.TestCase):
             '/api/v2/incidents/1', data=json.dumps(patch_data),
             content_type='application/json', headers=headers)
         incident = {
-            "comment": "i changed my mind iiujioj gvytggyghiu yguyhiu yttguyhiu ytfyughi ",
+            "comment": "i changed my mind iiujioj gvytggyghiu yguyhiu yfyughi",
             "createdBy": 1,
             "createdOn": "Fri, 14 Dec 2018 21:00:00 GMT",
             "id": 1,
@@ -290,7 +293,8 @@ class TestView(unittest.TestCase):
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(incident),
-                                 content_type='application/json', headers=self.headers)
+                                 content_type='application/json',
+                                 headers=self.headers)
         data = json.loads(resp.data)
         print(data)
         self.assertEqual(resp.status_code, 401)
@@ -308,7 +312,8 @@ class TestView(unittest.TestCase):
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 400)
-        self.assertEqual(data['message'], "incidentType should be 'Redflag' or 'Intervention'")
+        self.assertEqual(data['message'],
+                         "incidentType should be 'Redflag' or 'Intervention'")
 
     def test_can_delete_incident(self):
         self.create_test_record()
@@ -324,7 +329,8 @@ class TestView(unittest.TestCase):
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 404)
-        self.assertEqual(data['message'], 'Record with that ID does not exist.')
+        self.assertEqual(data['message'],
+                         'Record with that ID does not exist.')
 
     def tearDown(self):
         create_tables()
