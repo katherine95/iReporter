@@ -29,10 +29,9 @@ class TestView(unittest.TestCase):
             "phonenumber": "0797555444"
         }
         self.incident = {
-            "incidentType": "redflag",
+            "incidentType": "Redflag",
             "location": "36N",
-            "comment": "hjjkjklkllkls hjkjlj kjhkjj jhkjn",
-            "createdBy": 1
+            "comment": "hjjkjklkllkls hjkjlj kjhkjjkjkxlkj jhkjn",
         }
         config_name = "testing"
         self.app = create_app(config_name)
@@ -113,6 +112,48 @@ class TestView(unittest.TestCase):
         self.assertEqual(resp.status_code, 401)
         self.assertEqual(data['msg'], 'Missing Authorization Header')
 
+    def test_provide_all_the_required_fields(self):
+        incident = {
+            "incidentType": "Redflag",
+            "location": "nairobi"
+        }
+        resp = self.client.post(
+            '/api/v2/incidents', data=json.dumps(incident),
+            content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(
+            data['message'], "please provide all the fields,\
+             missing 'comment'")
+
+    def test_comment_should_be_more_than_15_characters(self):
+        incident = {
+            "incidentType": "Redflag",
+            "comment": "",
+            "location": "nairobi"
+        }
+        resp = self.client.post(
+            '/api/v2/incidents', data=json.dumps(incident),
+            content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(
+            data['message'], 'comment must be more than 15 characters')
+
+    def test_location_should_be_more_than_3_characters(self):
+        incident = {
+            "incidentType": "Redflag",
+            "comment": "hjjkjlk lk;ll';l lkl;ko gfhgfuy jhkjn hnbkjh",
+            "location": "n"
+        }
+        resp = self.client.post(
+            '/api/v2/incidents', data=json.dumps(incident),
+            content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(
+            data['message'], 'location must be more than 3 characters')
+
     def test_create_incident_success(self):
         resp = self.create_test_record()
         data = json.loads(resp.data)
@@ -190,8 +231,85 @@ class TestView(unittest.TestCase):
             '/api/v2/incidents/1', data=json.dumps(patch_data),
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
-        self.assertEqual(resp.status_code, 405)
+        self.assertEqual(resp.status_code, 401)
         self.assertEqual(data['message'], 'you dont have access rights')
+
+    def test_can_patch_an_incident_comment(self):
+        self.create_test_record()
+        patch_data = {
+            "comment": "I have just updated this comment sjhakjsh"
+        }
+        resp = self.client.patch('/api/v2/user/incidents/1',
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['message'],
+                         'Comment patched successfully')
+
+    def test_can_patch_an_incident_location(self):
+        self.create_test_record()
+        patch_data = {
+            "location": "74n"
+        }
+        resp = self.client.patch('/api/v2/user/incidents/1',
+                                 data=json.dumps(patch_data),
+                                 content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['message'],
+                         'Location patched successfully')
+
+    def test_cannot_patch_an_incident_when_status_changed(self):
+        self.create_test_record()
+        admin = {
+            'username': 'catechep',
+            'password': 'Cate@95#'
+        }
+        admin_login = self.client.post(
+            '/api/v2/auth/login', data=json.dumps(admin),
+            content_type='application/json')
+        data = json.loads(admin_login.data)
+        access_token = data['data'][0]['token']
+        Authorization = 'Bearer ' + access_token
+        headers = {'content-type': 'application/json',
+                   'Authorization': Authorization}
+        patch_data = {
+            'status': 'inDraft'
+        }
+        self.client.patch(
+            '/api/v2/incidents/1', data=json.dumps(patch_data),
+            content_type='application/json', headers=headers)
+        incident = {
+            "comment": "i changed my mind iiujioj gvytggyghiu yguyhiu yttguyhiu ytfyughi ",
+            "createdBy": 1,
+            "createdOn": "Fri, 14 Dec 2018 21:00:00 GMT",
+            "id": 1,
+            "incidentType": "Intervention",
+            "location": "36n",
+            "status": "inDraft"
+        }
+        resp = self.client.patch('/api/v2/user/incidents/1',
+                                 data=json.dumps(incident),
+                                 content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        print(data)
+        self.assertEqual(resp.status_code, 401)
+        self.assertEqual(data['message'],
+                         'You can only edit a record while its pending')
+
+    def test_validate_incidentType(self):
+        incident = {
+            "incidentType": "redflag",
+            "location": "36N",
+            "comment": "hjjkjklkllkls hjkjlj kjhkjjkjkxlkj jhkjn"
+        }
+        resp = self.client.post(
+            '/api/v2/incidents', data=json.dumps(incident),
+            content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(data['message'], "incidentType should be 'Redflag' or 'Intervention'")
 
     def test_can_delete_incident(self):
         self.create_test_record()
@@ -202,12 +320,12 @@ class TestView(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(data['data'][0]['message'],
                          'Incident deleted successfully')
-        resp = self.client.delete(
+        resp = self.client.get(
             '/api/v2/incidents/1', data=json.dumps(self.incident),
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 404)
-        self.assertEqual(data['message'], 'Incident with that ID doesnt exist')
+        self.assertEqual(data['message'], 'Record with that ID does not exist.')
 
     def tearDown(self):
         create_tables()

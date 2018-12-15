@@ -101,6 +101,18 @@ class Users(object):
             return False
         return False
 
+    def logout_user(self):
+        """Function to log out a user"""
+        user_details = request.get_json()
+        if self.check_if_username_exist(user_details['username']):
+            cur.execute("SELECT password FROM users WHERE username = %s",
+                        (user_details['username'],))
+            reg_password = cur.fetchone()
+            if sha256_crypt.verify(user_details['password'], reg_password[0]):
+                return True
+            return False
+        return False
+
     def validate_data(self, data):
         """validate user details"""
         try:
