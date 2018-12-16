@@ -7,5 +7,5 @@ before_script:
   - psql -c 'create database test_ireporter;' -U postgres
   - python migrate.py
 install: pip install -r requirements.txt
-script: py.test --cov=app/api/v2 app/tests/v2 --cov-report=term-missing
+script: py.test --cov=app/api/v2
 after_success: coveralls
