@@ -28,6 +28,15 @@ class TestView(unittest.TestCase):
             "othernames": "plum",
             "phonenumber": "0797555444"
         }
+        self.user3 = {
+            "username": "testusername",
+            "email": "test36@gmail.com",
+            "password": "pass123.",
+            "firstname": "cate",
+            "lastname": "chepc",
+            "othernames": "plum",
+            "phonenumber": "0797555444"
+        }
         self.incident = {
             "incidentType": "Redflag",
             "location": "36N",
@@ -67,11 +76,20 @@ class TestView(unittest.TestCase):
     def test_username_taken(self):
         self.create_test_user()
         resp = self.client.post(
-            '/api/v2/auth/signup', data=json.dumps(self.user),
+            '/api/v2/auth/signup', data=json.dumps(self.user3),
             content_type='application/json')
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 409)
         self.assertEqual(data['message'], 'Username Is already taken')
+
+    def test_email_taken(self):
+        self.create_test_user()
+        resp = self.client.post(
+            '/api/v2/auth/signup', data=json.dumps(self.user),
+            content_type='application/json')
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 409)
+        self.assertEqual(data['message'], 'Email is already taken')
 
     def test_user_log_in_success(self):
         self.create_test_user()

@@ -23,27 +23,33 @@ class SignUp(Resource):
             phonenumber = users_data['phonenumber']
             username = users_data['username']
             password = users_data['password']
-            user = UserModel(
-                firstname, lastname, othernames, email, phonenumber, username,
-                password)
-            response = user.register_user()
+            response = self.userObject.check_if_email_exist(email)
+            if not response:
+                user = UserModel(
+                    firstname, lastname, othernames, email, phonenumber, username,
+                    password)
+                response = user.register_user()
 
-            if response:
-                username = request.get_json()['username']
-                user = self.userObject.get_by_username(username)
-                user_id = user['user_id']
-                access_token = create_access_token(identity=user_id)
+                if response:
+                    username = request.get_json()['username']
+                    user = self.userObject.get_by_username(username)
+                    user_id = user['user_id']
+                    access_token = create_access_token(identity=user_id)
+                    return make_response(jsonify({
+                        "status": 201,
+                        "message": "User registered succesfully",
+                        "data": [{
+                            "user": self.userObject.get_by_username(username),
+                            "token": access_token
+                        }]
+                    }), 201)
                 return make_response(jsonify({
-                    "status": 201,
-                    "message": "User registered succesfully",
-                    "data": [{
-                        "user": self.userObject.get_by_username(username),
-                        "token": access_token
-                    }]
-                }), 201)
+                        "status": 409,
+                        "message": "Username Is already taken"
+                    }), 409)
             return make_response(jsonify({
                     "status": 409,
-                    "message": "Username Is already taken"
+                    "message": "Email is already taken"
                 }), 409)
         return make_response(jsonify({
                 "status": 400,

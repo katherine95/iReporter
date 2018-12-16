@@ -71,6 +71,15 @@ class Users(object):
         else:
             return False
 
+    def check_if_email_exist(self, email):
+        """ check if email already exist """
+        cur.execute("SELECT * FROM users WHERE email = %s;", (email,))
+        email = cur.fetchone()
+        if email:
+            return True
+        else:
+            return False
+
     def get_by_username(self, username):
         """ Get user by username """
         cur.execute("SELECT * FROM users WHERE username = %s", (username,))
