@@ -234,10 +234,67 @@ class TestView(unittest.TestCase):
         self.assertEqual(resp.status_code, 401)
         self.assertEqual(data['message'], 'you dont have access rights')
 
+    def test_admin_can_create_new_admin(self):
+        self.create_test_user()
+        admin = {
+            'username': 'catechep',
+            'password': 'Cate@95#'
+        }
+        admin_login = self.client.post(
+            '/api/v2/auth/login', data=json.dumps(admin),
+            content_type='application/json')
+        data = json.loads(admin_login.data)
+        access_token = data['data'][0]['token']
+        Authorization = 'Bearer ' + access_token
+        headers = {'content-type': 'application/json',
+                   'Authorization': Authorization}
+        patch_data = {
+            'isAdmin': 'True'
+        }
+        resp = self.client.patch(
+            'api/v2/auth/users/testusername', data=json.dumps(patch_data),
+            content_type='application/json', headers=headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['data']['isAdmin'], True)
+
+    def test_only_admin_can_create_new_admin(self):
+        self.create_test_user()
+        patch_data = {
+            'isAdmin': 'True'
+        }
+        resp = self.client.patch(
+            '/api/v2/auth/users/testusername', data=json.dumps(patch_data),
+            content_type='application/json', headers=self.headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 401)
+        self.assertEqual(data['message'], 'you dont have access rights')
+
+    def test_admin_can_get_all_users(self):
+        self.create_test_user()
+        admin = {
+            'username': 'catechep',
+            'password': 'Cate@95#'
+        }
+        admin_login = self.client.post(
+            '/api/v2/auth/login', data=json.dumps(admin),
+            content_type='application/json')
+        data = json.loads(admin_login.data)
+        access_token = data['data'][0]['token']
+        Authorization = 'Bearer ' + access_token
+        headers = {'content-type': 'application/json',
+                   'Authorization': Authorization}
+        resp = self.client.get(
+            '/api/v2/auth/signup',
+            content_type='application/json', headers=headers)
+        data = json.loads(resp.data)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(data['message'], 'all users fetched successfully')
+
     def test_can_patch_an_incident_comment(self):
         self.create_test_record()
         patch_data = {
-            "comment": "I have just updated this comment sjhakjsh"
+            'comment': 'I have just updated this comment sjhakjsh'
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(patch_data),
@@ -251,7 +308,7 @@ class TestView(unittest.TestCase):
     def test_can_patch_an_incident_location(self):
         self.create_test_record()
         patch_data = {
-            "location": "74n"
+            'location': '74n'
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(patch_data),
@@ -296,7 +353,6 @@ class TestView(unittest.TestCase):
                                  content_type='application/json',
                                  headers=self.headers)
         data = json.loads(resp.data)
-        print(data)
         self.assertEqual(resp.status_code, 401)
         self.assertEqual(data['message'],
                          'You can only edit a record while its pending')

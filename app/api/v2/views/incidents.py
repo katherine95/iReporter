@@ -161,14 +161,12 @@ class UpdateIncident(Resource):
         if user_record:
             if user_record['createdBy'] == current_user:
                 res = incidentObject.get_incident_by_id(id)
-                # res1 = incidentObject.check_if_comment_exist(id)
                 if res:
                     if res['status'] == 'pending':
                         data = request.get_json()
                         if 'comment' in data:
                             comment = data['comment']
-                            resp = incidentObject.update_incident_comment
-                            (id, comment)
+                            resp = incidentObject.update_incident_comment(id, comment)
                             return make_response(jsonify({
                                 "status": 200,
                                 "data": resp,
@@ -176,8 +174,7 @@ class UpdateIncident(Resource):
                             }), 200)
                         elif 'location' in data:
                             location = data['location']
-                            resp = incidentObject.update_incident_location
-                            (id, location)
+                            resp = incidentObject.update_incident_location(id, location)
                             return make_response(jsonify({
                                 "status": 200,
                                 "data": resp,
