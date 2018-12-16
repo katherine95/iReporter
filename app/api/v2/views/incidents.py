@@ -161,7 +161,6 @@ class UpdateIncident(Resource):
         if user_record:
             if user_record['createdBy'] == current_user:
                 res = incidentObject.get_incident_by_id(id)
-                # res1 = incidentObject.check_if_comment_exist(id)
                 if res:
                     if res['status'] == 'pending':
                         data = request.get_json()
