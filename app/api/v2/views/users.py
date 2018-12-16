@@ -28,7 +28,7 @@ class SignUp(Resource):
                 password)
             response = user.register_user()
 
-            if response == "success":
+            if response:
                 username = request.get_json()['username']
                 user = self.userObject.get_by_username(username)
                 user_id = user['user_id']
@@ -43,7 +43,7 @@ class SignUp(Resource):
                 }), 201)
             return make_response(jsonify({
                     "status": 409,
-                    "message": response
+                    "message": "Username Is already taken"
                 }), 409)
         return make_response(jsonify({
                 "status": 400,

@@ -37,8 +37,8 @@ class Users(object):
                  hash_pass, self.isAdmin))
             self.save()
 
-            return "success"
-        return "Username Is already taken"
+            return True
+        return False
 
     def serialiser_user(self, user):
         return dict(
