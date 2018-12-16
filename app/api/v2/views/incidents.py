@@ -34,7 +34,7 @@ class Incidents(Resource):
                     return make_response(jsonify({
                         "status": 201,
                         "data": [{
-                            "id": response,
+                            "incident": response,
                             "message": "Incident created successfully."
                         }]
                     }), 201)
@@ -92,13 +92,19 @@ class SingleIncident(Resource):
             if incidentObject.get_incident_by_id(id):
                 data = request.get_json()
                 if 'status' in data:
+                    incident_status = ['resolved', 'inDraft', 'rejected']
                     status = data['status']
-                    resp = incidentObject.update_incident_status(id, status)
-                    return make_response(jsonify({
-                        "status": 200,
-                        "data": resp,
-                        "message": "Incident patched successfully"
-                    }), 200)
+                    if status in incident_status:
+                        resp = incidentObject.update_incident_status(id, status)
+                        return make_response(jsonify({
+                            "status": 200,
+                            "data": resp,
+                            "message": "Incident patched successfully"
+                        }), 200)
+                return make_response(jsonify({
+                    "status": 400,
+                    "message": "Status should be 'resolved, 'inDraft' or 'rejected'"
+                }), 400)
                 return make_response(jsonify({
                     "status": 400,
                     "message": "Please provide 'status'"

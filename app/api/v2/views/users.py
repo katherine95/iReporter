@@ -115,20 +115,20 @@ class CreateAdmin(Resource):
         current_user = get_jwt_identity()
         user = self.userObject.get_user_by_id(current_user)
         if user['isAdmin']:
-            if self.userObject.get_by_username(username):
-                data = request.get_json()
-                if 'isAdmin' in data:
-                    isAdmin = data['isAdmin']
-                    resp = self.userObject.update_user_admin_status(username, isAdmin)
+            res = self.userObject.get_by_username(username)
+            if res:
+                if not res['isAdmin']:
+                    resp = self.userObject.update_user_admin_status(username)
                     return make_response(jsonify({
                         "status": 200,
                         "data": resp,
                         "message": "Admin created successfully"
                     }), 200)
                 return make_response(jsonify({
-                    "status": 400,
-                    "message": "Please provide 'isAdmin'"
-                }), 400)
+                    "status": 409,
+                    "user": res,
+                    "message": "User is already an Admin"
+                }), 409)
             return make_response(jsonify({
                 "status": 404,
                 "message": "Username does not exist"

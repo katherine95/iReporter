@@ -106,8 +106,9 @@ class Users(object):
             return self.serialiser_user(user)
         return False
 
-    def update_user_admin_status(self, username, isAdmin):
+    def update_user_admin_status(self, username):
         """function to allow an admin user create a new admin"""
+        isAdmin = True
         cur.execute("UPDATE users SET isAdmin=%s WHERE username = %s;",
                     (isAdmin, username,))
         self.save()

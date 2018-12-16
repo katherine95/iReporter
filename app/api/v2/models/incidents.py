@@ -42,7 +42,7 @@ class Incident(object):
              createdOn, self.createdBy))
         id = cur.fetchone()[0]
         self.save()
-        return id
+        return self.get_incident_by_id(id)
 
     def check_if_comment_exist(self, comment):
         """ check if incident with the same comment already exist """

@@ -266,9 +266,7 @@ class TestView(unittest.TestCase):
         Authorization = 'Bearer ' + access_token
         headers = {'content-type': 'application/json',
                    'Authorization': Authorization}
-        patch_data = {
-            'isAdmin': 'True'
-        }
+        patch_data = {}
         resp = self.client.patch(
             'api/v2/auth/users/testusername', data=json.dumps(patch_data),
             content_type='application/json', headers=headers)
@@ -278,9 +276,7 @@ class TestView(unittest.TestCase):
 
     def test_only_admin_can_create_new_admin(self):
         self.create_test_user()
-        patch_data = {
-            'isAdmin': 'True'
-        }
+        patch_data = {}
         resp = self.client.patch(
             '/api/v2/auth/users/testusername', data=json.dumps(patch_data),
             content_type='application/json', headers=self.headers)
