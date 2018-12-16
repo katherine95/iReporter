@@ -23,7 +23,11 @@ elif os.getenv('APP_SETTINGS') == "testing":
 #     )
 else:
     conn = psycopg2.connect(
-        dbname="ireporter"
+        dbname="ireporter",
+        user="postgres",
+        host='localhost',
+        password='root',
+        port='5433'
         )
 try:
     conn
