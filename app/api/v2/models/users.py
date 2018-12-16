@@ -57,7 +57,10 @@ class Users(object):
         """ fetch all registered users """
         cur.execute("SELECT * FROM users")
         users = cur.fetchall()
-        return users
+        users_list = []
+        for user in users:
+            users_list.append(self.serialiser_user(user))
+        return users_list
 
     def check_if_username_exist(self, username):
         """ check if user with the same username already exist """
@@ -74,7 +77,17 @@ class Users(object):
         user = cur.fetchone()
         if user:
             return self.serialiser_user(user)
-        return "Username doesn't exist"
+        return False
+
+    def get_admin_access_rights(self, isAdmin):
+        """ check if user is an admin """
+        cur.execute("SELECT * FROM users WHERE isAdmin = %s;", (True,))
+        admin = cur.fetchone()
+        print(admin)
+        if admin:
+            return True
+        else:
+            return False
 
     def get_user_by_id(self, id):
         """ Get user by username """
@@ -83,6 +96,13 @@ class Users(object):
         if user:
             return self.serialiser_user(user)
         return False
+
+    def update_user_admin_status(self, username, isAdmin):
+        """function to allow an admin user create a new admin"""
+        cur.execute("UPDATE users SET isAdmin=%s WHERE username = %s;",
+                    (isAdmin, username,))
+        self.save()
+        return self.get_by_username(username)
 
     def hash_password(self, password):
         """Hash Password """
@@ -145,31 +165,3 @@ class Users(object):
                 return "valid"
         except Exception as error:
             return "please provide all the fields, missing " + str(error)
-
-
-# class RevokedTokenModel(object):
-#     def __init__(self, jti=None):
-#         self.jti = jti
-
-#     def save(self):
-#         conn.commit()
-
-#     def add(self):
-#         cur.execute(
-#                 """
-#                 INSERT INTO blacklist (jti)
-#                 VALUES (%s) RETURNING id;
-#                 """,
-#                 (self.jti))
-#         self.save()
-#         return 'success'
-
-#     def is_jti_blacklisted(self, jti):
-#         """ check if token is blacklisted """
-#         cur.execute("SELECT * FROM blacklist WHERE jti = %s;", (jti,))
-#         is_blacklisted = cur.fetchone()
-#         print("jy" + str(is_blacklisted))
-#         if is_blacklisted:
-#             return is_blacklisted[2]
-#         else:
-#             return False

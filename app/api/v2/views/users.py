@@ -46,18 +46,25 @@ class SignUp(Resource):
                     "message": response
                 }), 409)
         return make_response(jsonify({
-                "status": 405,
+                "status": 400,
                 "message": res
-            }), 405)
+            }), 400)
 
     @jwt_required
     def get(self):
-        resp = self.userObject.get_all_users()
+        current_user = get_jwt_identity()
+        user = self.userObject.get_user_by_id(current_user)
+        if user['isAdmin']:
+            resp = self.userObject.get_all_users()
+            return make_response(jsonify({
+                "status": 200,
+                "data": resp,
+                "message": "all users fetched successfully"
+            }), 200)
         return make_response(jsonify({
-            "status": 200,
-            "data": resp,
-            "message": "all users fetched successfully"
-        }))
+            "status": 401,
+            "message": "you dont have access rights"
+        }), 401)
 
 
 class Login(Resource):
@@ -92,15 +99,35 @@ class Login(Resource):
         pass
 
 
-# class Logout(Resource):
-#     """class to logout users"""
-#     @jwt_required
-#     def post(self):
-#         jti = get_raw_jwt()['jti']
-#         print(jti)
-#         try:
-#             revoked_token = RevokedTokenModel(jti=jti)
-#             revoked_token.add()
-#             return {'message': 'Access token has been revoked'}
-#         except:
-#             return {'message': 'Something went wrong'}, 500
+class CreateAdmin(Resource):
+    """class that deals with an admin creating new admins"""
+    def __init__(self):
+        self.userObject = UserModel()
+
+    @jwt_required
+    def patch(self, username):
+        current_user = get_jwt_identity()
+        user = self.userObject.get_user_by_id(current_user)
+        if user['isAdmin']:
+            if self.userObject.get_by_username(username):
+                data = request.get_json()
+                if 'isAdmin' in data:
+                    isAdmin = data['isAdmin']
+                    resp = self.userObject.update_user_admin_status(username, isAdmin)
+                    return make_response(jsonify({
+                        "status": 200,
+                        "data": resp,
+                        "message": "Admin created successfully"
+                    }), 200)
+                return make_response(jsonify({
+                    "status": 400,
+                    "message": "Please provide 'isAdmin'"
+                }), 400)
+            return make_response(jsonify({
+                "status": 404,
+                "message": "Username does not exist"
+            }), 404)
+        return make_response(jsonify({
+            "status": 401,
+            "message": "you dont have access rights"
+        }), 401)

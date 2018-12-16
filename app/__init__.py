@@ -40,7 +40,7 @@ def create_app(config_name):
     def page_not_found(error):
         return make_response(jsonify({
             "status": 404,
-            "message": "The record you are looking for does not exist"
+            "message": "The request you are looking for does not exist"
             }), 404)
 
     @app.errorhandler(500)

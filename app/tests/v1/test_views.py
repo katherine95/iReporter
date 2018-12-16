@@ -241,7 +241,7 @@ class IncidentTest(unittest.TestCase):
         data = json.loads(resp.data)
         self.assertEqual(resp.status_code, 404)
         self.assertEqual(
-            data['message'], 'The record you are looking for does not exist')
+            data['message'], 'The request you are looking for does not exist')
 
     def test_can_delete_incident(self):
         self.create_test_record()

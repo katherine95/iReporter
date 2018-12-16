@@ -36,13 +36,15 @@ Html5, CSS3, python, flask, flask_restful
     -----------|--------------------------------|----------------------
     POST       | /api/v2/auth/signup            | Register a user
     POST       | /api/v2/auth/login             | User log-in with valid username and password
-    GET        | /api/v2/auth/signup            | Get all registered users
+    GET        | /api/v2/auth/signup            | Allow an athenticated admin to get all registered users
     POST       | /api/v2/incidents              | Allow authenticated user to create an incident
     GET        | /api/v2/incidents              | Allow authenticated user to fetch all incidents created
     GET        | /api/v2/incidents/<int:id>     | Allow authenticated user to fetch a single incident
     PATCH      | /api/v2/incidents/<int:id>     | Allow only an admin to change the status of an incident
     PATCH      | /api/v2/user/incidents/<int:id>| Allow user to edit comment/location of his/her records
     DELETE     | /api/v2/incidents/<int:id>     | Allow authenticated user to delete his/her records 
+    PATCH      | /auth/users/<username>         | Allow an authenticated admin user to create a new admin
+
 
 8. To run migrations:
     run ```python3 migrate.py```
