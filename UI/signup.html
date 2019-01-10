@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>iReporter</title>
-        <link href="assets/css/styles.css" type="text/css" rel="stylesheet">
+        <link href="../UI/assets/css/styles.css" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     </head>
     <body>
@@ -19,18 +19,19 @@
         <div class="container">
             <div class="left"></div>
             <div class="right">
-                <div class="form">
+                <div class="form" id="signup">
                     <form>
                         <p>Email</p>
-                        <input type="email" name="" placeholder="username">
+                        <input type="email" id="email" name="" placeholder="username">
                         <p>Username</p>
-                        <input type="text" name="" placeholder="username">
+                        <input type="text" id="username" name="" placeholder="username">
                         <p>Password</p>
-                        <input type="password" name="" placeholder="password">
+                        <input type="password" id="password" name="" placeholder="password">
                         <button type="submit" name="" value="Sign Up"><a href="user-account.html">Sign Up</a></Sign></button>
                     </form>
                 </div>
             </div>
         </div>
+        <script src="../UI/assets/js/signup.js"></script>
     </body>
 </html>
