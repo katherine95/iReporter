@@ -1,8 +1,37 @@
-document.getElementById('login').addEventListener('click', login);
-// function login(){
-//     fetch('https://floating-reaches-50695.herokuapp.com/api/v2/auth/login')
-//     .then((response) => response.text())
-//     .then((data) => {
+document.getElementById('login').addEventListener('submit', login);
+function login(e){
+    e.preventDefault();
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
 
-//     })
-// }
+    fetch('https://floating-reaches-50695.herokuapp.com/api/v2/auth/login', {
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-type':'application/json',
+            'mode':'cors'
+        },
+        body:JSON.stringify(
+            {
+                username:username, 
+                password:password
+            })
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if(data.status === 200){
+            console.log(data.data[0]["token"])
+            localStorage.setItem("token",data.data[0]["token"]);
+            if (data.data[0]["user"]["isAdmin"] === false){
+                console.log(data)
+                window.location.replace('user-account.html');
+            }else{
+                window.location.replace('admin.html');
+            }
+        }else{
+            console.log(data)
+            document.getElementById("alert").style.color = "red";
+            document.getElementById("alert").innerHTML = data.message;
+        }
+    })
+}
