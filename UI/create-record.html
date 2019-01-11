@@ -18,24 +18,22 @@
         <div class="title"><h1>Create a new record</h1></div>
         <div class="container">
             <div class="form">
-                <form>
+                <form id="createIncident">
+                    <p id="alert"></p>
                     <p>Describe the Report</p>
-                    <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Briefly describe the report"></textarea>
+                    <textarea rows="4" cols="50" id="comment" name="comment" form="usrform" placeholder="Briefly describe the report"></textarea>
                     <p>Select the type of record you want to report</p>
-                    <input type="radio" name="record-type" value="Redflag" checked>Redflag<br>
-                    <input type="radio" name="record-type" value="Intervention">Intervention<br>
+                    <input type="radio" id="incidentType" name="record-type" value="Redflag" checked>Redflag<br>
+                    <input type="radio" id="incidentType" name="record-type" value="Intervention">Intervention<br>
                     <p>Select files(Video or photos):</p> <input type="file" name="myFile" multiple><br>
                     <p>Location: </p>
-                    <select>
-                        <option value="county">county</option>
-                        <option value="Mombasa">Mombasa</option>
-                        <option value="Nairobi">Nairobi</option>
-                        <option value="Kericho">Kericho</option>
-                    </select><br>
-                    <button type="submit" name="" value="submit"><a href="user-account.html">Submit</a></button>
+                    <input type="text" id="location" name="" >
+                    <br>
+                    <button type="submit" name="" value="submit">Submit</button>
                 </form>
             </div>
         </div>
+        <script src="../UI/assets/js/create-record.js"></script>
     </body>
     <footer></footer>
 </html>

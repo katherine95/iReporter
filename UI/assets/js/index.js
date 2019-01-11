@@ -20,8 +20,10 @@ function login(e){
     .then((response) => response.json())
     .then((data) => {
         if(data.status === 200){
+            console.log(data.message)
             console.log(data.data[0]["token"])
             localStorage.setItem("token",data.data[0]["token"]);
+            localStorage.setItem("role", data.data[0]["user"]["isAdmin"] === false);
             if (data.data[0]["user"]["isAdmin"] === false){
                 console.log(data)
                 window.location.replace('user-account.html');
