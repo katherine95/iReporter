@@ -27,7 +27,7 @@ function createIncident(e){
         if(data.status === 201){
             console.log(data)
             localStorage.setItem("message",data.msg);
-            window.location.replace('records.html')
+            window.location.replace('user-account.html')
         }else if(message === "Token has expired"){
             window.alert("Please log in");
             window.location.replace('index.html')
