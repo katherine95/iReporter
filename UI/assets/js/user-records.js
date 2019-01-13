@@ -20,6 +20,7 @@ window.onload = function(){
                 let records = data.data;
                 records.map((record) => {
                     let new_row = table.insertRow();
+                    console.log(record.id);
                     
                     let id = new_row.insertCell(0)
                     let comment = new_row.insertCell(1);
@@ -29,6 +30,7 @@ window.onload = function(){
                     let status = new_row.insertCell(5);
                     let edit = new_row.insertCell(6);
                     let del = new_row.insertCell(7);
+                    let viewRecord= new_row.insertCell(8);
 
                     id.innerHTML = records.indexOf(record) + 1;
                     comment.innerHTML = record.comment;
@@ -38,6 +40,7 @@ window.onload = function(){
                     status.innerHTML = record.status;
                     edit.innerHTML = "<a href=\"record.html\">Edit</a>";
                     del.innerHTML = "<a href=\"record.html\">Delete</a>";
+                    viewRecord.innerHTML = "<a href='record.html?recordId="+ record.id +"'>View</a>";
                 });
             }else if(message === "Token has expired"){
                 window.alert("Please log in");
