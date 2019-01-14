@@ -219,6 +219,27 @@ font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 border-collapse: collapse;
     width: 80%;
 }
+#users td, #redflags th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#users tr:nth-child(even){background-color: #f2f2f2;}
+
+#users tr:hover {background-color: #ddd;}
+th {
+    color: white;
+    font-weight: bold;
+    font-size:30px;
+    text-align: center;
+    letter-spacing: 0.001em;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#users th {
+    background-color: rgb(187, 14, 14);
+    
+}
 
 #redflags td, #redflags th {
     border: 1px solid #ddd;
