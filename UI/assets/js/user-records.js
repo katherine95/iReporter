@@ -62,9 +62,7 @@ window.onload = function(){
                     let incidentType = new_row.insertCell(3);
                     let location = new_row.insertCell(4);
                     let status = new_row.insertCell(5);
-                    let edit = new_row.insertCell(6);
-                    let del = new_row.insertCell(7);
-                    let viewRecord= new_row.insertCell(8);
+                    let viewRecord= new_row.insertCell(6);
 
                     id.innerHTML = records.indexOf(record) + 1;
                     comment.innerHTML = record.comment;
@@ -72,8 +70,6 @@ window.onload = function(){
                     incidentType.innerHTML =record.incidentType;
                     location.innerHTML =record.location;                  
                     status.innerHTML = record.status;
-                    edit.innerHTML = "<a href='update-record.html?recordId="+ record.id +"'>Edit</a>";
-                    del.innerHTML = "<a href=\"record.html\">Delete</a>";
                     viewRecord.innerHTML = "<a href='record.html?recordId="+ record.id +"'>View</a>";
                 });
             }else if(message === "Token has expired"){

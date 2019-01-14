@@ -280,6 +280,7 @@ th {
 #interventions th {
     background-color: #4CAF50;
 }
+
 button {
     font-size:20px;
     border: none;
@@ -292,7 +293,12 @@ button {
     left:10%;
     border-radius: 12px;
 }
-
+#edit {
+    background-color: #008CBA;
+}
+#delete {
+    background-color: #f44336;
+}
 .intervention {
     background:green;
 }

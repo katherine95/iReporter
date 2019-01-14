@@ -39,4 +39,33 @@ window.onload = function(){
         })
     }
 }
-
+document.getElementById('delete').addEventListener('click', deleteRecord);
+function deleteRecord(){
+    const token = localStorage.getItem("token");
+    let message = localStorage.getItem("message");
+    let url = new URL(window.location.href);
+    let recordId = url.searchParams.get("recordId");
+        
+    fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/incidents/${recordId}`,{
+        method:'DELETE',
+        headers:{
+            Accept:'application/json',
+            'Content-type':'application/json',
+            'mode':'cors',
+            Authorization: "Bearer " + token
+        }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data.message);
+                    if (data.status === 200){
+                        window.alert('Deleted successfully');
+                        window.location.replace('user-account.html');
+                    }else if(data.status === 404){
+                        window.alert("Record with that ID does not exist.");
+                        window.location.replace('user-account.html');
+                    }else if(data.message){
+                        document.getElementById("alert").style.color = "red";
+                        document.getElementById("alert").innerHTML = data.message;}
+                })
+            }
