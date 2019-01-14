@@ -27,18 +27,7 @@ window.onload = function(){
                     comment.value = data.data["comment"];
                     location.value= data.data["location"];
 
-                }
-                // if (data.status === 200){
-                //     console.log(data.message);
-                // //     window.alert('Deleted successfully');
-                // //     window.location.replace('user-account.html');
-                // }else if(data.status === 404){
-                //     window.alert("Record with that ID does not exist.");
-                //     window.location.replace('user-account.html');
-                // }else if(data.message){
-                //     document.getElementById("alert").style.color = "red";
-                //     document.getElementById("alert").innerHTML = data.message;}
-                    })
+                }})
     }
 }
 document.getElementById('updateIncident').addEventListener('submit', updateIncident);
