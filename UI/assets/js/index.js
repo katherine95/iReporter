@@ -21,6 +21,8 @@ function login(e){
     .then((data) => {
         if(data.status === 200){
             console.log(data.message)
+            console.log(data.data[0]["user"]["user_id"])
+            localStorage.setItem("user_id",data.data[0]["user"]["user_id"]);
             console.log(data.data[0]["token"])
             localStorage.setItem("token",data.data[0]["token"]);
             localStorage.setItem("role", data.data[0]["user"]["isAdmin"] === false);

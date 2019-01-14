@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>iReporter</title>
+        <link href="assets/css/styles.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="logo">iReporter</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="signup.html">Register</a></li>
+                <li><a href="index.html">Login</a></li>
+               
+            </ul>
+        </nav>
+        <div class="title"><h1>Update Incident</h1></div>
+        <div class="container">
+            <div class="form">
+                <form id="createIncident">
+                    <p id="alert"></p>
+                    <p>Describe the Report</p>
+                    <textarea rows="4" cols="50" id="comment" name="comment" form="usrform"></textarea>
+                    <p>Select the type of record you want to report</p>
+                    <input type="radio" id="incidentType" name="record-type" value="Redflag" checked>Redflag<br>
+                    <input type="radio" id="incidentType" name="record-type" value="Intervention">Intervention<br>
+                    <p>Select files(Video or photos):</p> <input type="file" name="myFile" multiple><br>
+                    <p>Location: </p>
+                    <input type="text" id="location" name="" >
+                    <br>
+                    <button type="submit" name="" value="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script src="../UI/assets/js/update-record.js"></script>
+    </body>
+    <footer></footer>
+</html>

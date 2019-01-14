@@ -12,7 +12,6 @@ function createIncident(e){
         headers:{
             Accept:'application/json',
             'Content-type':'application/json',
-            'mode':'cors',
             Authorization: "Bearer " + token
         },
         body:JSON.stringify(

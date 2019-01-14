@@ -4,6 +4,8 @@ window.onload = function(){
     function getRecords(){
         const token = localStorage.getItem("token");
         let message = localStorage.getItem("message");
+        let user_id = localStorage.getItem("user_id");
+        console.log(user_id);
     
         fetch('https://floating-reaches-50695.herokuapp.com/api/v2/incidents',{
         headers:{
@@ -15,12 +17,18 @@ window.onload = function(){
         })
         .then((response) => response.json())
         .then((data) => {
+            console.log(data.data[0]["createdBy"])
             if(data.status === 200){
                 let table = document.getElementById("redflags");
-                let records = data.data;
+                let allRecords = data.data;
+                let userRecords = allRecords.filter(userRecord => {
+                    return userRecord.createdBy == user_id;
+                })
+                let records = userRecords;
+                console.log(records)
                 records.map((record) => {
                     let new_row = table.insertRow();
-                    console.log(record.id);
+                    // console.log(record.id);
                     
                     let id = new_row.insertCell(0)
                     let comment = new_row.insertCell(1);
@@ -38,7 +46,7 @@ window.onload = function(){
                     incidentType.innerHTML =record.incidentType;
                     location.innerHTML =record.location;                  
                     status.innerHTML = record.status;
-                    edit.innerHTML = "<a href=\"record.html\">Edit</a>";
+                    edit.innerHTML = "<a href='update-record.html?recordId="+ record.id +"'>Edit</a>";
                     del.innerHTML = "<a href=\"record.html\">Delete</a>";
                     viewRecord.innerHTML = "<a href='record.html?recordId="+ record.id +"'>View</a>";
                 });
