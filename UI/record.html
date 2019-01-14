@@ -15,16 +15,17 @@
                 <li><a href="index.html">Logout</a></li>
             </ul>
         </nav>
-        <div class="title"><h1>Health Care Corrupt</h1></div>
         <div class="container">
-            Type: <b id="type"></b>&nbsp&nbsp&nbspStatus :<b id="status"></b>
+            <div id="alert"></div>
+            IncidentType: <b id="type"></b>&nbsp&nbsp&nbspStatus :<b id="status"></b>
             <hr>
             <h3>Description :</h3>
-            <p id="comment"></p>
-                <b id="createdOn"></b>
-                <b>Evidence provided :</b>
-                <img src="assets/images/corrupt.jpeg"  width:50%; height: 30px;>
-            <p id="location"></p>
+            <div id="comment"></div>
+            <h3>Date Created</h3><div id="createdOn"></div>
+            <b>Evidence provided :</b>
+            <img src="assets/images/corrupt.jpeg"  width:50%; height: 30px;>
+            <h3>Location: </h3><div id="location"></div>
+            <button id="edit">Edit</button>&nbsp&nbsp&nbsp<button id="delete">Delete</button>
         </div> 
         <script src="../UI/assets/js/record.js"></script>
     </body>
