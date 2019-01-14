@@ -25,7 +25,7 @@
         <div id="sidebar">
             <div class="list">
                 <div class="item"><h2><a href="#indraft">Dashboard</a></h2></div>
-                <div class="item"><a href="#resolved">All records</a></div>
+                <div class="item"><a href="admin.html">All records</a></div>
                 <div class="item"><a href="#indraft">Resolved 30</a></div>
                 <div class="item"><a href="#indraft">In Draft 10</a></div>
                 <div class="item"><a href="#indraft">Rejected 2</a></div>
@@ -47,88 +47,23 @@
                     <p>333</p>
                 </div>
             </div>
+            <p id="alert"></p>
             <div class="records-list">
                 <table id="redflags">
-                    <tr>
-                        <th>Record</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr>
-                        <td><a href="record.html">Healthcare corrupt</a></td>
-                        <td>Redflag</td>
-                        <td>Pending</td>
-                        <td>
-                            <select>
-                                <option value="Resolve"><i class="fas fa-check-double"></i> Resolve</option>
-                                <option value="In Draft"><i class="fas fa-pause"></i> In Draft</option>
-                                <option value="Reject"><i class="fas fa-ban"></i> Reject</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Healthcare corrupt</td>
-                        <td>Intervention</td>
-                        <td>Rejected</td>
-                        <td>
-                            <select>
-                                <option value="Resolve"><i class="fas fa-check-double"></i> Resolve</option>
-                                <option value="In Draft"><i class="fas fa-pause"></i> In Draft</option>
-                                <option value="Reject"><i class="fas fa-ban"></i> Reject</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Healthcare corrupt</td>
-                        <td>Redflag</td>
-                        <td>Resolved</td>
-                        <td>
-                            <select>
-                                <option value="Resolve"><i class="fas fa-check-double"></i> Resolve</option>
-                                <option value="In Draft"><i class="fas fa-pause"></i> In Draft</option>
-                                <option value="Reject"><i class="fas fa-ban"></i> Reject</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Healthcare corrupt</td>
-                        <td>Redflag</td>
-                        <td>Rejected</td>
-                        <td>
-                            <select>
-                                <option value="Resolve"><i class="fas fa-check-double"></i> Resolve</option>
-                                <option value="In Draft"><i class="fas fa-pause"></i> In Draft</option>
-                                <option value="Reject"><i class="fas fa-ban"></i> Reject</option>
-                            </select>
-                        </td>
-                    </tr>
+                    <thead>
                         <tr>
-                            <td>Healthcare corrupt</td>
-                            <td>Redflag</td>
-                            <td>In Draft</td>
-                            <td>
-                                <select>
-                                    <option value="Resolve"><i class="fas fa-check-double"></i> Resolve</option>
-                                    <option value="In Draft"><i class="fas fa-pause"></i> In Draft</option>
-                                    <option value="Reject"><i class="fas fa-ban"></i> Reject</option>
-                                </select>
-                            </td>
+                            <th>No</th>
+                            <th>Comment</th>
+                            <th>CreatedOn</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>View</th>
                         </tr>
-                        <tr>
-                            <td>Healthcare corrupt</td>
-                            <td>Intervention</td>
-                            <td>Resolved</td>
-                            <td>
-                                <select>
-                                    <option value="Resolve"><i class="fas fa-check-double"></i> Resolve</option>
-                                    <option value="In Draft"><i class="fas fa-pause"></i> In Draft</option>
-                                    <option value="Reject"><i class="fas fa-ban"></i> Reject</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                    </thead>
+                </table>
             </div>
+        </div>
+        <script src="../UI/assets/js/user-records.js"></script>
     </body>
 </html>
