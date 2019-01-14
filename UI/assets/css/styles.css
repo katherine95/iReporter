@@ -296,6 +296,9 @@ button {
 #edit {
     background-color: #008CBA;
 }
+#update {
+    background-color: #4CAF50;
+}
 #delete {
     background-color: #f44336;
 }

@@ -6,35 +6,76 @@ window.onload = function(){
         let message = localStorage.getItem("message");
         let url = new URL(window.location.href);
         let recordId = url.searchParams.get("recordId");
-        let comment = document.getElementById('comment').value;
-        let location = document.getElementById('location').value;
-    
+        const user_id = localStorage.getItem("user_id");
+        let createdBy = localStorage.getItem("createdBy");
+
+        let comment = document.getElementById('comment');
+        let location = document.getElementById('location');
+        
         fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/incidents/${recordId}`,{
-            method:'PATCH',
             headers:{
                 Accept:'application/json',
                 'Content-type':'application/json',
                 'mode':'cors',
                 Authorization: "Bearer " + token
-            },
-            body:JSON.stringify(
-                {
-                    comment:comment, 
-                    location:location
-                })
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            if (data.status === 200){
-                window.location.replace('record.html');  
-            }else if(message === "Token has expired"){
-                window.alert("Please log in");
-                window.location.replace('index.html')
-            }else{
-                document.getElementById("alert").style.color = "red";
-                document.getElementById("alert").innerHTML = data.message;
             }
-        })
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data.data["location"])
+                if(data.status === 200){
+                    comment.value = data.data["comment"];
+                    location.value= data.data["location"];
+
+                }
+                // if (data.status === 200){
+                //     console.log(data.message);
+                // //     window.alert('Deleted successfully');
+                // //     window.location.replace('user-account.html');
+                // }else if(data.status === 404){
+                //     window.alert("Record with that ID does not exist.");
+                //     window.location.replace('user-account.html');
+                // }else if(data.message){
+                //     document.getElementById("alert").style.color = "red";
+                //     document.getElementById("alert").innerHTML = data.message;}
+                    })
     }
+}
+document.getElementById('updateIncident').addEventListener('submit', updateIncident);
+function updateIncident(e){
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    let message = localStorage.getItem("message");
+    let url = new URL(window.location.href);
+    let recordId = url.searchParams.get("recordId");
+    let comment = document.getElementById('comment').value;
+    let location = document.getElementById('location').value;
+
+    fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/user/incidents/${recordId}`, {
+        method:'PATCH',
+        headers:{
+            Accept:'application/json',
+            'Content-type':'application/json',
+            Authorization: "Bearer " + token
+        },
+        body:JSON.stringify(
+            {
+                comment:comment, 
+                location:location
+            })
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if(data.status === 200){
+            window.location.replace('user-account.html')
+        }else if(message === "Token has expired"){
+            window.alert("Please log in");
+            window.location.replace('index.html')
+        }else{
+            console.log(data.msg)
+            localStorage.setItem("message",data.msg);
+            document.getElementById("alert").style.color = "red";
+            document.getElementById("alert").innerHTML = data.message;
+        }
+    })
 }

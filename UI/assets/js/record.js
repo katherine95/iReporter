@@ -23,12 +23,14 @@ window.onload = function(){
                 let location = document.getElementById("location");
                 let createdOn = document.getElementById("createdOn");
                 let status = document.getElementById("status");
+                let editRecord = document.getElementById("edit");
 
                 incidentType.innerHTML = data.data.incidentType;
                 comment.innerHTML = data.data.comment;
                 location.innerHTML = data.data.location;
                 createdOn.innerHTML = data.data.createdOn;
-                status.innerHTML = data.data.status;  
+                status.innerHTML = data.data.status;
+                editRecord.innerHTML =  "<a href='update-record.html?recordId="+ data.data.id +"'>Edit</a>";
             }else if(message === "Token has expired"){
                 window.alert("Please log in");
                 window.location.replace('index.html')

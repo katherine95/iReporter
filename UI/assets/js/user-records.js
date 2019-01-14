@@ -45,6 +45,7 @@ window.onload = function(){
                     viewRecord.innerHTML = "<a href='record.html?recordId="+ record.id +"'>View</a>";
                 });
             }else if(data.status === 200){
+                localStorage.setItem("createdBy",data.data[0]["createdBy"]);
                 let table = document.getElementById("redflags");
                 let allRecords = data.data;
                 let userRecords = allRecords.filter(userRecord => {
