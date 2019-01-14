@@ -6,6 +6,7 @@ window.onload = function(){
         let message = localStorage.getItem("message");
         let url = new URL(window.location.href);
         let recordId = url.searchParams.get("recordId");
+        let role = localStorage.getItem("role");
     
         fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/incidents/${recordId}`,{
         headers:{
@@ -17,7 +18,21 @@ window.onload = function(){
         })
         .then((response) => response.json())
         .then((data) => {
-            if (data.status === 200){
+            if (data.status === 200 && role == 'true'){
+                let incidentType = document.getElementById("type");
+                let comment = document.getElementById("comment");
+                let location = document.getElementById("location");
+                let createdOn = document.getElementById("createdOn");
+                let status = document.getElementById("status");
+                let editRecord = document.getElementById("edit");
+
+                incidentType.innerHTML = data.data.incidentType;
+                comment.innerHTML = data.data.comment;
+                location.innerHTML = data.data.location;
+                createdOn.innerHTML = data.data.createdOn;
+                status.innerHTML = data.data.status;
+                editRecord.innerHTML =  "<a href='update-record-status.html?recordId="+ data.data.id +"'>Edit</a>";
+            }else if(data.status === 200){
                 let incidentType = document.getElementById("type");
                 let comment = document.getElementById("comment");
                 let location = document.getElementById("location");
