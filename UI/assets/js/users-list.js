@@ -31,6 +31,7 @@ window.onload = function(){
                     let createdOn = new_row.insertCell(6);
                     let username = new_row.insertCell(7);
                     let isAdmin = new_row.insertCell(8);
+                    let viewUser = new_row.insertCell(9);
 
                     id.innerHTML = users.indexOf(user) + 1;
                     email.innerHTML = user.email;
@@ -41,6 +42,7 @@ window.onload = function(){
                     createdOn.innerHTML = user.createdOn;
                     username.innerHTML = user.username;
                     isAdmin.innerHTML = user.isAdmin;
+                    viewUser.innerHTML = "<a href='create-admin.html?userName="+ user.username +"' id='makeAdmin'>Make Admin</a>";
                 });
             }else if(message === "Token has expired"){
                 window.alert("Please log in");
