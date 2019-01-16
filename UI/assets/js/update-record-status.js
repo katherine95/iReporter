@@ -16,6 +16,8 @@ window.onload = function(){
                 Accept:'application/json',
                 'Content-type':'application/json',
                 'mode':'cors',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Request-Method": "*",
                 Authorization: "Bearer " + token
             }
             })
@@ -47,6 +49,9 @@ function updateIncident(e){
         headers:{
             Accept:'application/json',
             'Content-type':'application/json',
+            'mode':'cors',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Request-Method": "*",
             Authorization: "Bearer " + token
         },
         body:JSON.stringify(
