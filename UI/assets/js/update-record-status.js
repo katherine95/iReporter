@@ -7,7 +7,6 @@ window.onload = function(){
         let url = new URL(window.location.href);
         let recordId = url.searchParams.get("recordId");
         const user_id = localStorage.getItem("user_id");
-        let createdBy = localStorage.getItem("createdBy");
 
         let status = document.getElementById('status');
         
