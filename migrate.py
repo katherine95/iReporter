@@ -54,7 +54,8 @@ def tables():
         incidentType VARCHAR(50) NOT NULL,
         location VARCHAR(10) NOT NULL,
         status VARCHAR(10) NOT NULL,
-        comment VARCHAR(100) NOT NULL
+        comment VARCHAR(100) NOT NULL,
+        image VARCHAR(70)[] NULL
     )"""
 
     queries = [drop_users, drop_incidents, users, incidents]
