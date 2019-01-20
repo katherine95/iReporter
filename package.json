@@ -1,0 +1,19 @@
+{
+  "repository": "iReporter",
+  "version": "1.0.0",
+  "author": "katherine95",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "serve": "node test/server.js",
+    "test": "jest --detectOpenHandles"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "faker": "^4.1.0",
+    "jest": "^23.6.0",
+    "puppeteer": "^1.11.0"
+  }
+}
