@@ -41,6 +41,7 @@ class TestView(unittest.TestCase):
             "incidentType": "Redflag",
             "location": "36N",
             "comment": "hjjkjklkllkls hjkjlj kjhkjjkjkxlkj jhkjn",
+            "image": "{xyz.png}"
         }
         config_name = "testing"
         self.app = create_app(config_name)
@@ -249,7 +250,7 @@ class TestView(unittest.TestCase):
             '/api/v2/incidents/1', data=json.dumps(patch_data),
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
-        self.assertEqual(resp.status_code, 401)
+        self.assertEqual(resp.status_code, 403)
         self.assertEqual(data['message'], 'you dont have access rights')
 
     def test_admin_can_create_new_admin(self):
@@ -281,7 +282,7 @@ class TestView(unittest.TestCase):
             '/api/v2/auth/users/testusername', data=json.dumps(patch_data),
             content_type='application/json', headers=self.headers)
         data = json.loads(resp.data)
-        self.assertEqual(resp.status_code, 401)
+        self.assertEqual(resp.status_code, 403)
         self.assertEqual(data['message'], 'you dont have access rights')
 
     def test_admin_can_get_all_users(self):
@@ -360,14 +361,15 @@ class TestView(unittest.TestCase):
             "id": 1,
             "incidentType": "Intervention",
             "location": "36n",
-            "status": "inDraft"
+            "status": "inDraft",
+            "image": "{xyz.png}"
         }
         resp = self.client.patch('/api/v2/user/incidents/1',
                                  data=json.dumps(incident),
                                  content_type='application/json',
                                  headers=self.headers)
         data = json.loads(resp.data)
-        self.assertEqual(resp.status_code, 401)
+        self.assertEqual(resp.status_code, 403)
         self.assertEqual(data['message'],
                          'You can only edit a record while its pending')
 
@@ -375,7 +377,8 @@ class TestView(unittest.TestCase):
         incident = {
             "incidentType": "redflag",
             "location": "36N",
-            "comment": "hjjkjklkllkls hjkjlj kjhkjjkjkxlkj jhkjn"
+            "comment": "hjjkjklkllkls hjkjlj kjhkjjkjkxlkj jhkjn",
+            "image": "{xyz.png}"
         }
         resp = self.client.post(
             '/api/v2/incidents', data=json.dumps(incident),

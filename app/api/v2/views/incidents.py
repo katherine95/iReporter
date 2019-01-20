@@ -26,10 +26,11 @@ class Incidents(Resource):
             incidentType = incidents_data['incidentType']
             location = incidents_data['location']
             createdBy = get_jwt_identity()
+            image = incidents_data['image']
             if incidentType == 'Redflag' or incidentType == 'Intervention':
                 if not self.incidentObject.check_if_comment_exist(comment):
                     incident = IncidentModel(
-                        incidentType, location, comment, createdBy)
+                        incidentType, location, comment, createdBy, image)
                     response = incident.create_incident()
                     return make_response(jsonify({
                         "status": 201,
@@ -114,9 +115,9 @@ class SingleIncident(Resource):
                 "message": "Incident with that ID doesnt exist"
             }), 404)
         return make_response(jsonify({
-            "status": 401,
+            "status": 403,
             "message": "you dont have access rights"
-        }), 401)
+        }), 403)
 
     @jwt_required
     def delete(self, id):
@@ -141,13 +142,13 @@ class SingleIncident(Resource):
                         "message": "Incident with that ID doesnt exist"
                     }), 404)
                 return make_response(jsonify({
-                    "status": 401,
+                    "status": 403,
                     "message": "You can only delete a record while its pending"
-                }), 401)
+                }), 403)
             return make_response(jsonify({
-                "status": 401,
+                "status": 403,
                 "message": "You are only allowed to delete your own records"
-            }), 401)
+            }), 403)
         return make_response(jsonify({
             "status": 404,
             "message": "The record does not exist"
@@ -191,18 +192,18 @@ class UpdateIncident(Resource):
                             "message": "Please provide 'comment' or 'location'"
                         }), 400)
                     return make_response(jsonify({
-                        "status": 401,
+                        "status": 403,
                         "message": "You can only edit a record while its " +
                         "pending"
-                    }), 401)
+                    }), 403)
                 return make_response(jsonify({
                     "status": 404,
                     "message": "Incident with that ID doesnt exist"
                 }), 404)
             return make_response(jsonify({
-                "status": 401,
+                "status": 403,
                 "message": "You are only allowed to edit your own records"
-            }), 401)
+            }), 403)
         return make_response(jsonify({
             "status": 404,
             "message": "The record does not exist"

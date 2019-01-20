@@ -11,7 +11,8 @@ def serialiser_incident(incident):
         incidentType=incident[3],
         location=incident[4],
         status=incident[5],
-        comment=incident[6]
+        comment=incident[6],
+        image=incident[7]
     )
 
 
@@ -19,11 +20,12 @@ class Incident(object):
     """class that deals with incidents data"""
 
     def __init__(self, incidentType=None, location=None, comment=None,
-                 createdBy=None):
+                 createdBy=None, image=None):
         self.incidentType = incidentType
         self.location = location
         self.comment = comment
         self.createdBy = createdBy
+        self.image = image
 
     def save(self):
         conn.commit()
@@ -35,11 +37,11 @@ class Incident(object):
         cur.execute(
             """
             INSERT INTO incidents (incidentType, location, comment, status,
-            createdOn, createdBy)
-            VALUES (%s , %s, %s, %s, %s , %s) RETURNING id;
+            createdOn, createdBy, image)
+            VALUES (%s , %s, %s, %s, %s , %s, %s) RETURNING id;
             """,
             (self.incidentType, self.location, self.comment, status,
-             createdOn, self.createdBy))
+             createdOn, self.createdBy, self.image))
         id = cur.fetchone()[0]
         self.save()
         return self.get_incident_by_id(id)
@@ -81,7 +83,7 @@ class Incident(object):
             # check if the location is more than 3 characters
             elif len(data['location'].strip()) < 3:
                 return "location must be more than 3 characters"
-
+                
             else:
                 return "valid"
         except Exception as error:

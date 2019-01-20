@@ -68,9 +68,9 @@ class SignUp(Resource):
                 "message": "all users fetched successfully"
             }), 200)
         return make_response(jsonify({
-            "status": 401,
+            "status": 403,
             "message": "you dont have access rights"
-        }), 401)
+        }), 403)
 
 
 class Login(Resource):
@@ -134,6 +134,6 @@ class CreateAdmin(Resource):
                 "message": "Username does not exist"
             }), 404)
         return make_response(jsonify({
-            "status": 401,
+            "status": 403,
             "message": "you dont have access rights"
-        }), 401)
+        }), 403)
