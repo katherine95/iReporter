@@ -26,7 +26,10 @@
                     <p>Select the type of record you want to report</p>
                     <input type="radio" id="incidentType" name="record-type" value="Redflag" checked>Redflag<br>
                     <input type="radio" id="incidentType" name="record-type" value="Intervention">Intervention<br>
-                    <p>Select files(Video or photos):</p> <input type="file" name="myFile" multiple><br>
+                    <p>Select files(photos):</p> <input type="file" id="real-file" hidden="hidden" multiple/>
+                    <button type="button" id="custom-button">Choose a file</button>
+                    <span id="custom-text">No file chosen.</span>
+                    <img id="myImg" src="#" alt="your image" height=200 width=100>
                     <p>Location: </p>
                     <input type="text" id="location" name="" >
                     <br>

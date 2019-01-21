@@ -25,6 +25,7 @@ window.onload = function(){
                 let comment = document.getElementById("comment");
                 let location = document.getElementById("location");
                 let createdOn = document.getElementById("createdOn");
+                let image = document.getElementById("image");
                 let status = document.getElementById("status");
                 let editRecord = document.getElementById("edit");
 
@@ -32,6 +33,7 @@ window.onload = function(){
                 comment.innerHTML = data.data.comment;
                 location.innerHTML = data.data.location;
                 createdOn.innerHTML = data.data.createdOn;
+                image.innerHTML = data.data.image[0];
                 status.innerHTML = data.data.status;
                 editRecord.innerHTML =  "<a href='update-record-status.html?recordId="+ data.data.id +"'>Edit</a>";
             }else if(data.status === 200){
@@ -39,6 +41,7 @@ window.onload = function(){
                 let comment = document.getElementById("comment");
                 let location = document.getElementById("location");
                 let createdOn = document.getElementById("createdOn");
+                let image = document.getElementById("image");
                 let status = document.getElementById("status");
                 let editRecord = document.getElementById("edit");
 
@@ -46,6 +49,7 @@ window.onload = function(){
                 comment.innerHTML = data.data.comment;
                 location.innerHTML = data.data.location;
                 createdOn.innerHTML = data.data.createdOn;
+                image.innerHTML = data.data.image[0];
                 status.innerHTML = data.data.status;
                 editRecord.innerHTML =  "<a href='update-record.html?recordId="+ data.data.id +"'>Edit</a>";
             }else if(message === "Token has expired"){
