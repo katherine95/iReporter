@@ -1,22 +1,29 @@
 import faker from 'faker';
-import puppeteer from "puppeteer";
+import puppeteer from 'puppeteer';
 
 jest.setTimeout(200000);
 
-const signupUrl = "https://katherine95.github.io/iReporter/UI/signup.html";
-const loginUrl = "https://katherine95.github.io/iReporter/UI/index.html";
-const userAccountUrl = "https://katherine95.github.io/iReporter/UI/user-account.html";
-const createRecordUrl = ''
+const signupUrl = 'https://katherine95.github.io/iReporter/UI/signup.html';
+const loginUrl = 'https://katherine95.github.io/iReporter/UI/index.html';
+const userAccountUrl = 'https://katherine95.github.io/iReporter/UI/user-account.html';
+const createRecordUrl = 'https://katherine95.github.io/iReporter/UI/create-record.html';
 
 
 const user = {
-  firstname:faker.name.firstName(),
-  lastname:faker.name.lastName(),
-  othernames:faker.name.lastName(),
-  phonenumber:'0725277948',
-  email:faker.internet.email(),
-  username:faker.name.firstName(),
+  firstname: faker.name.firstName(),
+  lastname: faker.name.lastName(),
+  othernames: faker.name.lastName(),
+  phonenumber: '0725277948',
+  email: faker.internet.email(),
+  username: faker.name.firstName(),
   password: '12345678',
+};
+
+const record = {
+  comment: 'This is a report concerning bla bla vbla bla bala',
+  incidentType: 'Redflag',
+  location: faker.address.latitude,
+  image: faker.image.imageUrl(),
 };
 
 let page;
@@ -37,58 +44,59 @@ afterAll(() => {
   browser.close();
 });
 
-describe("signup", () => {
-  test("user can submit a signup request", async () => {
+describe('signup', () => {
+  test('user can submit a signup request', async () => {
     await page.goto(signupUrl);
     await page.waitForSelector('#signup');
-    await page.click("input[name=firstname]");
-    await page.type("input[name=firstname]", user.firstname);
-    await page.click("input[name=lastname]");
-    await page.type("input[name=lastname]", user.lastname);
-    await page.click("input[name=othernames]");
-    await page.type("input[name=othernames]", user.othernames);
-    await page.click("input[name=phonenumber]");
-    await page.type("input[name=phonenumber]", user.phonenumber);
-    await page.click("input[name=email]");
-    await page.type("input[name=email]", user.email);
-    await page.click("input[name=username]");
-    await page.type("input[name=username]", user.username);
-    await page.click("input[name=password]");
-    await page.type("input[name=password]", user.password);
-    await page.click("button[type=submit]");
-    await page.waitForNavigation({ timeout: 60000, waitUntil: 'domcontentloaded' }),
+    await page.click('input[name=firstname]');
+    await page.type('input[name=firstname]', user.firstname);
+    await page.click('input[name=lastname]');
+    await page.type('input[name=lastname]', user.lastname);
+    await page.click('input[name=othernames]');
+    await page.type('input[name=othernames]', user.othernames);
+    await page.click('input[name=phonenumber]');
+    await page.type('input[name=phonenumber]', user.phonenumber);
+    await page.click('input[name=email]');
+    await page.type('input[name=email]', user.email);
+    await page.click('input[name=username]');
+    await page.type('input[name=username]', user.username);
+    await page.click('input[name=password]');
+    await page.type('input[name=password]', user.password);
+    await page.click('button[type=submit]');
+    await page.waitForNavigation({waitUntil: 'domcontentloaded' }),
     await page.waitForSelector('#login', { visible: true });
-    await page.screenshot({path: 'success.png'});
+    await page.screenshot({ path: 'success.png' });
   });
 });
 
-describe("login", () => {
-  test("user can submit a login request", async () => {
+describe('login', () => {
+  test('user can submit a login request', async () => {
     await page.goto(loginUrl);
     await page.waitForSelector('#login');
-    await page.click("input[name=username]");
-    await page.type("input[name=username]", user.username);
-    await page.click("input[name=password]");
-    await page.type("input[name=password]", user.password);
-    await page.click("button[type=submit]");
+    await page.click('input[name=username]');
+    await page.type('input[name=username]', user.username);
+    await page.click('input[name=password]');
+    await page.type('input[name=password]', user.password);
+    await page.click('button[type=submit]');
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#redflags', { visible: true });
-    await page.waitForSelector('#sidebar');
-    await page.click("#createRecord");
-    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('#createIncident', { visible: true });
-    await page.screenshot({path: 'success2.png'});
-    // await page.screenshot({path: 'success1.png'});
+    await page.screenshot({ path: 'success1.png' });
   });
 });
 
-// describe('create record', () => {
-//   test('user can create a record', async () => {
-//     await page.goto(userAccountUrl);
-//     await page.waitForSelector('#sidebar');
-//     await page.click("#createRecord");
-//     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
-//     await page.waitForSelector('#createIncident', { visible: true });
-//     await page.screenshot({path: 'success2.png'});
-//   });
-// });
+describe('create record', () => {
+  test('user can create a record', async () => {
+    await page.goto(createRecordUrl);
+    await page.waitForSelector('#createIncident');
+    await page.click('textarea[name=comment]');
+    await page.type('textarea[name=comment]', record.comment);
+    await page.click('input[name=record-type]');
+    await page.type('input[name=record-type]', record.incidentType);
+    await page.click('input[name=location]');
+    await page.type('input[name=location]', record.location);
+    await page.click('button[type=submit]');
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#redflags', { visible: true });
+    await page.screenshot({ path: 'success3.png' });
+  });
+});
