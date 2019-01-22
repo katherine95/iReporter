@@ -5,7 +5,6 @@ jest.setTimeout(200000);
 
 const signupUrl = 'https://katherine95.github.io/iReporter/UI/signup.html';
 const loginUrl = 'https://katherine95.github.io/iReporter/UI/index.html';
-const userAccountUrl = 'https://katherine95.github.io/iReporter/UI/user-account.html';
 const createRecordUrl = 'https://katherine95.github.io/iReporter/UI/create-record.html';
 
 
@@ -20,9 +19,9 @@ const user = {
 };
 
 const record = {
-  comment: 'This is a report concerning bla bla vbla bla bala',
+  comment: 'This is a report concerning water hijack at sjh h hsjha',
   incidentType: 'Redflag',
-  location: faker.address.latitude,
+  location: '45N',
   image: faker.image.imageUrl(),
 };
 
@@ -90,8 +89,8 @@ describe('create record', () => {
     await page.waitForSelector('#createIncident');
     await page.click('textarea[name=comment]');
     await page.type('textarea[name=comment]', record.comment);
-    await page.click('input[name=record-type]');
-    await page.type('input[name=record-type]', record.incidentType);
+    await page.click('input[type=radio]');
+    await page.type('input[type=radio]', record.incidentType);
     await page.click('input[name=location]');
     await page.type('input[name=location]', record.location);
     await page.click('button[type=submit]');
