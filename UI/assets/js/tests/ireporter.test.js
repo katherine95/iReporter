@@ -1,11 +1,11 @@
-import faker from "faker";
+import faker from 'faker';
 import puppeteer from "puppeteer";
 
-jest.setTimeout(200000)
+jest.setTimeout(200000);
 
-const signup_url = "https://katherine95.github.io/iReporter/UI/signup.html";
-const login_url = "https://katherine95.github.io/iReporter/UI/index.html";
-const user_account_url = "https://katherine95.github.io/iReporter/UI/user-account.html"
+const SignupUrl = "https://katherine95.github.io/iReporter/UI/signup.html";
+const LoginUrl = "https://katherine95.github.io/iReporter/UI/index.html";
+const userAccountUrl = "https://katherine95.github.io/iReporter/UI/user-account.html"
 
 const user = {
   firstname:faker.name.firstName(),
@@ -20,8 +20,7 @@ const user = {
 let page;
 let browser;
 const width = 1920;
-const height = 1080;
-let token;
+const height = 1000;
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
@@ -38,7 +37,7 @@ afterAll(() => {
 
 describe("signup", () => {
   test("user can submit a signup request", async () => {
-    await page.goto(signup_url);
+    await page.goto(SignupUrl);
     await page.waitForSelector('#signup');
     await page.click("input[name=firstname]");
     await page.type("input[name=firstname]", user.firstname);
@@ -54,22 +53,27 @@ describe("signup", () => {
     await page.type("input[name=username]", user.username);
     await page.click("input[name=password]");
     await page.type("input[name=password]", user.password);
+    // await Promise.all([
+    //   page.waitForNavigation({ timeout: 60000, waitUntil: 'domcontentloaded' }),
+    //   page.click("button[type=submit]")
+    // ]);
     await page.click("button[type=submit]");
-    await page.goto(login_url);
+    // await page.waitForSelector('#login', { visible: true });
     await page.screenshot({path: 'success.png'});
   });
 });
 
 describe("login", () => {
   test("user can submit a login request", async () => {
-    await page.goto(login_url);
+    await page.goto(LoginUrl);
     await page.waitForSelector('#login');
     await page.click("input[name=username]");
     await page.type("input[name=username]", user.username);
     await page.click("input[name=password]");
     await page.type("input[name=password]", user.password);
     await page.click("button[type=submit]");
-    await page.goto(user_account_url);
+    // await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    // await page.waitForSelector('#redflags', { visible: true });
     await page.screenshot({path: 'success1.png'});
   });
 });
