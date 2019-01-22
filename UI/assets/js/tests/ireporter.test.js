@@ -3,18 +3,20 @@ import puppeteer from "puppeteer";
 
 jest.setTimeout(200000);
 
-const SignupUrl = "https://katherine95.github.io/iReporter/UI/signup.html";
-const LoginUrl = "https://katherine95.github.io/iReporter/UI/index.html";
-const userAccountUrl = "https://katherine95.github.io/iReporter/UI/user-account.html"
+const signupUrl = "https://katherine95.github.io/iReporter/UI/signup.html";
+const loginUrl = "https://katherine95.github.io/iReporter/UI/index.html";
+const userAccountUrl = "https://katherine95.github.io/iReporter/UI/user-account.html";
+const createRecordUrl = ''
+
 
 const user = {
   firstname:faker.name.firstName(),
   lastname:faker.name.lastName(),
   othernames:faker.name.lastName(),
-  phonenumber:faker.phone.phoneNumber(), 
+  phonenumber:'0725277948',
   email:faker.internet.email(),
   username:faker.name.firstName(),
-  password:faker.name.lastName()
+  password: '12345678',
 };
 
 let page;
@@ -24,7 +26,7 @@ const height = 1000;
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     slowMo: 80,
     args: [`--window-size=${width},${height}`]
   });
@@ -37,7 +39,7 @@ afterAll(() => {
 
 describe("signup", () => {
   test("user can submit a signup request", async () => {
-    await page.goto(SignupUrl);
+    await page.goto(signupUrl);
     await page.waitForSelector('#signup');
     await page.click("input[name=firstname]");
     await page.type("input[name=firstname]", user.firstname);
@@ -53,27 +55,40 @@ describe("signup", () => {
     await page.type("input[name=username]", user.username);
     await page.click("input[name=password]");
     await page.type("input[name=password]", user.password);
-    // await Promise.all([
-    //   page.waitForNavigation({ timeout: 60000, waitUntil: 'domcontentloaded' }),
-    //   page.click("button[type=submit]")
-    // ]);
     await page.click("button[type=submit]");
-    // await page.waitForSelector('#login', { visible: true });
+    await page.waitForNavigation({ timeout: 60000, waitUntil: 'domcontentloaded' }),
+    await page.waitForSelector('#login', { visible: true });
     await page.screenshot({path: 'success.png'});
   });
 });
 
 describe("login", () => {
   test("user can submit a login request", async () => {
-    await page.goto(LoginUrl);
+    await page.goto(loginUrl);
     await page.waitForSelector('#login');
     await page.click("input[name=username]");
     await page.type("input[name=username]", user.username);
     await page.click("input[name=password]");
     await page.type("input[name=password]", user.password);
     await page.click("button[type=submit]");
-    // await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
-    // await page.waitForSelector('#redflags', { visible: true });
-    await page.screenshot({path: 'success1.png'});
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#redflags', { visible: true });
+    await page.waitForSelector('#sidebar');
+    await page.click("#createRecord");
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#createIncident', { visible: true });
+    await page.screenshot({path: 'success2.png'});
+    // await page.screenshot({path: 'success1.png'});
   });
 });
+
+// describe('create record', () => {
+//   test('user can create a record', async () => {
+//     await page.goto(userAccountUrl);
+//     await page.waitForSelector('#sidebar');
+//     await page.click("#createRecord");
+//     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+//     await page.waitForSelector('#createIncident', { visible: true });
+//     await page.screenshot({path: 'success2.png'});
+//   });
+// });
