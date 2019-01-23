@@ -19,7 +19,7 @@ const user = {
 };
 
 const record = {
-  comment: 'lets create a new record to ghjg sjhags sjks gsker, ye',
+  comment: 'lets create a new record hghghg ghgjhags sjks gsker, ye',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
