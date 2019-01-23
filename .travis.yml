@@ -10,7 +10,7 @@ after_success:
   - coveralls < coverage/lcov.info
 deploy:
   provider: pages
-  skip-cleanup: true
+  skip-cleanup: false
   # github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
   on:
