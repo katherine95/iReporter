@@ -8,6 +8,10 @@ script:
   - npm test -- -u --coverage
 after_success:
   - coveralls < coverage/lcov.info
+branches:
+  only:
+  - gh-pages
+  - /.*/
 deploy:
   provider: pages
   skip-cleanup: true
