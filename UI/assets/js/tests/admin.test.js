@@ -29,9 +29,9 @@ browser = await puppeteer.launch({
 page = await browser.newPage();
 await page.setViewport({ width, height });
 });
-// afterAll(() => {
-//     browser.close();
-// });
+afterAll(() => {
+    browser.close();
+});
   
 describe('admin user login', () => {
     test('an admin user can submit a login request', async () => {
