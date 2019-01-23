@@ -147,8 +147,8 @@ class Users(object):
             elif len(data['lastname'].strip()) < 3:
                 return "lastname must have more than 3 characters"
 
-            # check if username has atleast 5 characters
-            elif len(data['username'].strip()) < 5:
+            # check if username has atleast 3 characters
+            elif len(data['username'].strip()) < 3:
                 return "username must have more than 3 characters"
 
             # check if username starts with letters and contains only
