@@ -19,7 +19,7 @@ const user = {
 };
 
 let record = {
-  comment: 'lets create afake report jdkkjhjhh hghg hghh ahjhs shjhgjhgjhgjhgge te',
+  comment: 'lets create afake report jdnbmnbmnbmnbmnbnmbnb hghh ahjhs shjhgjhgjhgjhgge te',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
