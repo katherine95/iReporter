@@ -19,7 +19,7 @@ const user = {
 };
 
 const record = {
-  comment: 'This is a report concerning water hijack at sjh h hsjha',
+  comment: 'This is a report concerning waterhfshjs jsh kjshhfhjg jhgjh  hjkgh jhgkj hsjha',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
@@ -39,9 +39,9 @@ beforeAll(async () => {
   page = await browser.newPage();
   await page.setViewport({ width, height });
 });
-afterAll(() => {
-  browser.close();
-});
+// afterAll(() => {
+//   browser.close();
+// });
 
 describe('signup', () => {
   test('user can submit a signup request', async () => {

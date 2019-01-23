@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/katherine95/iReporter.svg?branch=gh-pages)](https://travis-ci.org/katherine95/iReporter)
+[![Coverage Status](https://coveralls.io/repos/github/katherine95/iReporter/badge.svg)](https://coveralls.io/github/katherine95/iReporter)
 # iReporter-frontend
 iReporter is a web application that enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention.
 
@@ -15,12 +17,19 @@ Html5, CSS3, JavaScript
 * Keep track of incident status
 
 
-A user can perform the following :
+A normal user can perform the following :
 
 * Create an incident record
 * View his/her posted incidents
 * Edit and update an incident. 
 * Delete an incident.
+
+An admin user can perform the following :
+
+* Update status of a posted incident record
+* View all incidents posted.
+* View a list of registered users. 
+* Make a normal user an admin.
 
 **Usage**
 
@@ -41,7 +50,7 @@ A user can perform the following :
     
   3. Checkout to `gh-pages` branch:
   
-     `git checkout gh-pages`
+    `git checkout gh-pages`
      
   4. Start `live server` and test the application on a web browser.
  
