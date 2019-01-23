@@ -18,8 +18,8 @@ const user = {
   password: '12345678',
 };
 
-const record = {
-  comment: 'This is a report concerning waterhfg jg jdhgd jhkjhkhsd hjfhgf gjh ghjg ggjhgkj hsjha',
+let record = {
+  comment: 'lets create afake report jdkkjdjkjdjkdd jjhghgjhgjhgjhgge te',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
@@ -32,7 +32,7 @@ const height = 1000;
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
-    // headless: false,
+    headless: false,
     slowMo: 80,
     args: [`--window-size=${width},${height}`]
   });
@@ -40,6 +40,7 @@ beforeAll(async () => {
   await page.setViewport({ width, height });
 });
 afterAll(() => {
+  record = null;
   browser.close();
 });
 
