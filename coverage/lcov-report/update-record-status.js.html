@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for update-record-status.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> update-record-status.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/41</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >window.onload = <span class="fstat-no" title="function not covered" >function()</span>{</span>
+<span class="cstat-no" title="statement not covered" >    getRecord();</span>
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >getRecord(){</span>
+        const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem("token");</span>
+        let message = <span class="cstat-no" title="statement not covered" >localStorage.getItem("message");</span>
+        let url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
+        let recordId = <span class="cstat-no" title="statement not covered" >url.searchParams.get("recordId");</span>
+        const user_id = <span class="cstat-no" title="statement not covered" >localStorage.getItem("user_id");</span>
+&nbsp;
+        let status = <span class="cstat-no" title="statement not covered" >document.getElementById('status');</span>
+        
+<span class="cstat-no" title="statement not covered" >        fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/incidents/${recordId}`,{</span>
+            headers:{
+                Accept:'application/json',
+                'Content-type':'application/json',
+                'mode':'cors',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Request-Method": "*",
+                Authorization: "Bearer " + token
+            }
+            })
+            .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
+            .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
+<span class="cstat-no" title="statement not covered" >                if(data.status === 200){</span>
+<span class="cstat-no" title="statement not covered" >                    status.value = data.data["status"];</span>
+                }else <span class="cstat-no" title="statement not covered" >if(data.status === 404){</span>
+<span class="cstat-no" title="statement not covered" >                    window.alert("Record with that ID does not exist.");</span>
+<span class="cstat-no" title="statement not covered" >                    window.location.replace('user-account.html');</span>
+                }else <span class="cstat-no" title="statement not covered" >if(data.message){</span>
+<span class="cstat-no" title="statement not covered" >                    document.getElementById("alert").style.color = "red";</span>
+<span class="cstat-no" title="statement not covered" >                    document.getElementById("alert").innerHTML = data.message;</span>
+                }
+            })
+    }
+}
+<span class="cstat-no" title="statement not covered" >document.getElementById('updateIncident').addEventListener('submit', updateIncident);</span>
+function <span class="fstat-no" title="function not covered" >updateIncident(e){</span>
+<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
+    const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem("token");</span>
+    let message = <span class="cstat-no" title="statement not covered" >localStorage.getItem("message");</span>
+    let url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
+    let recordId = <span class="cstat-no" title="statement not covered" >url.searchParams.get("recordId");</span>
+    let status = <span class="cstat-no" title="statement not covered" >document.getElementById('status').value;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/incidents/${recordId}`, {</span>
+        method:'PATCH',
+        headers:{
+            Accept:'application/json',
+            'Content-type':'application/json',
+            'mode':'cors',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Request-Method": "*",
+            Authorization: "Bearer " + token
+        },
+        body:JSON.stringify(
+            {
+                status:status
+            })
+    })
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log(data.status)</span>
+<span class="cstat-no" title="statement not covered" >        if(data.status === 200){</span>
+<span class="cstat-no" title="statement not covered" >            window.alert("Status changed Successfully");</span>
+<span class="cstat-no" title="statement not covered" >            window.location.replace('admin.html')</span>
+        }else <span class="cstat-no" title="statement not covered" >if(data.status === 400){</span>
+<span class="cstat-no" title="statement not covered" >            window.alert("Status can only be updated to resolved, inDraft or rejected");</span>
+<span class="cstat-no" title="statement not covered" >            window.location.href;</span>
+        }else <span class="cstat-no" title="statement not covered" >if(message === "Token has expired"){</span>
+<span class="cstat-no" title="statement not covered" >            window.alert("Please log in");</span>
+<span class="cstat-no" title="statement not covered" >            window.location.replace('index.html');</span>
+        }else{
+<span class="cstat-no" title="statement not covered" >            console.log(data.msg)</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem("message",data.msg);</span>
+<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").style.color = "red";</span>
+<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").innerHTML = data.message;</span>
+        }
+    })
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 12:33:23 GMT+0300 (EAT)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

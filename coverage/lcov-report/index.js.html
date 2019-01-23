@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/20</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >document.getElementById('login').addEventListener('submit', login);</span>
+function <span class="fstat-no" title="function not covered" >login(e){</span>
+<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
+    let username = <span class="cstat-no" title="statement not covered" >document.getElementById('username').value;</span>
+    let password = <span class="cstat-no" title="statement not covered" >document.getElementById('password').value;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    fetch('https://floating-reaches-50695.herokuapp.com/api/v2/auth/login', {</span>
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-type':'application/json',
+            'mode':'cors',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Request-Method": "*",
+        },
+        body:JSON.stringify(
+            {
+                username:username, 
+                password:password
+            })
+    })
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if(data.status === 200){</span>
+<span class="cstat-no" title="statement not covered" >            console.log(data.message)</span>
+<span class="cstat-no" title="statement not covered" >            console.log(data.data[0]["user"]["user_id"])</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem("user_id",data.data[0]["user"]["user_id"]);</span>
+<span class="cstat-no" title="statement not covered" >            console.log(data.data[0]["token"])</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem("token",data.data[0]["token"]);</span>
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem("role", data.data[0]["user"]["isAdmin"]);</span>
+<span class="cstat-no" title="statement not covered" >            if (data.data[0]["user"]["isAdmin"] === false){</span>
+<span class="cstat-no" title="statement not covered" >                console.log(data)</span>
+<span class="cstat-no" title="statement not covered" >                window.location.replace('user-account.html');</span>
+            }else{
+<span class="cstat-no" title="statement not covered" >                window.location.replace('admin.html');</span>
+            }
+        }else{
+<span class="cstat-no" title="statement not covered" >            console.log(data)</span>
+<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").style.color = "red";</span>
+<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").innerHTML = data.message;</span>
+        }
+    })
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 12:33:23 GMT+0300 (EAT)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>
