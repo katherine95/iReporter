@@ -19,7 +19,7 @@ const user = {
 };
 
 const record = {
-  comment: 'This is a report concerning waterhfshjs jsh kjshhfhjg jhgjh  hjkgh jhgkj hsjha',
+  comment: 'This is a report concerning waterhfg jg jdhgd jhsd hjfhgf gjh ghjg ggjhgkj hsjha',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
@@ -32,16 +32,16 @@ const height = 1000;
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
-    headless: false,
+    // headless: false,
     slowMo: 80,
     args: [`--window-size=${width},${height}`]
   });
   page = await browser.newPage();
   await page.setViewport({ width, height });
 });
-// afterAll(() => {
-//   browser.close();
-// });
+afterAll(() => {
+  browser.close();
+});
 
 describe('signup', () => {
   test('user can submit a signup request', async () => {
