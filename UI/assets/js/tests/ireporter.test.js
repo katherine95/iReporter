@@ -18,8 +18,8 @@ const user = {
   password: '12345678',
 };
 
-const record = {
-  comment: 'lets create a new record hghghghjjhjhjh sjks gsker, ye',
+let record = {
+  comment: 'lets create afake report jdkkjhjhh hghg hghh ahjhs shjhgjhgjhgjhgge te',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
