@@ -22,7 +22,7 @@ const height = 1000;
 
 beforeAll(async () => {
 browser = await puppeteer.launch({
-    headless: false,
+    // headless: false,
     slowMo: 80,
     args: [`--window-size=${width},${height}`]
 });
