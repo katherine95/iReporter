@@ -25,7 +25,7 @@ window.onload = function () {
         if (data.status === 200 && role == 'true') {
           const table = document.getElementById('redflags');
           const records = data.data;
-          console.log(records);
+          console.log(records.length);
           records.map((record) => {
             const new_row = table.insertRow();
 
@@ -52,8 +52,10 @@ window.onload = function () {
           const allRecords = data.data;
           const userRecords = allRecords.filter(userRecord => userRecord.createdBy == user_id);
           const records = userRecords;
+          document.getElementById('incidents').innerHTML = records.length;
           console.log(records);
           records.map((record) => {
+            console.log(record.image[0]);
             const new_row = table.insertRow();
 
             const id = new_row.insertCell(0);

@@ -4,6 +4,8 @@ window.onload = function () {
   function getUsers() {
     const token = localStorage.getItem('token');
     const message = localStorage.getItem('message');
+    const username = localStorage.getItem('username');
+    document.getElementById('username').innerHTML = username;
 
     fetch('https://floating-reaches-50695.herokuapp.com/api/v2/auth/signup', {
       headers: {
