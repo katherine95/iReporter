@@ -26,6 +26,7 @@ function login(e) {
         localStorage.setItem('user_id', data.data[0].user.user_id);
         localStorage.setItem('token', data.data[0].token);
         localStorage.setItem('role', data.data[0].user.isAdmin);
+        localStorage.setItem('username', data.data[0].user.username);
         if (data.data[0].user.isAdmin === false) {
           window.location.replace('user-account.html');
         } else {

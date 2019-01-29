@@ -6,8 +6,9 @@ window.onload = function () {
     const message = localStorage.getItem('message');
     const user_id = localStorage.getItem('user_id');
     const role = localStorage.getItem('role');
-    console.log(user_id);
-    console.log(role);
+    const username = localStorage.getItem('username');
+    document.getElementById('username').innerHTML = username;
+    console.log(username);
 
     fetch('https://floating-reaches-50695.herokuapp.com/api/v2/incidents', {
       headers: {
@@ -53,7 +54,6 @@ window.onload = function () {
           const records = userRecords;
           console.log(records);
           records.map((record) => {
-            console.log(record.image[0]);
             const new_row = table.insertRow();
 
             const id = new_row.insertCell(0);
