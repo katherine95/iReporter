@@ -19,7 +19,7 @@
             <ul>
                 <li><i class="far fa-bell"></i></li>
                 <li><i class="far fa-envelope"></i></li>
-                <li><i class="far fa-user-circle"></i> Admin</li>
+                <li><i class="far fa-user-circle" id='username'></i></li>
             </ul>
         </div>
         <div id="sidebar">
@@ -27,9 +27,9 @@
                 <div class="item"><h2><a href="#indraft">Dashboard</a></h2></div>
                 <div class="item"><a href="create-admin.html">+ Create Admin</a></div>
                 <div class="item"><a href="admin.html">All records</a></div>
-                <div class="item"><a href="#indraft">Resolved 30</a></div>
-                <div class="item"><a href="#indraft">In Draft 10</a></div>
-                <div class="item"><a href="#indraft">Rejected 2</a></div>
+                <div class="item" id='resolved'>Resolved</div>
+                <div class="item" id='inDraft'>In Draft</div>
+                <div class="item" id='rejected'>Rejected</div>
                 <div class="item"><a href="users-list.html">All Users</a></div>
             </div>
         </div>
@@ -38,15 +38,19 @@
             <div class="profile-content">
                 <div class="card">
                     <h1>All Records</h1>
-                    <p>333</p>
+                    <p id='incidents'></p>
                 </div>
                 <div class="card">
                     <h1>Redflags</h1>
-                    <p>333</p>
+                    <p id='redflag'></p>
                 </div>
                 <div class="card">
                     <h1>Interventions</h1>
-                    <p>333</p>
+                    <p id='interventions'></p>
+                </div>
+                <div class="card">
+                    <h1>In Draft</h1>
+                    <p id='inDraft'></p>
                 </div>
             </div>
             <p id="alert"></p>

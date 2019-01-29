@@ -18,7 +18,7 @@ const user = {
   password: '12345678',
 };
 
-let record = {
+const record = {
   comment: 'lets create afake report to tests tests hghh ahjhs shjhgjhgjhgjhgge te',
   incidentType: 'Redflag',
   location: '45N',
