@@ -26,7 +26,7 @@
                     <p>Select the type of record you want to report</p>
                     <input type="radio" id="incidentType" name="record-type" value="Redflag" checked>Redflag<br>
                     <input type="radio" id="incidentType" name="record-type" value="Intervention">Intervention<br>
-                    <p>Select files(photos):</p> <input type="file" id="real-file" hidden="hidden" multiple/>
+                    <p>Select files(photos):</p> <input type="file" id="real-file" hidden="hidden" accept= 'image/*' multiple/>
                     <button type="button" id="custom-button">Choose a file</button>
                     <span id="custom-text">No file chosen.</span>
                     <img id="myImg" src="#" alt="your image" height=200 width=100>
@@ -37,6 +37,8 @@
                 </form>
             </div>
         </div>
+        <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+        <script src="../UI//assets/js/upload-image.js"></script>
         <script src="../UI/assets/js/create-record.js"></script>
     </body>
     <footer></footer>

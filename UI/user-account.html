@@ -21,16 +21,15 @@
             <ul>
                 <li><i class="far fa-bell"></i></li>
                 <li><i class="far fa-envelope"></i></li>
-                <li><i class="far fa-user-circle"></i> Kate</li>
+                <li><i class="far fa-user-circle" id='username'></i> </li>
             </ul>
         </div>
         <div id="sidebar">
                 <div class="list">
                     <div class="item" id ="createRecord"><a href="create-record.html"><h3>+ New Record</h3></a></div>
                     <div class="item" id="records"><a href="user-account.html">All records</a></div>
-                    <div class="item"><a href="#resolved">Redflags 20</a></div>
-                    <div class="item"><a href="#indraft">Interventions 10</a></div>
-                    <div class="item"><a href="#rejected" >Change location</a></div>
+                    <div class="item" id='redflag'>Redflags</div>
+                    <div class="item" id='interventions'>Interventions</div>
                 </div>
             </div>
         <div class="main">
@@ -38,22 +37,22 @@
         <div class="profile-content">
             <div class="card">
                 <h1>All Records</h1>
-                <p>333</p>
+                <p id='incidents'></p>
             </div>
             <div class="card">
                 <h1><i class="fas fa-check-double"></i> Resolved</h1>
-                <p>333</p>
+                <p id='resolved'></p>
 
             </div>
 
             <div class="card">
                 <h1><i class="fas fa-pause"></i> In Draft</h1>
-                <p>333</p>
+                <p id='inDraft'></p>
             </div>
 
             <div class="card">
                 <h1><i class="fas fa-ban"></i> Rejected</h1>
-                <p>333</p>
+                <p id='rejected'></p>
             </div>
         </div>
         <div class="records-list">
