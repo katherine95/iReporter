@@ -52,7 +52,7 @@ window.addEventListener('load', () => {
   });
   document.querySelector('input[type="file"]').addEventListener('change', function () {
     if (realFileBtn.value) {
-      const img = document.querySelector('img'); // $('img')[0]
+      const img = document.querySelector('img').files[0]; // $('img')[0]
       img.src = URL.createObjectURL(this.files[0]); // set src to file url
       customTxt.innerHTML = img.src;
     }

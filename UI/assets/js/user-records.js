@@ -16,7 +16,7 @@ window.onload = function () {
         mode: 'cors',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Request-Method': '*',
-        Authorization: 'Bearer ' + token,
+        Authorization: `Bearer ${  token}`,
       },
     })
       .then(response => response.json())
@@ -44,12 +44,12 @@ window.onload = function () {
             location.innerHTML = record.location;
             image.innerHTML = record.image[0];
             status.innerHTML = record.status;
-            viewRecord.innerHTML = `<a href='record.html?recordId=${ record.id }'>View</a>`;
+            viewRecord.innerHTML = `<a href='record.html?recordId=${record.id}'>View</a>`;
           });
         } else if (data.status === 200) {
           const table = document.getElementById('redflags');
           const allRecords = data.data;
-          const userRecords = allRecords.filter((userRecord) => userRecord.createdBy == user_id);
+          const userRecords = allRecords.filter(userRecord => userRecord.createdBy == user_id);
           const records = userRecords;
           console.log(records);
           records.map((record) => {
@@ -72,14 +72,14 @@ window.onload = function () {
             location.innerHTML = record.location;
             image.innerHTML = record.image[0];
             status.innerHTML = record.status;
-            viewRecord.innerHTML = `<a href='record.html?recordId=${ record.id }'>View</a>`;
+            viewRecord.innerHTML = `<a href='record.html?recordId=${record.id}'>View</a>`;
           });
         } else if (message === 'Token has expired') {
           window.alert('Please log in');
           window.location.replace('index.html');
-        } else{
-          document.getElementById('alert').style.color = 'red';
-          document.getElementById('alert').innerHTML = data.message;
+        } else {
+          window.alert('Please log in');
+          window.location.replace('index.html');
         }
       });
   }
