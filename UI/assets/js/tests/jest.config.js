@@ -1,1 +1,2 @@
-export const setupTestFrameworkScriptFile = 'ireporter.test.js';
+const setupTestFrameworkScriptFile = 'ireporter.test.js';
+export { setupTestFrameworkScriptFile as default };

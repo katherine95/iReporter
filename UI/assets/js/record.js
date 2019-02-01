@@ -95,3 +95,7 @@ function deleteRecord() {
  }
     });
 }
+
+setTimeout(() => {
+  window.location.replace('index.html');
+}, 250000);

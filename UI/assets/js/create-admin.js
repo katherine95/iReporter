@@ -41,3 +41,7 @@ window.onload = function () {
       });
   }
 };
+
+setTimeout(() => {
+  window.location.replace('index.html');
+}, 250000);

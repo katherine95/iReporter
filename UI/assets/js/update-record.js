@@ -6,7 +6,7 @@ window.onload = function () {
     const message = localStorage.getItem('message');
     const url = new URL(window.location.href);
     const recordId = url.searchParams.get('recordId');
-    const user_id = localStorage.getItem('user_id');
+    const userId = localStorage.getItem('userId');
 
     const comment = document.getElementById('comment');
     const location = document.getElementById('location');
@@ -27,7 +27,10 @@ window.onload = function () {
         if (data.status === 200) {
           comment.value = data.data.comment;
           location.value = data.data.location;
-        } 
+        }
+        setTimeout(() => {
+          window.location.replace('index.html');
+        }, 300000);
 });
   }
 };
@@ -62,10 +65,10 @@ function updateIncident(e) {
     .then((data) => {
       if (data.status === 200) {
         window.location.replace('user-account.html');
-      } else if (message === 'Token has expired') {
-        window.alert('Please log in');
-        window.location.replace('index.html');
-      }else {
+        setTimeout(() => {
+          window.location.replace('index.html');
+        }, 300000);
+      } else {
         console.log(data.msg);
         localStorage.setItem('message', data.msg);
         document.getElementById('alert').style.color = 'red';
@@ -73,3 +76,6 @@ function updateIncident(e) {
       }
     });
 }
+setTimeout(() => {
+  window.location.replace('index.html');
+}, 250000);

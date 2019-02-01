@@ -1,3 +1,9 @@
+
+/* eslint-disable no-undef */
+/* eslint-disable func-names */
+/* eslint-disable no-use-before-define */
+// import { login } from './index';
+
 window.onload = function () {
   getRecords();
 
@@ -17,7 +23,7 @@ window.onload = function () {
         mode: 'cors',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Request-Method': '*',
-        Authorization: `Bearer ${  token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(response => response.json())
@@ -76,6 +82,9 @@ window.onload = function () {
             status.innerHTML = record.status;
             viewRecord.innerHTML = `<a href='record.html?recordId=${record.id}'>View</a>`;
           });
+          setTimeout(() => {
+            window.location.replace('index.html');
+          }, 300000);
         } else if (message === 'Token has expired') {
           window.alert('Please log in');
           window.location.replace('index.html');
@@ -86,3 +95,6 @@ window.onload = function () {
       });
   }
 };
+setTimeout(() => {
+  window.location.replace('index.html');
+}, 250000);

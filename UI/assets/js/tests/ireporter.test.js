@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-undef */
 import faker from 'faker';
 import puppeteer from 'puppeteer';
+import jest from 'jest';
 
 jest.setTimeout(200000);
 
@@ -34,7 +37,7 @@ beforeAll(async () => {
   browser = await puppeteer.launch({
     // headless: false,
     slowMo: 80,
-    args: [`--window-size=${width},${height}`]
+    args: [`--window-size=${width},${height}`],
   });
   page = await browser.newPage();
   await page.setViewport({ width, height });
@@ -62,7 +65,7 @@ describe('signup', () => {
     await page.click('input[name=password]');
     await page.type('input[name=password]', user.password);
     await page.click('button[type=submit]');
-    await page.waitForNavigation({waitUntil: 'domcontentloaded' }),
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
     await page.waitForSelector('#login', { visible: true });
     await page.screenshot({ path: 'success.png' });
   });
