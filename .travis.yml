@@ -5,7 +5,7 @@ script:
   - npm install
   - npm install coveralls
   # - npm run lint
-  - npm test-ci -- -u --coverage
+  - npm test -- -u --coverage
 after_success:
   - coveralls < coverage/lcov.info
 branches:
