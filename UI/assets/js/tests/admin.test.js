@@ -1,8 +1,5 @@
 /* eslint-disable no-undef */
 import puppeteer from 'puppeteer';
-import jest from 'jest';
-
-jest.setTimeout(200000);
 
 const loginUrl = 'https://katherine95.github.io/iReporter/UI/index.html';
 
@@ -46,5 +43,5 @@ describe('admin user login', () => {
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#redflags', { visible: true });
     await page.screenshot({ path: 'success5.png' });
-  });
+  }, 20000);
 });

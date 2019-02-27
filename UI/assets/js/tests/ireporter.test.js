@@ -2,9 +2,6 @@
 /* eslint-disable no-undef */
 import faker from 'faker';
 import puppeteer from 'puppeteer';
-// import jest from 'jest';
-
-// jest.setTimeout(200000);
 
 const signupUrl = 'https://katherine95.github.io/iReporter/UI/signup.html';
 const loginUrl = 'https://katherine95.github.io/iReporter/UI/index.html';
@@ -22,7 +19,7 @@ const user = {
 };
 
 const record = {
-  comment: 'lets create afakjshj jhajha jjasjkhsk hsj e report to tests tests hghh ahjhs shjhgjhgjhgjhgge te',
+  comment: 'lets create afakjtests sttsshj tests hghh ahjhs shjhgjhgjhgjhgge te',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
@@ -68,7 +65,7 @@ describe('signup', () => {
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
     await page.waitForSelector('#login', { visible: true });
     await page.screenshot({ path: 'success.png' });
-  });
+  }, 200000);
 });
 
 describe('login', () => {
@@ -83,7 +80,7 @@ describe('login', () => {
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#redflags', { visible: true });
     await page.screenshot({ path: 'success1.png' });
-  });
+  }, 200000);
 });
 
 describe('create record', () => {
@@ -100,5 +97,5 @@ describe('create record', () => {
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#redflags', { visible: true });
     await page.screenshot({ path: 'success3.png' });
-  });
+  }, 200000);
 });

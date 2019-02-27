@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/26</span>
+        <span class='fraction'>0/27</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/5</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/26</span>
+        <span class='fraction'>0/27</span>
       </div>
     </div>
   </div>
@@ -86,7 +86,11 @@
 41
 42
 43
-44</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+44
+45
+46
+47
+48</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -125,60 +129,68 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >window.onload = <span class="fstat-no" title="function not covered" >function()</span>{</span>
-<span class="cstat-no" title="statement not covered" >    createAdmin()</span>
-        function <span class="fstat-no" title="function not covered" >createAdmin(){</span>
-        const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem("token");</span>
-        let message = <span class="cstat-no" title="statement not covered" >localStorage.getItem("message");</span>
-        let url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
-        let userName = <span class="cstat-no" title="statement not covered" >url.searchParams.get("userName");</span>
-<span class="cstat-no" title="statement not covered" >        console.log(userName)</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >window.onload = <span class="fstat-no" title="function not covered" >function () </span>{</span>
+<span class="cstat-no" title="statement not covered" >  createAdmin();</span>
+  function <span class="fstat-no" title="function not covered" >createAdmin() {</span>
+    const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem('token');</span>
+    const message = <span class="cstat-no" title="statement not covered" >localStorage.getItem('message');</span>
+    const url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
+    const userName = <span class="cstat-no" title="statement not covered" >url.searchParams.get('userName');</span>
+<span class="cstat-no" title="statement not covered" >    console.log(userName);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/auth/users/${userName}`,{</span>
-            method:'PATCH',
-            headers:{
-                Accept:'application/json',
-                'Content-type':'application/json',
-                'mode':'cors',
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Request-Method": "*",
-                Authorization: "Bearer " + token
-            }
-        })
-        .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
-        .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
-<span class="cstat-no" title="statement not covered" >            console.log(data);</span>
-<span class="cstat-no" title="statement not covered" >            if(data.status === 200){</span>
-<span class="cstat-no" title="statement not covered" >                window.alert("Admin created Successfully")</span>
-<span class="cstat-no" title="statement not covered" >                window.location.replace('users-list.html')</span>
-            }else <span class="cstat-no" title="statement not covered" >if(message === "Token has expired"){</span>
-<span class="cstat-no" title="statement not covered" >                window.alert("Please log in");</span>
-<span class="cstat-no" title="statement not covered" >                window.location.replace('index.html');</span>
-            }else <span class="cstat-no" title="statement not covered" >if(data.message="User is already an Admin"){</span>
-<span class="cstat-no" title="statement not covered" >                window.alert("User is already an Admin");</span>
-<span class="cstat-no" title="statement not covered" >                window.location.replace('users-list.html')</span>
-            }else <span class="cstat-no" title="statement not covered" >if(data.message="you dont have access rights"){</span>
-<span class="cstat-no" title="statement not covered" >                window.alert("You are not an admin");</span>
-<span class="cstat-no" title="statement not covered" >                window.location.replace('index.html')</span>
-            }else{
-<span class="cstat-no" title="statement not covered" >                console.log(data.msg)</span>
-<span class="cstat-no" title="statement not covered" >                localStorage.setItem("message",data.msg);</span>
-<span class="cstat-no" title="statement not covered" >                document.getElementById("alert").style.color = "red";</span>
-<span class="cstat-no" title="statement not covered" >                document.getElementById("alert").innerHTML = data.message;</span>
-            }
-        })
-    }
-}</pre></td></tr>
+<span class="cstat-no" title="statement not covered" >    fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/auth/users/${userName}`, {</span>
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        mode: 'cors',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Request-Method': '*',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >response =&gt; response.json())</span></span>
+      .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log(data);</span>
+<span class="cstat-no" title="statement not covered" >        if (data.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >          window.alert('Admin created Successfully');</span>
+<span class="cstat-no" title="statement not covered" >          window.location.replace('users-list.html');</span>
+        } else <span class="cstat-no" title="statement not covered" >if (message === 'Token has expired') {</span>
+<span class="cstat-no" title="statement not covered" >          window.alert('Please log in');</span>
+<span class="cstat-no" title="statement not covered" >          window.location.replace('index.html');</span>
+        } else <span class="cstat-no" title="statement not covered" >if (data.message = 'User is already an Admin') {</span>
+<span class="cstat-no" title="statement not covered" >          window.alert('User is already an Admin');</span>
+<span class="cstat-no" title="statement not covered" >          window.location.replace('users-list.html');</span>
+        } else <span class="cstat-no" title="statement not covered" >if (data.message = 'you dont have access rights') {</span>
+<span class="cstat-no" title="statement not covered" >          window.alert('You are not an admin');</span>
+<span class="cstat-no" title="statement not covered" >          window.location.replace('index.html');</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          localStorage.setItem('message', data.msg);</span>
+<span class="cstat-no" title="statement not covered" >          document.getElementById('alert').style.color = 'red';</span>
+<span class="cstat-no" title="statement not covered" >          document.getElementById('alert').innerHTML = data.message;</span>
+        }
+      });
+  }
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >  window.location.replace('index.html');</span>
+}, 250000);
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 11:13:20 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Feb 27 2019 13:49:14 GMT+0300 (EAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

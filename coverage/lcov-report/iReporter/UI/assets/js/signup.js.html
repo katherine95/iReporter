@@ -87,7 +87,8 @@
 42
 43
 44
-45</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+45
+46</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -99,6 +100,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,48 +134,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >document.getElementById('signup').addEventListener('submit', signup);</span>
-function <span class="fstat-no" title="function not covered" >signup(e){</span>
-<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-    let firstname = <span class="cstat-no" title="statement not covered" >document.getElementById('firstname').value;</span>
-    let lastname = <span class="cstat-no" title="statement not covered" >document.getElementById('lastname').value;</span>
-    let othernames = <span class="cstat-no" title="statement not covered" >document.getElementById('othernames').value;</span>
-    let phonenumber = <span class="cstat-no" title="statement not covered" >document.getElementById('phonenumber').value;</span>
-    let email = <span class="cstat-no" title="statement not covered" >document.getElementById('email').value;</span>
-    let username = <span class="cstat-no" title="statement not covered" >document.getElementById('username').value;</span>
-    let password = <span class="cstat-no" title="statement not covered" >document.getElementById('password').value;</span>
+function <span class="fstat-no" title="function not covered" >signup(e) {</span>
+<span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
+  const firstname = <span class="cstat-no" title="statement not covered" >document.getElementById('firstname').value;</span>
+  const lastname = <span class="cstat-no" title="statement not covered" >document.getElementById('lastname').value;</span>
+  const othernames = <span class="cstat-no" title="statement not covered" >document.getElementById('othernames').value;</span>
+  const phonenumber = <span class="cstat-no" title="statement not covered" >document.getElementById('phonenumber').value;</span>
+  const email = <span class="cstat-no" title="statement not covered" >document.getElementById('email').value;</span>
+  const username = <span class="cstat-no" title="statement not covered" >document.getElementById('username').value;</span>
+  const password = <span class="cstat-no" title="statement not covered" >document.getElementById('password').value;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    fetch('https://floating-reaches-50695.herokuapp.com/api/v2/auth/signup', {</span>
-        method:'POST',
-        headers:{
-            'Accept':'application/json',
-            'Content-type':'application/json',
-            'mode':'cors',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Request-Method": "*",
-        },
-        body:JSON.stringify(
-            {
-                firstname:firstname,
-                lastname:lastname,
-                othernames:othernames, 
-                phonenumber:phonenumber, 
-                email:email, 
-                username:username, 
-                password:password
-            })
-    })
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
+<span class="cstat-no" title="statement not covered" >  fetch('https://floating-reaches-50695.herokuapp.com/api/v2/auth/signup', {</span>
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+      mode: 'cors',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Request-Method': '*',
+    },
+    body: JSON.stringify(
+      {
+        firstname,
+        lastname,
+        othernames,
+        phonenumber,
+        email,
+        username,
+        password,
+      }
+),
+  })
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >response =&gt; response.json())</span></span>
     .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
-<span class="cstat-no" title="statement not covered" >        if(data.status === 201){</span>
-<span class="cstat-no" title="statement not covered" >            console.log(data)</span>
-<span class="cstat-no" title="statement not covered" >            console.log(data.data[0]["token"])</span>
-<span class="cstat-no" title="statement not covered" >            window.location.replace('index.html');</span>
-        }else{
-<span class="cstat-no" title="statement not covered" >            console.log(data)</span>
-<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").style.color = "red";</span>
-<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").innerHTML = data.message;</span>
-        }
-    })
+<span class="cstat-no" title="statement not covered" >      if (data.status === 201) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(data);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(data.data[0].token);</span>
+<span class="cstat-no" title="statement not covered" >        window.location.replace('index.html');</span>
+      }else {
+<span class="cstat-no" title="statement not covered" >        console.log(data);</span>
+<span class="cstat-no" title="statement not covered" >        document.getElementById('alert').style.color = 'red';</span>
+<span class="cstat-no" title="statement not covered" >        document.getElementById('alert').innerHTML = data.message;</span>
+      }
+    });
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -181,7 +184,7 @@ function <span class="fstat-no" title="function not covered" >signup(e){</span>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 11:13:20 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Feb 27 2019 13:49:14 GMT+0300 (EAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/34</span>
+        <span class='fraction'>0/37</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/34</span>
+        <span class='fraction'>0/37</span>
       </div>
     </div>
   </div>
@@ -117,7 +117,14 @@
 72
 73
 74
-75</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+75
+76
+77
+78
+79
+80
+81
+82</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,6 +154,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,12 +186,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -190,88 +195,104 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >window.onload = <span class="fstat-no" title="function not covered" >function()</span>{</span>
-<span class="cstat-no" title="statement not covered" >    getRecord();</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >window.onload = <span class="fstat-no" title="function not covered" >function () </span>{</span>
+<span class="cstat-no" title="statement not covered" >  getRecord();</span>
 &nbsp;
-    function <span class="fstat-no" title="function not covered" >getRecord(){</span>
-        const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem("token");</span>
-        let message = <span class="cstat-no" title="statement not covered" >localStorage.getItem("message");</span>
-        let url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
-        let recordId = <span class="cstat-no" title="statement not covered" >url.searchParams.get("recordId");</span>
-        const user_id = <span class="cstat-no" title="statement not covered" >localStorage.getItem("user_id");</span>
+  function <span class="fstat-no" title="function not covered" >getRecord() {</span>
+    const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem('token');</span>
+    const message = <span class="cstat-no" title="statement not covered" >localStorage.getItem('message');</span>
+    const url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
+    const recordId = <span class="cstat-no" title="statement not covered" >url.searchParams.get('recordId');</span>
+    const userId = <span class="cstat-no" title="statement not covered" >localStorage.getItem('userId');</span>
 &nbsp;
-        let comment = <span class="cstat-no" title="statement not covered" >document.getElementById('comment');</span>
-        let location = <span class="cstat-no" title="statement not covered" >document.getElementById('location');</span>
-        
-<span class="cstat-no" title="statement not covered" >        fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/incidents/${recordId}`,{</span>
-            headers:{
-                Accept:'application/json',
-                'Content-type':'application/json',
-                'mode':'cors',
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Request-Method": "*",
-                Authorization: "Bearer " + token
-            }
-            })
-            .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
-            .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
-<span class="cstat-no" title="statement not covered" >                console.log(data.data["location"])</span>
-<span class="cstat-no" title="statement not covered" >                if(data.status === 200){</span>
-<span class="cstat-no" title="statement not covered" >                    comment.value = data.data["comment"];</span>
-<span class="cstat-no" title="statement not covered" >                    location.value= data.data["location"];</span>
+    const comment = <span class="cstat-no" title="statement not covered" >document.getElementById('comment');</span>
+    const location = <span class="cstat-no" title="statement not covered" >document.getElementById('location');</span>
 &nbsp;
-                }})
-    }
-}
-<span class="cstat-no" title="statement not covered" >document.getElementById('updateIncident').addEventListener('submit', updateIncident);</span>
-function <span class="fstat-no" title="function not covered" >updateIncident(e){</span>
-<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-    const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem("token");</span>
-    let message = <span class="cstat-no" title="statement not covered" >localStorage.getItem("message");</span>
-    let url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
-    let recordId = <span class="cstat-no" title="statement not covered" >url.searchParams.get("recordId");</span>
-    let comment = <span class="cstat-no" title="statement not covered" >document.getElementById('comment').value;</span>
-    let location = <span class="cstat-no" title="statement not covered" >document.getElementById('location').value;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/user/incidents/${recordId}`, {</span>
-        method:'PATCH',
-        headers:{
-            Accept:'application/json',
-            'Content-type':'application/json',
-            'mode':'cors',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Request-Method": "*",
-            Authorization: "Bearer " + token
-        },
-        body:JSON.stringify(
-            {
-                comment:comment, 
-                location:location
-            })
+<span class="cstat-no" title="statement not covered" >    fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/incidents/${recordId}`, {</span>
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        mode: 'cors',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Request-Method': '*',
+        Authorization: 'Bearer ' + token,
+      },
     })
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
-    .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
-<span class="cstat-no" title="statement not covered" >        if(data.status === 200){</span>
-<span class="cstat-no" title="statement not covered" >            window.location.replace('user-account.html')</span>
-        }else <span class="cstat-no" title="statement not covered" >if(message === "Token has expired"){</span>
-<span class="cstat-no" title="statement not covered" >            window.alert("Please log in");</span>
-<span class="cstat-no" title="statement not covered" >            window.location.replace('index.html')</span>
-        }else{
-<span class="cstat-no" title="statement not covered" >            console.log(data.msg)</span>
-<span class="cstat-no" title="statement not covered" >            localStorage.setItem("message",data.msg);</span>
-<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").style.color = "red";</span>
-<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").innerHTML = data.message;</span>
+      .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >response =&gt; response.json())</span></span>
+      .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log(data.data.location);</span>
+<span class="cstat-no" title="statement not covered" >        if (data.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >          comment.value = data.data.comment;</span>
+<span class="cstat-no" title="statement not covered" >          location.value = data.data.location;</span>
         }
-    })
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >          window.location.replace('index.html');</span>
+        }, 300000);
+});
+  }
+};
+<span class="cstat-no" title="statement not covered" >document.getElementById('updateIncident').addEventListener('submit', updateIncident);</span>
+function <span class="fstat-no" title="function not covered" >updateIncident(e) {</span>
+<span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
+  const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem('token');</span>
+  const message = <span class="cstat-no" title="statement not covered" >localStorage.getItem('message');</span>
+  const url = <span class="cstat-no" title="statement not covered" >new URL(window.location.href);</span>
+  const recordId = <span class="cstat-no" title="statement not covered" >url.searchParams.get('recordId');</span>
+  const comment = <span class="cstat-no" title="statement not covered" >document.getElementById('comment').value;</span>
+  const location = <span class="cstat-no" title="statement not covered" >document.getElementById('location').value;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  fetch(`https://floating-reaches-50695.herokuapp.com/api/v2/user/incidents/${recordId}`, {</span>
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+      mode: 'cors',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Request-Method': '*',
+      Authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify(
+      {
+        comment,
+        location,
+      }
+),
+  })
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >response =&gt; response.json())</span></span>
+    .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
+<span class="cstat-no" title="statement not covered" >      if (data.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >        window.location.replace('user-account.html');</span>
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >          window.location.replace('index.html');</span>
+        }, 300000);
+      } else {
+<span class="cstat-no" title="statement not covered" >        console.log(data.msg);</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.setItem('message', data.msg);</span>
+<span class="cstat-no" title="statement not covered" >        document.getElementById('alert').style.color = 'red';</span>
+<span class="cstat-no" title="statement not covered" >        document.getElementById('alert').innerHTML = data.message;</span>
+      }
+    });
 }
+<span class="cstat-no" title="statement not covered" >setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >  window.location.replace('index.html');</span>
+}, 250000);
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 11:13:20 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Feb 27 2019 13:49:14 GMT+0300 (EAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

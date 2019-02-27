@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/33</span>
+        <span class='fraction'>0/32</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/33</span>
+        <span class='fraction'>0/32</span>
       </div>
     </div>
   </div>
@@ -104,7 +104,9 @@
 59
 60
 61
-62</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+62
+63
+64</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -132,6 +134,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -140,10 +143,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -164,75 +164,81 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >document.getElementById('createIncident').addEventListener('submit', createIncident);</span>
-function <span class="fstat-no" title="function not covered" >createIncident(e){</span>
-<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-    const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem("token");</span>
-    let message = <span class="cstat-no" title="statement not covered" >localStorage.getItem("message");</span>
-    let comment = <span class="cstat-no" title="statement not covered" >document.getElementById('comment').value;</span>
-    let location = <span class="cstat-no" title="statement not covered" >document.getElementById('location').value;</span>
-    let incidentType = <span class="cstat-no" title="statement not covered" >document.getElementById('incidentType').value;</span>
-    let image = <span class="cstat-no" title="statement not covered" >document.getElementById('custom-text').innerHTML;</span>
+function <span class="fstat-no" title="function not covered" >createIncident(e) {</span>
+<span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
+  const token = <span class="cstat-no" title="statement not covered" >localStorage.getItem('token');</span>
+  const message = <span class="cstat-no" title="statement not covered" >localStorage.getItem('message');</span>
+  const comment = <span class="cstat-no" title="statement not covered" >document.getElementById('comment').value;</span>
+  const location = <span class="cstat-no" title="statement not covered" >document.getElementById('location').value;</span>
+  const incidentType = <span class="cstat-no" title="statement not covered" >document.getElementById('incidentType').value;</span>
+  const image = <span class="cstat-no" title="statement not covered" >document.getElementById('custom-text').innerHTML;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    fetch('https://floating-reaches-50695.herokuapp.com/api/v2/incidents', {</span>
-        method:'POST',
-        headers:{
-            Accept:'application/json',
-            'Content-type':'application/json',
-            'mode':'cors',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Request-Method": "*",
-            Authorization: "Bearer " + token
-        },
-        body:JSON.stringify(
-            {
-                comment:comment, 
-                location:location,
-                incidentType:incidentType,
-                image:[image]
-            })
-    })
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>response) =&gt; response.json())</span>
+<span class="cstat-no" title="statement not covered" >  fetch('https://floating-reaches-50695.herokuapp.com/api/v2/incidents', {</span>
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+      mode: 'cors',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Request-Method': '*',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(
+      {
+        comment,
+        location,
+        incidentType,
+        image: [image],
+      },
+    ),
+  })
+    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >response =&gt; response.json())</span></span>
     .then(<span class="fstat-no" title="function not covered" >(</span>data) =&gt; {
-<span class="cstat-no" title="statement not covered" >        console.log(data);</span>
-<span class="cstat-no" title="statement not covered" >        if(data.status === 201){</span>
-<span class="cstat-no" title="statement not covered" >            console.log(data)</span>
-<span class="cstat-no" title="statement not covered" >            localStorage.setItem("message",data.msg);</span>
-<span class="cstat-no" title="statement not covered" >            window.location.replace('user-account.html')</span>
-        }else <span class="cstat-no" title="statement not covered" >if(message === "Token has expired"){</span>
-<span class="cstat-no" title="statement not covered" >            window.alert("Please log in");</span>
-<span class="cstat-no" title="statement not covered" >            window.location.replace('index.html')</span>
-        }else{
-<span class="cstat-no" title="statement not covered" >            console.log(data.msg)</span>
-<span class="cstat-no" title="statement not covered" >            localStorage.setItem("message",data.msg);</span>
-<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").style.color = "red";</span>
-<span class="cstat-no" title="statement not covered" >            document.getElementById("alert").innerHTML = data.message;</span>
-        }
-    })
+<span class="cstat-no" title="statement not covered" >      if (data.status === 201) {</span>
+<span class="cstat-no" title="statement not covered" >        localStorage.setItem('message', data.msg);</span>
+<span class="cstat-no" title="statement not covered" >        window.location.replace('user-account.html');</span>
+      } else <span class="cstat-no" title="statement not covered" >if (message === 'Token has expired') {</span>
+<span class="cstat-no" title="statement not covered" >        window.alert('Please log in');</span>
+<span class="cstat-no" title="statement not covered" >        window.location.replace('index.html');</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        localStorage.setItem('message', data.msg);</span>
+<span class="cstat-no" title="statement not covered" >        document.getElementById('alert').style.color = 'red';</span>
+<span class="cstat-no" title="statement not covered" >        document.getElementById('alert').innerHTML = data.message;</span>
+      }
+    });
 }
-const realFileBtn = <span class="cstat-no" title="statement not covered" >document.getElementById("real-file");</span>
-const customBtn = <span class="cstat-no" title="statement not covered" >document.getElementById("custom-button");</span>
-const customTxt = <span class="cstat-no" title="statement not covered" >document.getElementById("custom-text");</span>
+const realFileBtn = <span class="cstat-no" title="statement not covered" >document.getElementById('real-file');</span>
+const customBtn = <span class="cstat-no" title="statement not covered" >document.getElementById('custom-button');</span>
+const customTxt = <span class="cstat-no" title="statement not covered" >document.getElementById('custom-text');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >window.addEventListener('load', <span class="fstat-no" title="function not covered" >function() </span>{</span>
-<span class="cstat-no" title="statement not covered" >    customBtn.addEventListener("click", <span class="fstat-no" title="function not covered" >function() </span>{</span>
-<span class="cstat-no" title="statement not covered" >        realFileBtn.click();</span>
-    });
-<span class="cstat-no" title="statement not covered" >    document.querySelector('input[type="file"]').addEventListener('change', <span class="fstat-no" title="function not covered" >function() </span>{</span>
-<span class="cstat-no" title="statement not covered" >        if (realFileBtn.value) {</span>
-            var img = <span class="cstat-no" title="statement not covered" >document.querySelector('img');  // $('img')[0]</span>
-<span class="cstat-no" title="statement not covered" >            img.src = URL.createObjectURL(this.files[0]); // set src to file url</span>
-<span class="cstat-no" title="statement not covered" >            customTxt.innerHTML = img.src;</span>
-        }
-    });
-  });</pre></td></tr>
+<span class="cstat-no" title="statement not covered" >window.addEventListener('load', <span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >  customBtn.addEventListener('click', <span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >    realFileBtn.click();</span>
+  });
+<span class="cstat-no" title="statement not covered" >  document.querySelector('input[type="file"]').addEventListener('change', <span class="fstat-no" title="function not covered" >function () </span>{</span>
+<span class="cstat-no" title="statement not covered" >    if (realFileBtn.value) {</span>
+      const img = <span class="cstat-no" title="statement not covered" >document.querySelector('img').files[0]; // $('img')[0]</span>
+<span class="cstat-no" title="statement not covered" >      img.src = URL.createObjectURL(this.files[0]); // set src to file url</span>
+<span class="cstat-no" title="statement not covered" >      customTxt.innerHTML = img.src;</span>
+    }
+  });
+});
+<span class="cstat-no" title="statement not covered" >setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >  window.location.replace('index.html');</span>
+}, 250000);
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 11:13:20 GMT+0300 (EAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Feb 27 2019 13:49:14 GMT+0300 (EAT)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

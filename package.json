@@ -25,7 +25,13 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "**/src/**/*.{js,jsx}"
-    ]
+      "**/src/**/*.{js,jsx}",
+      "**/*.{js,jsx}",
+      "!**/node_modules/**"
+    ],
+    "verbose": true
+  },
+  "dependencies": {
+    "jest-config": "^24.1.0"
   }
 }
