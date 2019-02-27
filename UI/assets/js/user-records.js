@@ -40,16 +40,14 @@ window.onload = function () {
             const createdOn = new_row.insertCell(2);
             const incidentType = new_row.insertCell(3);
             const location = new_row.insertCell(4);
-            const image = new_row.insertCell(5);
-            const status = new_row.insertCell(6);
-            const viewRecord = new_row.insertCell(7);
+            const status = new_row.insertCell(5);
+            const viewRecord = new_row.insertCell(6);
 
             id.innerHTML = records.indexOf(record) + 1;
             comment.innerHTML = record.comment;
             createdOn.innerHTML = record.createdOn;
             incidentType.innerHTML = record.incidentType;
             location.innerHTML = record.location;
-            image.innerHTML = record.image[0];
             status.innerHTML = record.status;
             viewRecord.innerHTML = `<a href='record.html?recordId=${record.id}'>View</a>`;
           });
@@ -69,16 +67,14 @@ window.onload = function () {
             const createdOn = new_row.insertCell(2);
             const incidentType = new_row.insertCell(3);
             const location = new_row.insertCell(4);
-            const image = new_row.insertCell(5);
-            const status = new_row.insertCell(6);
-            const viewRecord = new_row.insertCell(7);
+            const status = new_row.insertCell(5);
+            const viewRecord = new_row.insertCell(6);
 
             id.innerHTML = records.indexOf(record) + 1;
             comment.innerHTML = record.comment;
             createdOn.innerHTML = record.createdOn;
             incidentType.innerHTML = record.incidentType;
             location.innerHTML = record.location;
-            image.innerHTML = record.image[0];
             status.innerHTML = record.status;
             viewRecord.innerHTML = `<a href='record.html?recordId=${record.id}'>View</a>`;
           });

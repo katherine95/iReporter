@@ -2,9 +2,9 @@
 /* eslint-disable no-undef */
 import faker from 'faker';
 import puppeteer from 'puppeteer';
-import jest from 'jest';
+// import jest from 'jest';
 
-jest.setTimeout(200000);
+// jest.setTimeout(200000);
 
 const signupUrl = 'https://katherine95.github.io/iReporter/UI/signup.html';
 const loginUrl = 'https://katherine95.github.io/iReporter/UI/index.html';
@@ -22,7 +22,7 @@ const user = {
 };
 
 const record = {
-  comment: 'lets create afake report to tests tests hghh ahjhs shjhgjhgjhgjhgge te',
+  comment: 'lets create afakjshj jhajha jjasjkhsk hsj e report to tests tests hghh ahjhs shjhgjhgjhgjhgge te',
   incidentType: 'Redflag',
   location: '45N',
   image: faker.image.imageUrl(),
