@@ -28,20 +28,14 @@ window.onload = function () {
 
             const id = new_row.insertCell(0);
             const email = new_row.insertCell(1);
-            const firstname = new_row.insertCell(2);
-            const lastname = new_row.insertCell(3);
-            const othernames = new_row.insertCell(4);
-            const phonenumber = new_row.insertCell(5);
-            const createdOn = new_row.insertCell(6);
-            const username = new_row.insertCell(7);
-            const isAdmin = new_row.insertCell(8);
-            const viewUser = new_row.insertCell(9);
+            const phonenumber = new_row.insertCell(2);
+            const createdOn = new_row.insertCell(3);
+            const username = new_row.insertCell(4);
+            const isAdmin = new_row.insertCell(5);
+            const viewUser = new_row.insertCell(6);
 
             id.innerHTML = users.indexOf(user) + 1;
             email.innerHTML = user.email;
-            firstname.innerHTML = user.firstname;
-            lastname.innerHTML = user.lastname;
-            othernames.innerHTML = user.othernames;
             phonenumber.innerHTML = user.phonenumber;
             createdOn.innerHTML = user.createdOn;
             username.innerHTML = user.username;

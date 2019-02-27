@@ -31,7 +31,10 @@ window.onload = function () {
         if (data.status === 200 && role == 'true') {
           const table = document.getElementById('redflags');
           const records = data.data;
-          console.log(records.length);
+          document.getElementById('incidents').innerHTML = records.length;
+          document.getElementById('redflag').innerHTML = records.filter(redflag => redflag.incidentType === 'Redflag').length;
+          document.getElementById('intervention').innerHTML = records.filter(intervention => intervention.insertCell === 'Intervention').length;
+          console.log(records);
           records.map((record) => {
             const new_row = table.insertRow();
 
@@ -57,6 +60,9 @@ window.onload = function () {
           const userRecords = allRecords.filter(userRecord => userRecord.createdBy == user_id);
           const records = userRecords;
           document.getElementById('incidents').innerHTML = records.length;
+          document.getElementById('resolved').innerHTML = records.filter(resolved => resolved.status === 'resolved').length;
+          document.getElementById('inDraft').innerHTML = records.filter(resolved => resolved.status === 'inDraft').length;
+          document.getElementById('rejected').innerHTML = records.filter(resolved => resolved.status === 'rejected').length;
           console.log(records);
           records.map((record) => {
             console.log(record.image[0]);

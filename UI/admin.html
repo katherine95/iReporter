@@ -9,7 +9,6 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="logo">iReporter</a></li>
-                <li><a href="index.html">Home</a></li>
                 <li><a href="signup.html">Register</a></li>
                 <li><a href="index.html">Login</a></li>
                 <li><a href="index.html">Logout</a></li>
@@ -27,9 +26,6 @@
                 <div class="item"><h2><a href="#indraft">Dashboard</a></h2></div>
                 <div class="item"><a href="create-admin.html">+ Create Admin</a></div>
                 <div class="item"><a href="admin.html">All records</a></div>
-                <div class="item" id='resolved'>Resolved</div>
-                <div class="item" id='inDraft'>In Draft</div>
-                <div class="item" id='rejected'>Rejected</div>
                 <div class="item"><a href="users-list.html">All Users</a></div>
             </div>
         </div>
@@ -46,12 +42,12 @@
                 </div>
                 <div class="card">
                     <h1>Interventions</h1>
-                    <p id='interventions'></p>
+                    <p id='intervention'></p>
                 </div>
-                <div class="card">
+                <!-- <div class="card">
                     <h1>In Draft</h1>
                     <p id='inDraft'></p>
-                </div>
+                </div> -->
             </div>
             <p id="alert"></p>
             <div class="records-list">
@@ -63,7 +59,6 @@
                             <th>CreatedOn</th>
                             <th>Type</th>
                             <th>Location</th>
-                            <th>Evidence</th>
                             <th>Status</th>
                             <th>View</th>
                         </tr>
